@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
                         cambiarTituloBarra("Agregar Reporte");
                         break;
                     case R.id.menu_librocontable:
-                        //fragment = new FragmentPantallaLibroContable();
+                        fragment = new FragmentPantallaLibroContable();
                         cambiarTituloBarra("Libro Contable");
                         break;
                 }
