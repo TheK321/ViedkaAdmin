@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_resumen"
+        android:enabled="true"
+        android:icon="@drawable/menu_ic_tienda"
+        android:title="@string/txtResumen" />
+    <item
+        android:id="@+id/menu_ventas"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_attach_money_24"
+        android:title="@string/txtVentas" />
+    <item
+        android:id="@+id/menu_agregarreporte"
+        android:enabled="true"
+        android:icon="@drawable/menu_ic_agregarreporte"
+        android:title="@string/txtAgregarReporte" />
+    <item
+        android:id="@+id/menu_librocontable"
+        android:enabled="true"
+        android:icon="@drawable/menu_ic_librocontable"
+        android:title="@string/txtLibroContable"
+        android:lines="2"/>
+
+</menu>
