@@ -8,11 +8,20 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TableLayout;
 
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.navigationrail.NavigationRailView;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
+
+    //Variables de creacion de Tabla Ventas DANIEL IFR
+    private TableLayout tableLayout;
+    private ArrayList<String[]> filas = new ArrayList<>();
+    //
 
     NavigationRailView menuViedka;
     FragmentManager fragmentManager;
@@ -42,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.menu_ventas:
                         fragment = new FragmentPantallaVentas();
                         cambiarTituloBarra("Ventas");
+                        setContentView(R.layout.activity_main);
                         break;
                     case R.id.menu_agregarreporte:
                         fragment = new FragmentPantallaAgregarReporte();
