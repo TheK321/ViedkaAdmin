@@ -6,4 +6,6 @@
     <string name="txtVentas">Ventas</string>
     <string name="txtAgregarReporte">Agregar reporte</string>
     <string name="txtLibroContable">Libro contable</string>
+    <string name="txtNombreQuienElabora">Nombre de quien elaboró</string>
+    <string name="txtFecha">Fecha</string>
 </resources>
