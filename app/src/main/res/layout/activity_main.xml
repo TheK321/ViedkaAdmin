@@ -8,15 +8,16 @@
     tools:context=".MainActivity">
 
 
-
     <FrameLayout
         android:id="@+id/frame_layout_container"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/id_menuviedka"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <com.google.android.material.navigationrail.NavigationRailView
         android:id="@+id/id_menuviedka"
