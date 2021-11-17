@@ -61,6 +61,10 @@ public class MainActivity extends AppCompatActivity {
                         fragment = new FragmentPantallaLibroContable();
                         cambiarTituloBarra("Libro Contable");
                         break;
+                    case R.id.menu_productos:
+                        fragment = new FragmentPantallaProductos();
+                        cambiarTituloBarra("Productos");
+                        break;
                 }
                 fragmentManager = getSupportFragmentManager();
                 fragmentTransaction = fragmentManager.beginTransaction();

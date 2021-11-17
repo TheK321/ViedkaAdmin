@@ -3,6 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/ayelm/StudioProjects/ViedkaAdmin/app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="..\:/Users/ayelm/StudioProjects/ViedkaAdmin/app/src/main/res/layout/fragment_pantalla_agregar_reporte.xml" value="0.18840579710144928" />
+        <entry key="..\:/Users/ayelm/StudioProjects/ViedkaAdmin/app/src/main/res/layout/fragment_pantalla_libro_contable.xml" value="0.18840579710144928" />
+        <entry key="..\:/Users/ayelm/StudioProjects/ViedkaAdmin/app/src/main/res/layout/fragment_pantalla_productos.xml" value="0.1" />
+        <entry key="..\:/Users/ayelm/StudioProjects/ViedkaAdmin/app/src/main/res/layout/fragment_pantalla_ventas.xml" value="0.18840579710144928" />
+        <entry key="..\:/Users/ayelm/StudioProjects/ViedkaAdmin/app/src/main/res/menu/navigation_rail_viedka.xml" value="0.5" />
         <entry key="..\:/Users/hpnvme/StudioProjects/ViedkaAdmin/app/src/main/res/drawable/ventas_ic_titulo.xml" value="0.3828125" />
         <entry key="..\:/Users/hpnvme/StudioProjects/ViedkaAdmin/app/src/main/res/layout/activity_main.xml" value="0.41041666666666665" />
         <entry key="..\:/Users/hpnvme/StudioProjects/ViedkaAdmin/app/src/main/res/layout/fragment_pantalla_agregar_reporte.xml" value="0.5" />
