@@ -21,5 +21,10 @@
         android:icon="@drawable/menu_ic_librocontable"
         android:title="@string/txtLibroContable"
         android:lines="2"/>
+    <item
+        android:id="@+id/menu_productos"
+        android:enabled="true"
+        android:icon="@drawable/ic_t_shirt_svgrepo_com"
+        android:title="Productos"/>
 
 </menu>
