@@ -1,11 +1,14 @@
 package com.example.viedkaadmin;
 
+import androidx.annotation.ContentView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.transition.Transition;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
 
     //Variables de creacion de Tabla Ventas DANIEL IFR
     private TableLayout tableLayout;
+    private String[] encabezado = {"ID","PRECIO","CANTIDAD","TOTAL"};
     private ArrayList<String[]> filas = new ArrayList<>();
     //
 
@@ -36,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         if(fragment==null){
             fragmentManager = getSupportFragmentManager();
             fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.frame_layout_container, new FragmentPantallaVentas());
+            fragmentTransaction.replace(R.id.frame_layout_container, new FragmentPantallaLibroContable());
             fragmentTransaction.commit();
         }
 
@@ -47,29 +51,58 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.menu_resumen:
                         //fragment = new fragmentPantallaResumen;
                         cambiarTituloBarra("Resumen");
+                        fragmentManager = getSupportFragmentManager();
+                        fragmentTransaction = fragmentManager.beginTransaction();
+                        fragmentTransaction.replace(R.id.frame_layout_container, fragment);
+                        fragmentTransaction.commit();
                         break;
                     case R.id.menu_ventas:
+                        //Definicion de Tabla Ventas
+                        setContentView(R.layout.fragment_pantalla_ventas);
+                        tableLayout = (TableLayout)findViewById(R.id.tl);
+                        ClassTablaVentas tablaVentas = new ClassTablaVentas(tableLayout, getApplicationContext());
+                        tablaVentas.agregarEncabezado(encabezado);
+
+                        tablaVentas.agregarDatos(obtenerDatos());
+
                         fragment = new FragmentPantallaVentas();
                         cambiarTituloBarra("Ventas");
-                        setContentView(R.layout.activity_main);
+
+                        tablaVentas.fondoEncabezadoColor(Color.BLUE);
+                        tablaVentas.fondoCeldasColor(Color.GREEN, Color.YELLOW);
+
+                        fragmentManager = getSupportFragmentManager();
+                        fragmentTransaction = fragmentManager.beginTransaction();
+                        fragmentTransaction.replace(R.id.clventa, fragment);
+                        fragmentTransaction.commit();
+
                         break;
                     case R.id.menu_agregarreporte:
                         fragment = new FragmentPantallaAgregarReporte();
                         cambiarTituloBarra("Agregar Reporte");
+                        fragmentManager = getSupportFragmentManager();
+                        fragmentTransaction = fragmentManager.beginTransaction();
+                        fragmentTransaction.replace(R.id.frame_layout_container, fragment);
+                        fragmentTransaction.commit();
                         break;
                     case R.id.menu_librocontable:
                         fragment = new FragmentPantallaLibroContable();
                         cambiarTituloBarra("Libro Contable");
+                        fragmentManager = getSupportFragmentManager();
+                        fragmentTransaction = fragmentManager.beginTransaction();
+                        fragmentTransaction.replace(R.id.frame_layout_container, fragment);
+                        fragmentTransaction.commit();
                         break;
                     case R.id.menu_productos:
                         fragment = new FragmentPantallaProductos();
                         cambiarTituloBarra("Productos");
+                        fragmentManager = getSupportFragmentManager();
+                        fragmentTransaction = fragmentManager.beginTransaction();
+                        fragmentTransaction.replace(R.id.frame_layout_container, fragment);
+                        fragmentTransaction.commit();
                         break;
                 }
-                fragmentManager = getSupportFragmentManager();
-                fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.frame_layout_container, fragment);
-                fragmentTransaction.commit();
+
                 return true;
             }
         });
@@ -78,4 +111,18 @@ public class MainActivity extends AppCompatActivity {
     public void cambiarTituloBarra(String nuevoTitulo){
         getSupportActionBar().setTitle(nuevoTitulo);
     }
+
+    //Metodos de Integracion Tabla Ventas DANIEL IFR
+    private ArrayList<String[]>obtenerDatos(){
+
+        for(int con=0;con<10;con++){
+            String temp = (String) ""+(con+1);
+            filas.add(new String[]{temp,"CAMISA","100","4","400"});
+        }
+        return filas;
+    }
+    public void insertarDatos(View view){
+        String[] nuevoitem = new String[]{/*VALORES NUEVOS*/"","","","",""};
+    }
+    //
 }

@@ -19,7 +19,7 @@
         android:id="@+id/menu_librocontable"
         android:enabled="true"
         android:icon="@drawable/menu_ic_librocontable"
-        android:title="@string/txtLibroContable"
+        android:title="LibroContable"
         android:lines="2"/>
     <item
         android:id="@+id/menu_productos"
