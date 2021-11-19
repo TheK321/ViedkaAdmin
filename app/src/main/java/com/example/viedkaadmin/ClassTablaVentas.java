@@ -59,7 +59,7 @@ public class ClassTablaVentas {
             textView.setText(encabezado[columna++]);
             tableRow.addView(textView, parametrosTablaVentas());
         }
-        tableLayout.addView(tableRow);
+        tableLayout.addView(tableRow);;
     }
 
     private void crearDatosTabla(){
