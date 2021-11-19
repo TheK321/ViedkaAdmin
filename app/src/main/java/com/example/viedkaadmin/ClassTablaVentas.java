@@ -6,10 +6,14 @@ import android.view.Gravity;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+
+import com.google.android.material.navigationrail.NavigationRailView;
+
 import java.util.ArrayList;
 
 public class ClassTablaVentas {
     //INICIALIZACION DE LA INTERFAZ DE TABLA
+    private NavigationRailView menuViedka;
     private TableLayout tableLayout;
     private Context context;
     private TableRow tableRow;
@@ -132,4 +136,5 @@ public class ClassTablaVentas {
         }
         tableLayout.addView(tableRow);
     }
+
 }

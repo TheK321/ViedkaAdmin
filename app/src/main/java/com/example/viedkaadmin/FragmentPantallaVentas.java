@@ -8,12 +8,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.material.navigationrail.NavigationRailView;
+
 public class FragmentPantallaVentas extends Fragment {
     public FragmentPantallaVentas() {
-
     }
 
-    // TODO: Rename and change types and number of parameters
     public static FragmentPantallaVentas newInstance(String param1, String param2) {
         FragmentPantallaVentas fragment = new FragmentPantallaVentas();
         return fragment;

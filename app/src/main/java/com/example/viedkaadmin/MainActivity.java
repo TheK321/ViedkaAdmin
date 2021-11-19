@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
                         tablaVentas.agregarEncabezado(encabezado);
 
                         tablaVentas.agregarDatos(obtenerDatos());
-
+                        menuViedka=findViewById(R.id.id_menuviedka);
                         fragment = new FragmentPantallaVentas();
                         cambiarTituloBarra("Ventas");
 
