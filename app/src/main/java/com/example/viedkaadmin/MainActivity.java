@@ -21,12 +21,6 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    //Variables de creacion de Tabla Ventas DANIEL IFR
-    //private TableLayout tableLayout;
-    //private String[] encabezado = {"ID","PRECIO","CANTIDAD","TOTAL"};
-    //private ArrayList<String[]> filas = new ArrayList<>();
-    //
-
     NavigationRailView menuViedka;
     FragmentManager fragmentManager;
     FragmentTransaction fragmentTransaction;
@@ -58,19 +52,8 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case R.id.menu_ventas:
                         //Definicion de Tabla Ventas
-                        //setContentView(R.layout.fragment_pantalla_ventas);
-                        /*tableLayout = (TableLayout)findViewById(R.id.tl);
-                        ClassTablaVentas tablaVentas = new ClassTablaVentas(tableLayout, getApplicationContext());
-                        tablaVentas.agregarEncabezado(encabezado);
-
-                        tablaVentas.agregarDatos(obtenerDatos());*/
-
                         fragment = new FragmentPantallaVentas();
                         cambiarTituloBarra("Ventas");
-
-                       /* tablaVentas.fondoEncabezadoColor(Color.BLUE);
-                        tablaVentas.fondoCeldasColor(Color.GREEN, Color.YELLOW);*/
-
                         fragmentManager = getSupportFragmentManager();
                         fragmentTransaction = fragmentManager.beginTransaction();
                         fragmentTransaction.replace(R.id.frame_layout_container, fragment);
@@ -111,6 +94,5 @@ public class MainActivity extends AppCompatActivity {
     public void cambiarTituloBarra(String nuevoTitulo){
         getSupportActionBar().setTitle(nuevoTitulo);
     }
-
 
 }

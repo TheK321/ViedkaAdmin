@@ -12,8 +12,6 @@ import android.widget.TableLayout;
 
 import java.util.ArrayList;
 
-import com.google.android.material.navigationrail.NavigationRailView;
-
 public class FragmentPantallaVentas extends Fragment {
 
     private TableLayout tableLayout;
@@ -22,8 +20,10 @@ public class FragmentPantallaVentas extends Fragment {
 
 
     public FragmentPantallaVentas() {
+
     }
 
+    // TODO: Rename and change types and number of parameters
     public static FragmentPantallaVentas newInstance(String param1, String param2) {
         FragmentPantallaVentas fragment = new FragmentPantallaVentas();
 
@@ -56,14 +56,14 @@ public class FragmentPantallaVentas extends Fragment {
     //Metodos de Integracion Tabla Ventas DANIEL IFR
     private ArrayList<String[]>obtenerDatos(){
 
-        for(int con=0;con<10;con++){
-            String temp = (String) ""+(con+1);
+        for(int con=0;con<100;con++){
+            String temp = (String) ""+(con-1);
             filas.add(new String[]{temp,"CAMISA","100","4","400"});
         }
         return filas;
     }
     public void insertarDatos(View view){
-        String[] nuevoitem = new String[]{/*VALORES NUEVOS*/"","","","",""};
+        String[] nuevoitem = new String[]{/*VALORES NUEVOS*/"","","",""};
     }
     //
 }

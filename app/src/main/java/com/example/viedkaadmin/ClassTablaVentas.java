@@ -61,7 +61,7 @@ public class ClassTablaVentas {
     }
     private void crearDatosTabla(){
         String info;
-        for (fila=1;fila<=/*Cantidad de Filas*/10;fila++){
+        for (fila=1;fila<=/*Cantidad de Filas*/100;fila++){
             nuevaFila();
             for (columna=0;columna<encabezado.length;columna++){
                 nuevoDato();
@@ -115,7 +115,7 @@ public class ClassTablaVentas {
         }
     }
     public void fondoCeldasColor(int primerColor, int segundoColor){
-        for (fila=1;fila<=/*Cantidad de Filas*/10;fila++){
+        for (fila=1;fila<=/*Cantidad de Filas*/100;fila++){
             alter=!alter;
             for (columna=0;columna<encabezado.length;columna++){
                 textView=getDato(fila,columna);
