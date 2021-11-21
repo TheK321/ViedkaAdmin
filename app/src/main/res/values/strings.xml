@@ -8,4 +8,6 @@
     <string name="txtLibroContable">Libro contable</string>
     <string name="txtNombreQuienElabora">Nombre de quien elaboró</string>
     <string name="txtFecha">Fecha</string>
+    <string name="ej_marialopez">Ej. María López</string>
+    <string name="seleccionar">Seleccionar...</string>
 </resources>
