@@ -22,9 +22,9 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
     //Variables de creacion de Tabla Ventas DANIEL IFR
-    private TableLayout tableLayout;
-    private String[] encabezado = {"ID","PRECIO","CANTIDAD","TOTAL"};
-    private ArrayList<String[]> filas = new ArrayList<>();
+    //private TableLayout tableLayout;
+    //private String[] encabezado = {"ID","PRECIO","CANTIDAD","TOTAL"};
+    //private ArrayList<String[]> filas = new ArrayList<>();
     //
 
     NavigationRailView menuViedka;
@@ -58,22 +58,22 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case R.id.menu_ventas:
                         //Definicion de Tabla Ventas
-                        setContentView(R.layout.fragment_pantalla_ventas);
-                        tableLayout = (TableLayout)findViewById(R.id.tl);
+                        //setContentView(R.layout.fragment_pantalla_ventas);
+                        /*tableLayout = (TableLayout)findViewById(R.id.tl);
                         ClassTablaVentas tablaVentas = new ClassTablaVentas(tableLayout, getApplicationContext());
                         tablaVentas.agregarEncabezado(encabezado);
 
-                        tablaVentas.agregarDatos(obtenerDatos());
+                        tablaVentas.agregarDatos(obtenerDatos());*/
 
                         fragment = new FragmentPantallaVentas();
                         cambiarTituloBarra("Ventas");
 
-                        tablaVentas.fondoEncabezadoColor(Color.BLUE);
-                        tablaVentas.fondoCeldasColor(Color.GREEN, Color.YELLOW);
+                       /* tablaVentas.fondoEncabezadoColor(Color.BLUE);
+                        tablaVentas.fondoCeldasColor(Color.GREEN, Color.YELLOW);*/
 
                         fragmentManager = getSupportFragmentManager();
                         fragmentTransaction = fragmentManager.beginTransaction();
-                        fragmentTransaction.replace(R.id.clventa, fragment);
+                        fragmentTransaction.replace(R.id.frame_layout_container, fragment);
                         fragmentTransaction.commit();
 
                         break;
@@ -112,17 +112,5 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setTitle(nuevoTitulo);
     }
 
-    //Metodos de Integracion Tabla Ventas DANIEL IFR
-    private ArrayList<String[]>obtenerDatos(){
 
-        for(int con=0;con<10;con++){
-            String temp = (String) ""+(con+1);
-            filas.add(new String[]{temp,"CAMISA","100","4","400"});
-        }
-        return filas;
-    }
-    public void insertarDatos(View view){
-        String[] nuevoitem = new String[]{/*VALORES NUEVOS*/"","","","",""};
-    }
-    //
 }
