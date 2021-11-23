@@ -26,5 +26,10 @@
         android:enabled="true"
         android:icon="@drawable/ic_t_shirt_svgrepo_com"
         android:title="Productos"/>
+    <item
+        android:id="@+id/menu_almacen"
+        android:enabled="true"
+        android:icon="@drawable/ic_logo_almacen"
+        android:title="Almacén"/>
 
 </menu>

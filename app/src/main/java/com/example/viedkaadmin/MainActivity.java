@@ -133,6 +133,14 @@ public class MainActivity extends AppCompatActivity {
                         fragmentTransaction.replace(R.id.frame_layout_container, fragment);
                         fragmentTransaction.commit();
                         break;
+                    case R.id.menu_almacen:
+                        fragment = new FragmentPantallaAlmacen();
+                        cambiarTituloBarra("Almacén");
+                        fragmentManager = getSupportFragmentManager();
+                        fragmentTransaction = fragmentManager.beginTransaction();
+                        fragmentTransaction.replace(R.id.frame_layout_container, fragment);
+                        fragmentTransaction.commit();
+                        break;
                 }
 
                 return true;
