@@ -7,6 +7,19 @@
     tools:context=".FragmentPantallaAgregarReporte">
 
 
+    <FrameLayout
+        android:id="@+id/fragment_container_trabjs"
+        android:layout_width="500dp"
+        android:layout_height="150dp"
+        app:layout_constraintBottom_toTopOf="@+id/imageButton_agregar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.522"
+        app:layout_constraintStart_toEndOf="@+id/textInputLayout_fecha"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.255">
+
+    </FrameLayout>
+
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/text_view_AgregarReportetitle"
         android:layout_width="wrap_content"

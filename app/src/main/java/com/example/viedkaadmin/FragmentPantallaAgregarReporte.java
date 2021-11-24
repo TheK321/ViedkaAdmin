@@ -7,6 +7,7 @@ import android.os.Bundle;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -86,6 +87,9 @@ public class FragmentPantallaAgregarReporte extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_pantalla_agregar_reporte, container, false);
+        Fragment tablaTrabaj = new Trabajadores();
+        FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
+        transaction.replace(R.id.fragment_container_trabjs, tablaTrabaj).commit();
 
         tl = (TableLayout) view.findViewById(R.id.tablaOperacionesReporte);
         txtArticulo= view.findViewById(R.id.textInputEditText_articulo);
