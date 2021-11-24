@@ -8,4 +8,7 @@
     <string name="txtFecha">Fecha</string>
     <string name="ej_marialopez">Ej. María López</string>
     <string name="seleccionar">Seleccionar...</string>
+    <string name="txtLoginTitulo">Iniciar sesión</string>
+    <string name="txtLoginUsuario">Mirna</string>
+    <string name="txtLoginContra">Contraseña</string>
 </resources>

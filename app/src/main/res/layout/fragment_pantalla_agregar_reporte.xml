@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/poppins_medium"
         android:text="@string/txtAgregarReporte"
-        android:textColor="#84477F"
+        android:textColor="#DFAF00"
         android:textSize="36sp"
         app:fontFamily="@font/poppins_medium"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -219,7 +219,6 @@
     </com.google.android.material.textfield.TextInputLayout>
 
 
-
     <com.google.android.material.switchmaterial.SwitchMaterial
         android:id="@+id/switchMaterial_ingreso"
         android:layout_width="wrap_content"
@@ -228,6 +227,7 @@
         android:checked="true"
         android:text="Ingreso"
         android:textColor="#3B4256"
+        android:textColorLink="#FFC400"
         android:textSize="18sp"
         app:fontFamily="@font/poppins_medium"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -272,6 +272,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:text="Agregar"
+        android:textColor="#000000"
         android:textSize="18sp"
         app:fontFamily="@font/poppins_medium"
         app:layout_constraintBottom_toBottomOf="parent"
