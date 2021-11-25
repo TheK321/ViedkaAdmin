@@ -145,6 +145,15 @@ public class FragmentTrabajadores extends Fragment {
         color = !color;
 
     }
+
+    public void actualizarFrag(){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            getActivity().getSupportFragmentManager().beginTransaction().detach(this).commitNow();
+            getActivity().getSupportFragmentManager().beginTransaction().attach(this).commitNow();
+        } else {
+            getActivity().getSupportFragmentManager().beginTransaction().detach(this).attach(this).commit();
+        }
+    }
     public void agregarTrabajador() {
         String[] datos= new String[1];
         String[] columnas = new String[1];
@@ -157,12 +166,7 @@ public class FragmentTrabajadores extends Fragment {
             Toast.makeText(this.getContext(),"Error al insertar",(short)1000);
         } else {
             Toast.makeText(this.getContext(),String.valueOf(trabajadores),(short)1000);
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                getActivity().getSupportFragmentManager().beginTransaction().detach(this).commitNow();
-                getActivity().getSupportFragmentManager().beginTransaction().attach(this).commitNow();
-            } else {
-                getActivity().getSupportFragmentManager().beginTransaction().detach(this).attach(this).commit();
-            }
+            actualizarFrag();
         }
     }
 
@@ -201,7 +205,12 @@ public class FragmentTrabajadores extends Fragment {
                         .setPositiveButton("Sí", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-                                long elimado=((MainActivity)getActivity()).Eliminar("Trabajadores","idTrab",String.valueOf(id));
+                                long eliminado=((MainActivity)getActivity()).Eliminar("Trabajadores","idTrab",String.valueOf(id));
+                                if(eliminado == -1){
+                                    Toast.makeText(fragmentActivity,"Error al insertar",(short)1000);
+                                } else {
+                                    actualizarFrag();
+                                }
                             }
                         })
                         .setNegativeButton("No", new DialogInterface.OnClickListener() {
