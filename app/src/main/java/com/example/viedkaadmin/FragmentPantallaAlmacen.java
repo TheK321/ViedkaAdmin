@@ -51,8 +51,8 @@ public class FragmentPantallaAlmacen extends Fragment {
         tablaAlmacen.agregarEncabezado(encabezado);
 
         tablaAlmacen.agregarDatos(obtenerDatos());
-        tablaAlmacen.fondoEncabezadoColor(Color.WHITE);
-        tablaAlmacen.fondoCeldasColor(Color.GREEN, Color.YELLOW);
+        //tablaAlmacen.fondoEncabezadoColor(Color.WHITE);
+        //tablaAlmacen.fondoCeldasColor(Color.GREEN, Color.YELLOW);
 
         return view;
     }
@@ -66,7 +66,7 @@ public class FragmentPantallaAlmacen extends Fragment {
         return filas;
     }
     public void insertarDatos(View view){
-        String[] nuevoitem = new String[]{/*VALORES NUEVOS*/"","","",""};
+        String[] nuevoitem = new String[]{/*VALORES NUEVOS*/"","","","",""};
     }
     //
 }

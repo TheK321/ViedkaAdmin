@@ -103,6 +103,7 @@ public class ClassTablaAlmacen {
         tableRow=getFila(idFila);
         return (TextView) tableRow.getChildAt(idCol);
     }
+    /*
     public void fondoEncabezadoColor(int color){
         columna=0;
         while(columna<encabezado.length){
@@ -114,7 +115,7 @@ public class ClassTablaAlmacen {
         }
     }
     public void fondoCeldasColor(int primerColor, int segundoColor){
-        for (fila=1;fila<=/*Cantidad de Filas*/100;fila++){
+        for (fila=1;fila<=100;fila++){
             alter=!alter;
             for (columna=0;columna<encabezado.length;columna++){
                 textView=getDato(fila,columna);
@@ -134,6 +135,6 @@ public class ClassTablaAlmacen {
             textView.setBackgroundColor((alter)?primerColor:segundoColor);
         }
         tableLayout.addView(tableRow);
-    }
+    }*/
 
 }
