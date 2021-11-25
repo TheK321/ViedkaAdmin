@@ -9,6 +9,42 @@ import androidx.annotation.Nullable;
 //SQLiteOpenHelper genera los metodos onCreate onUpgrade y AdminSQLiteOpenHelper
 public class AdminSQLiteOpenHelper extends SQLiteOpenHelper{
 
+    public static class DatabaseHelper extends SQLiteOpenHelper {
+
+        private static final String DATABASE_NAME = "ViedkaBD";
+        private static final int DATABASE_VERSION = 4;
+
+        private static DatabaseHelper mInstance;
+
+        private DatabaseHelper(@Nullable Context context) {
+            super(context, DATABASE_NAME, null, DATABASE_VERSION);
+        }
+
+        public static synchronized DatabaseHelper getInstance(Context context) {
+
+            if (mInstance == null) {
+                mInstance = new DatabaseHelper(context.getApplicationContext());
+            }
+            return mInstance;
+        }
+
+        @Override
+        public void onCreate(SQLiteDatabase db) {
+
+            // create table stuff
+
+
+        }
+
+        @Override
+        public void onUpgrade(SQLiteDatabase db, int i, int i1) {
+
+            // drop table stuff
+
+            onCreate(db);
+        }
+    }
+
     public AdminSQLiteOpenHelper(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
     }
@@ -33,11 +69,17 @@ public class AdminSQLiteOpenHelper extends SQLiteOpenHelper{
                 "(Compra_idCompra integer references Compra (idCompra) ON DELETE RESTRICT ON UPDATE RESTRICT NOT NULL," +
                 "Prendas_idPrenda integer references Prendas (idPrenda) ON DELETE RESTRICT ON UPDATE RESTRICT NOT NULL," +
                 "PRIMARY KEY (Compra_idCompra, Prendas_idPrenda))"); /*Columnas de la tabla*/
+
+        BaseDeDatos.execSQL("create table Trabajadores"/*Nombre de la table*/ +
+                "(idTrab integer primary key autoincrement not null unique," +
+                "NombreTrab text not null)"); /*Columnas de la tabla*/
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
 
     }
+
+
 }
 

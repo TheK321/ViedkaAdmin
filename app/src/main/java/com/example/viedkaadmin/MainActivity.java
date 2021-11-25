@@ -8,11 +8,15 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.transition.Transition;
 
+import android.content.ContentValues;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TableLayout;
+import android.widget.TextView;
 
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.navigationrail.NavigationRailView;
@@ -50,14 +54,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch(item.getItemId()){
-                    case R.id.menu_resumen:
-                        //fragment = new fragmentPantallaResumen;
+                    /*case R.id.menu_resumen:
+                        fragment = new fragmentPantallaResumen;
                         cambiarTituloBarra("Resumen");
                         fragmentManager = getSupportFragmentManager();
                         fragmentTransaction = fragmentManager.beginTransaction();
                         fragmentTransaction.replace(R.id.frame_layout_container, fragment);
                         fragmentTransaction.commit();
-                        break;
+                        break;*/
                     case R.id.menu_ventas:
                         //Definicion de Tabla Ventas
                         //setContentView(R.layout.fragment_pantalla_ventas);
@@ -146,6 +150,47 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
+    }
+
+    public long Insertar(String [] columnas, String[] valores, String tabla){
+        //Abrir la BD en modo lectura-escritura
+        SQLiteDatabase BaseDeDatos = AdminSQLiteOpenHelper.DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase();
+            //Agregar un registro a la Base de Datos
+            ContentValues insercion = new ContentValues();
+            //Referenciar los valores locales de las columnas con los valores reales de la tabla de la BD
+        for(int i = 0; i<columnas.length;i++){
+            insercion.put(columnas[i], valores[i]);
+        }
+            //Guardar valores dentro de la Base de Datos
+            long insert = BaseDeDatos.insert(tabla, null, insercion);
+        //Cerrar base de datos despues de la transaccion
+            BaseDeDatos.close();
+
+            //Mensaje de registro Exitoso
+            return insert;
+    }
+
+    public String [][] Consultar(String tabla, int numCampos,boolean tienewhere, String where){
+        SQLiteDatabase BaseDeDatos = AdminSQLiteOpenHelper.DatabaseHelper.getInstance(getApplicationContext()).getReadableDatabase();
+        String sql=tienewhere? "select * from "+tabla+" where "+where:"select * from "+tabla;
+            //Aplicar un select a la Base de Datos
+            Cursor fila = BaseDeDatos.rawQuery
+                    (sql, null);
+            //Metodo para verificar si existe o no el elemento en la tabla
+        String[][] datos = new String[numCampos][fila.getCount()];
+            if(fila.moveToFirst()){
+                int tamanio=0;
+                do{
+                    for(int i = 0; i<numCampos;i++) {
+                        datos[i][tamanio] = fila.getString(i);
+                    }
+                    tamanio++;
+                } while (fila.moveToNext());
+                fila.close();
+                //Cerrar Base de Datos
+                BaseDeDatos.close();
+            }
+        return datos;
     }
 
     public void cambiarTituloBarra(String nuevoTitulo){

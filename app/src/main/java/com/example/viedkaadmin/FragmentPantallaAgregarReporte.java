@@ -7,6 +7,7 @@ import android.os.Bundle;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
@@ -39,12 +40,12 @@ public class FragmentPantallaAgregarReporte extends Fragment {
     private TableLayout tl;
     private TableRow tr;
     private TextView tv1;
-    private TextInputEditText txtArticulo,txtprecio,txtcantidad;
+    private TextInputEditText txtArticulo, txtprecio, txtcantidad;
     private SwitchMaterial ingreso;
     private ScrollView scrollView;
     private AutoCompleteTextView nombre;
-    private String[] trabajadores ={"Wendo","Axel","Benja","Brit","Daniel","Juan","Miriam","Mario"};
-    private boolean color=false;
+    private String[] trabajadores = {"Wendo", "Axel", "Benja", "Brit", "Daniel", "Juan", "Miriam", "Mario"};
+    private boolean color = false;
 
 
     // TODO: Rename and change types of parameters
@@ -87,150 +88,104 @@ public class FragmentPantallaAgregarReporte extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_pantalla_agregar_reporte, container, false);
-        Fragment tablaTrabaj = new Trabajadores();
-        FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
-        transaction.replace(R.id.fragment_container_trabjs, tablaTrabaj).commit();
+
 
         tl = (TableLayout) view.findViewById(R.id.tablaOperacionesReporte);
-        txtArticulo= view.findViewById(R.id.textInputEditText_articulo);
-        txtcantidad=view.findViewById(R.id.textInputEditText_cantidad);
-        txtprecio=view.findViewById(R.id.textInputEditText_precio);
-        ingreso=view.findViewById(R.id.switchMaterial_ingreso);
-        Button button =  view.findViewById(R.id.imageButton_agregar);
-        scrollView=view.findViewById(R.id.scrollView2);
-        nombre=view.findViewById(R.id.autoCompleteTextView_nombre);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),android.R.layout.select_dialog_item,trabajadores);
+        txtArticulo = view.findViewById(R.id.textInputEditText_articulo);
+        txtcantidad = view.findViewById(R.id.textInputEditText_cantidad);
+        txtprecio = view.findViewById(R.id.textInputEditText_precio);
+        ingreso = view.findViewById(R.id.switchMaterial_ingreso);
+        Button button = view.findViewById(R.id.imageButton_agregar);
+        Button verTrabs = view.findViewById(R.id.Button_trabajadores);
+        scrollView = view.findViewById(R.id.scrollView2);
+        nombre = view.findViewById(R.id.autoCompleteTextView_nombre);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.select_dialog_item, trabajadores);
         nombre.setAdapter(adapter);
-        button.setOnClickListener(new View.OnClickListener()
-        {
+        button.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
-                if(!isEmpty(txtArticulo)&&!isEmpty(txtcantidad)&!isEmpty(txtprecio)){
+            public void onClick(View v) {
+                if (!isEmpty(txtArticulo) && !isEmpty(txtcantidad) & !isEmpty(txtprecio)) {
                     agregarFila();
                     scrollView.fullScroll(View.FOCUS_DOWN);
                 } else {
-                    Toast.makeText(getActivity(), "Algún campio está vacío", (short)1000).show();
+                    Toast.makeText(getActivity(), "Algún campio está vacío", (short) 1000).show();
                 }
             }
         });
+
+        verTrabs.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout_container,
+                        new Trabajadores()).commit();
+            }
+        });
         ingreso.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            ingreso.setText(ingreso.isChecked() ?"Ingreso" : "Egreso");
+            ingreso.setText(ingreso.isChecked() ? "Ingreso" : "Egreso");
         });
 
         TableRow.LayoutParams params = new TableRow.LayoutParams(150, TableRow.LayoutParams.WRAP_CONTENT);
-        tr= new TableRow(getActivity());
-        tv1 = new TextView(getActivity());
-        tv1.setText("Artículo");
-        tv1.setTextColor(Color.WHITE);
-        tv1.setBackgroundColor( Color.parseColor("#84477F"));
-        tv1.setTextSize(20);
-        tv1.setPadding(5, 5, 5, 5);
-        tv1.setGravity(CENTER_HORIZONTAL);
-        tr.addView(tv1);
-        tv1.setLayoutParams(params);
-        tv1 = new TextView(getActivity());
-        tv1.setText("Precio");
-        tv1.setTextColor(Color.WHITE);
-        tv1.setBackgroundColor( Color.parseColor("#84477F"));
-        tv1.setTextSize(20);
-        tv1.setPadding(5, 5, 5, 5);
-        tv1.setGravity(CENTER_HORIZONTAL);
-        tr.addView(tv1);
-        tv1.setLayoutParams(params);
-        tv1 = new TextView(getActivity());
-        tv1.setText("Cantidad");
-        tv1.setTextColor(Color.WHITE);
-        tv1.setBackgroundColor( Color.parseColor("#84477F"));
-        tv1.setTextSize(20);
-        tv1.setPadding(5, 5, 5, 5);
-        tv1.setGravity(CENTER_HORIZONTAL);
-        tr.addView(tv1);
-        tv1.setLayoutParams(params);
-        tv1 = new TextView(getActivity());
-        tv1.setText("Total");
-        tv1.setTextColor(Color.WHITE);
-        tv1.setBackgroundColor( Color.parseColor("#84477F"));
-        tv1.setTextSize(20);
-        tv1.setPadding(5, 5, 5, 5);
-        tv1.setGravity(CENTER_HORIZONTAL);
-        tr.addView(tv1);
-        tv1.setLayoutParams(params);
-        tv1 = new TextView(getActivity());
-        tv1.setText("Tipo");
-        tv1.setTextColor(Color.WHITE);
-        tv1.setBackgroundColor( Color.parseColor("#84477F"));
-        tv1.setTextSize(20);
-        tv1.setPadding(5, 5, 5, 5);
-        tv1.setGravity(CENTER_HORIZONTAL);
-        tr.addView(tv1);
-        tv1.setLayoutParams(params);
+        tr = new TableRow(getActivity());
+        //String colorHeader="#84477F";
+        String colorHeader = "#db9600";
+        agregaEncabezado(getActivity(), params, "Articulo", tr, colorHeader);
+        agregaEncabezado(getActivity(), params, "Precio", tr, colorHeader);
+        agregaEncabezado(getActivity(), params, "Cantidad", tr, colorHeader);
+        agregaEncabezado(getActivity(), params, "Total", tr, colorHeader);
+        agregaEncabezado(getActivity(), params, "Tipo", tr, colorHeader);
         tl.addView(tr);
         return view;
     }
 
-    public void agregarFila(){
+    public void agregarFila() {
 
         TableRow.LayoutParams params = new TableRow.LayoutParams(150, TableRow.LayoutParams.WRAP_CONTENT);
 
-        tr= new TableRow(getActivity());
-        tv1 = new TextView(getActivity());
-        tv1.setText(txtArticulo.getText().toString());
-        tv1.setTextColor(Color.BLACK);
-        tv1.setBackgroundColor(Color.parseColor((color) ? "#C1A3BF" : "#ffffff"));
-        tv1.setTextSize(20);
-        tv1.setPadding(5, 5, 5, 5);
-        tv1.setGravity(CENTER_HORIZONTAL);
-        tr.addView(tv1);
-        tv1.setLayoutParams(params);
-        tv1 = new TextView(getActivity());
-        tv1.setText(txtprecio.getText().toString());
-        tv1.setTextColor(Color.BLACK);
-        tv1.setBackgroundColor(Color.parseColor((color) ? "#C1A3BF" : "#ffffff"));
-        tv1.setTextSize(20);
-        tv1.setPadding(5, 5, 5, 5);
-        tv1.setGravity(CENTER_HORIZONTAL);
-        tr.addView(tv1);
-        tv1.setLayoutParams(params);
-        tv1 = new TextView(getActivity());
-        tv1.setText(txtcantidad.getText().toString());
-        tv1.setTextColor(Color.BLACK);
-        tv1.setBackgroundColor(Color.parseColor((color) ? "#C1A3BF" : "#ffffff"));
-        tv1.setTextSize(20);
-        tv1.setPadding(5, 5, 5, 5);
-        tv1.setGravity(CENTER_HORIZONTAL);
-        tr.addView(tv1);
-        tv1.setLayoutParams(params);
-        tv1 = new TextView(getActivity());
-        tv1.setText(String.valueOf((Integer.parseInt(txtcantidad.getText().toString())*Integer.parseInt(txtprecio.getText().toString()))));
-        tv1.setTextColor(Color.BLACK);
-        tv1.setBackgroundColor(Color.parseColor((color) ? "#C1A3BF" : "#ffffff"));
-        tv1.setTextSize(20);
-        tv1.setPadding(5, 5, 5, 5);
-        tv1.setGravity(CENTER_HORIZONTAL);
-        tr.addView(tv1);
-        tv1.setLayoutParams(params);
-        tv1 = new TextView(getActivity());
-        tv1.setText((ingreso.isChecked() ?"Ingreso" : "Egreso"));
-        tv1.setTextColor(Color.BLACK);
-        tv1.setBackgroundColor(Color.parseColor((color) ? "#C1A3BF" : "#ffffff"));
-        tv1.setTextSize(20);
-        tv1.setPadding(5, 5, 5, 5);
-        tv1.setGravity(CENTER_HORIZONTAL);
-        tr.addView(tv1);
-        tv1.setLayoutParams(params);
+        tr = new TableRow(getActivity());
+        agregaCelda(getActivity(), params, txtArticulo.getText().toString(), tr, getColorFondo(color));
+        agregaCelda(getActivity(), params, txtprecio.getText().toString(), tr, getColorFondo(color));
+        agregaCelda(getActivity(), params, txtcantidad.getText().toString(), tr, getColorFondo(color));
+        agregaCelda(getActivity(), params, String.valueOf((Integer.parseInt(txtcantidad.getText().toString()) * Integer.parseInt(txtprecio.getText().toString()))).toString(), tr, getColorFondo(color));
+        agregaCelda(getActivity(), params, (ingreso.isChecked() ? "Ingreso" : "Egreso").toString(), tr, getColorFondo(color));
+
         tl.addView(tr);
 
-        color=!color;
+        color = !color;
 
+    }
+
+    private String getColorFondo(boolean color) {
+        String acolor = color ? "#ffe5ad" : "#fff2d6";
+        return acolor;
+    }
+
+    private void agregaCelda(FragmentActivity fragmentActivity, TableRow.LayoutParams layoutParams, String string, TableRow tr, String color) {
+        tv1 = new TextView(fragmentActivity);
+        tv1.setText(string);
+        tv1.setTextColor(Color.BLACK);
+        tv1.setBackgroundColor(Color.parseColor(color));
+        tv1.setTextSize(20);
+        tv1.setPadding(5, 5, 5, 5);
+        tv1.setGravity(CENTER_HORIZONTAL);
+        tr.addView(tv1);
+        tv1.setLayoutParams(layoutParams);
+    }
+
+    private void agregaEncabezado(FragmentActivity fragmentActivity, TableRow.LayoutParams layoutParams, String string, TableRow tr, String color) {
+        tv1 = new TextView(getActivity());
+        tv1.setText(string);
+        tv1.setTextColor(Color.WHITE);
+        tv1.setBackgroundColor(Color.parseColor(color));
+        tv1.setTextSize(20);
+        tv1.setPadding(5, 5, 5, 5);
+        tv1.setGravity(CENTER_HORIZONTAL);
+        tr.addView(tv1);
+        tv1.setLayoutParams(layoutParams);
     }
 
     private boolean isEmpty(TextInputEditText etText) {
         return etText.getText().toString().trim().length() == 0;
     }
-
-
-
 
 
 }
