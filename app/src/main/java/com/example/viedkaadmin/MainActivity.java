@@ -17,6 +17,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TableLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.navigationrail.NavigationRailView;
@@ -194,6 +195,14 @@ public class MainActivity extends AppCompatActivity {
                 BaseDeDatos.close();
             }
         return datos;
+    }
+
+    public long Eliminar(String tabla, String id ,String valor){
+        //Abrir la BD en modo lectura-escritura
+        SQLiteDatabase BaseDeDatos = AdminSQLiteOpenHelper.DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase();
+
+        long delete = BaseDeDatos.delete(tabla, id+"="+valor, null);
+        return  delete;
     }
 
     public void cambiarTituloBarra(String nuevoTitulo){

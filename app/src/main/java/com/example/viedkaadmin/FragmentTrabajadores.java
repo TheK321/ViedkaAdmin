@@ -201,7 +201,7 @@ public class FragmentTrabajadores extends Fragment {
                         .setPositiveButton("Sí", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-                                Toast.makeText(fragmentActivity,"Eliminado "+nombre, (short)1000);
+                                long elimado=((MainActivity)getActivity()).Eliminar("Trabajadores","idTrab",String.valueOf(id));
                             }
                         })
                         .setNegativeButton("No", new DialogInterface.OnClickListener() {
