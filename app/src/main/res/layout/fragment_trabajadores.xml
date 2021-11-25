@@ -4,15 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Trabajadores">
+    tools:context=".FragmentTrabajadores">
 
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/text_view_EditarTrabajadorestitle"
+        android:id="@+id/text_view_Trabajadorestitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/poppins_medium"
-        android:text="@string/txtEditarTrabajadores"
+        android:text="@string/txtTitleTrabajadores"
         android:textColor="#EF6C00"
         android:textSize="36sp"
         app:fontFamily="@font/poppins_medium"
@@ -22,6 +22,22 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.050000012" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/text_view_EditarTrabajadorestitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_medium"
+        android:text="@string/txtEditarTrabajadores"
+        android:textColor="#EF6C00"
+        android:textSize="24sp"
+        app:fontFamily="@font/poppins_medium"
+        app:layout_constraintBottom_toBottomOf="@+id/textInputLayout_nombreTrabj"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.068"
+        app:layout_constraintStart_toEndOf="@+id/Button_agregar"
+        app:layout_constraintTop_toTopOf="@+id/text_view_AgregarTrabajadorestitle"
+        app:layout_constraintVertical_bias="0.137" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/text_view_AgregarTrabajadorestitle"
@@ -93,6 +109,70 @@
         app:layout_constraintHorizontal_bias="0.055"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout_nombreTrabj"
+        app:layout_constraintVertical_bias="1.0" />
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout_idTrabjEdit"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:hint="ID"
+        app:boxBackgroundColor="@color/white"
+        app:hintTextColor="#84477F"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/text_view_EditarTrabajadorestitle"
+        app:layout_constraintTop_toBottomOf="@+id/text_view_EditarTrabajadorestitle"
+        app:layout_constraintVertical_bias="0">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/textInputEditText_idTrabEdit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="false"
+            android:cursorVisible="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout_nombreTrabjEdit"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:hint="Nombre"
+        app:boxBackgroundColor="@color/white"
+        app:hintTextColor="#84477F"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/textInputLayout_idTrabjEdit"
+        app:layout_constraintTop_toBottomOf="@+id/text_view_EditarTrabajadorestitle"
+        app:layout_constraintVertical_bias="0">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/textInputEditText_nombreTrabEdit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/Button_guardarCambios"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="Confirmar"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        app:fontFamily="@font/poppins_medium"
+        app:layout_constraintBottom_toBottomOf="@+id/textInputLayout_nombreTrabjEdit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/textInputLayout_nombreTrabjEdit"
+        app:layout_constraintTop_toTopOf="@+id/textInputLayout_nombreTrabjEdit"
         app:layout_constraintVertical_bias="1.0" />
 
     <ScrollView

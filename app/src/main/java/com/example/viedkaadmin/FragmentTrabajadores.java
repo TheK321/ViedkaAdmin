@@ -2,6 +2,7 @@ package com.example.viedkaadmin;
 
 import static android.view.Gravity.CENTER_HORIZONTAL;
 
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -19,14 +20,16 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link Trabajadores#newInstance} factory method to
+ * Use the {@link FragmentTrabajadores#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Trabajadores extends Fragment {
+public class FragmentTrabajadores extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -40,13 +43,14 @@ public class Trabajadores extends Fragment {
     private TableLayout tl;
     private TableRow tr;
     private TextView tv1;
-    private TextInputEditText txtNombre;
+    private Button btn;
+    private TextInputEditText txtNombre,txteditNombre,txteditID;
     private ScrollView scrollView;
     private boolean color=false;
     private Trabajador[] listaTrabajadores;
     private String [] [] rawConsulta;
 
-    public Trabajadores() {
+    public FragmentTrabajadores() {
         // Required empty public constructor
     }
 
@@ -56,11 +60,11 @@ public class Trabajadores extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment Trabajadores.
+     * @return A new instance of fragment FragmentTrabajadores.
      */
     // TODO: Rename and change types and number of parameters
-    public static Trabajadores newInstance(String param1, String param2) {
-        Trabajadores fragment = new Trabajadores();
+    public static FragmentTrabajadores newInstance(String param1, String param2) {
+        FragmentTrabajadores fragment = new FragmentTrabajadores();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -86,6 +90,8 @@ public class Trabajadores extends Fragment {
         Button button =  view.findViewById(R.id.Button_agregar);
         txtNombre=view.findViewById(R.id.textInputEditText_nombreTrab);
         scrollView = view.findViewById(R.id.scrollView2);
+        txteditNombre = view.findViewById(R.id.textInputEditText_nombreTrabEdit);
+        txteditID = view.findViewById(R.id.textInputEditText_idTrabEdit);
         button.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -105,6 +111,8 @@ public class Trabajadores extends Fragment {
         String colorHeader = "#db9600";
         agregaEncabezado(getActivity(), params, "ID", tr, colorHeader);
         agregaEncabezado(getActivity(), params, "Nombre", tr, colorHeader);
+        agregaEncabezado(getActivity(), params, "Editar", tr, colorHeader);
+        agregaEncabezado(getActivity(), params, "Eliminar", tr, colorHeader);
         tl.addView(tr);
         try {
             rawConsulta = ((MainActivity) getActivity()).Consultar("Trabajadores",2,false,"");
@@ -124,11 +132,14 @@ public class Trabajadores extends Fragment {
 
     public void agregarFila(int id, String nombre) {
 
-        TableRow.LayoutParams params = new TableRow.LayoutParams(150, TableRow.LayoutParams.WRAP_CONTENT);
+        TableRow.LayoutParams params = new TableRow.LayoutParams(150, 50);
 
         tr = new TableRow(getActivity());
+        tr.setTag(String.valueOf(id));
         agregaCelda(getActivity(), params, String.valueOf(id), tr, getColorFondo(color));
         agregaCelda(getActivity(), params, nombre, tr, getColorFondo(color));
+        agregarBotonEditar(getActivity(), params, "Editar", tr, id,nombre,getColorFondo(color));
+        agregarBotonEliminar(getActivity(), params, "Editar", tr, id,nombre,getColorFondo(color));
         tl.addView(tr);
 
         color = !color;
@@ -146,18 +157,64 @@ public class Trabajadores extends Fragment {
             Toast.makeText(this.getContext(),"Error al insertar",(short)1000);
         } else {
             Toast.makeText(this.getContext(),String.valueOf(trabajadores),(short)1000);
-            /*if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                 getActivity().getSupportFragmentManager().beginTransaction().detach(this).commitNow();
                 getActivity().getSupportFragmentManager().beginTransaction().attach(this).commitNow();
             } else {
                 getActivity().getSupportFragmentManager().beginTransaction().detach(this).attach(this).commit();
-            }*/
+            }
         }
     }
 
     private String getColorFondo(boolean color) {
         String acolor = color ? "#ffe5ad" : "#fff2d6";
         return acolor;
+    }
+
+    private void agregarBotonEditar(FragmentActivity fragmentActivity,TableRow.LayoutParams layoutParams, String string, TableRow tr, int id,String nombre,String color){
+        btn = new Button(fragmentActivity);
+        btn.setText(string);
+        btn.setBackgroundColor(Color.parseColor(color));
+        btn.setTextColor(Color.BLACK);
+        btn.setPadding(5, 5, 5, 5);
+        btn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                txteditID.setText(String.valueOf(id));
+                txteditNombre.setText(nombre);
+            }
+        });
+        tr.addView(btn);
+        tv1.setLayoutParams(layoutParams);
+    }
+
+    private void agregarBotonEliminar(FragmentActivity fragmentActivity,TableRow.LayoutParams layoutParams, String string, TableRow tr, int id,String nombre,String color){
+        btn = new Button(fragmentActivity);
+        btn.setText(string);
+        btn.setBackgroundColor(Color.parseColor(color));
+        btn.setTextColor(Color.BLACK);
+        btn.setPadding(5, 5, 5, 5);
+        btn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                new MaterialAlertDialogBuilder(fragmentActivity)
+                        .setTitle("Confirmar")
+                        .setMessage("¿Está segura de eliminar a "+nombre+"?")
+                        .setPositiveButton("Sí", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                Toast.makeText(fragmentActivity,"Eliminado "+nombre, (short)1000);
+                            }
+                        })
+                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                Toast.makeText(fragmentActivity,"No eliminado "+nombre, (short)1000);
+                            }
+                        })
+                        .show();
+            }
+        });
+        tr.addView(btn);
+        tv1.setLayoutParams(layoutParams);
     }
 
     private void agregaCelda(FragmentActivity fragmentActivity, TableRow.LayoutParams layoutParams, String string, TableRow tr, String color) {

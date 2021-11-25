@@ -5,10 +5,8 @@ import static android.view.Gravity.CENTER_HORIZONTAL;
 import android.graphics.Color;
 import android.os.Bundle;
 
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,7 +14,6 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ScrollView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -117,7 +114,7 @@ public class FragmentPantallaAgregarReporte extends Fragment {
             @Override
             public void onClick(View v) {
                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout_container,
-                        new Trabajadores()).commit();
+                        new FragmentTrabajadores()).commit();
             }
         });
         ingreso.setOnCheckedChangeListener((buttonView, isChecked) -> {

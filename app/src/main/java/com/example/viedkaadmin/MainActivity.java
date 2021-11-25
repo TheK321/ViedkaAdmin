@@ -47,8 +47,11 @@ public class MainActivity extends AppCompatActivity {
             fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.frame_layout_container, new FragmentPantallaProductos());
             fragmentTransaction.commit();
-
         }
+        AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(this, "ViedkaBD"/*Nombre final de la BD*/, null,4);
+        //Abrir la BD en modo lectura-escritura
+        SQLiteDatabase BaseDeDatos = admin.getWritableDatabase();
+        BaseDeDatos.close();
 
         menuViedka.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
