@@ -1,8 +1,12 @@
 package com.example.viedkaadmin;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.graphics.Color;
 import android.view.Gravity;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -24,6 +28,8 @@ public class ClassTablaProductos {
     private int filaProductos;
     private int columna;
 
+
+
     public ClassTablaProductos(TableLayout tProductos, Context c) {
         this.tableLayout = tProductos;
         this.context = c;
@@ -37,6 +43,7 @@ public class ClassTablaProductos {
         this.datos = d;
         crearDatosTabla();
     }
+
     private void nuevaFila(){
         tableRow = new TableRow(context);
     }
@@ -133,4 +140,5 @@ public class ClassTablaProductos {
         }
         tableLayout.addView(tableRow);
     }
+
 }
