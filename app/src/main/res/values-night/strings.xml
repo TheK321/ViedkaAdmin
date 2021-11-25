@@ -11,7 +11,8 @@
     <string name="txtLoginTitulo">Iniciar sesión</string>
     <string name="txtLoginUsuario">Mirna</string>
     <string name="txtLoginContra">Contraseña</string>
-    <string name="txtEditarTrabajadores">Editar trabajadores</string>
+    <string name="txtEditarTrabajadores">Editar trabajador</string>
     <string name="txtAgregarTrabajador">Agregar trabajador</string>
     <string name="txtTrabajadoresExistentes">Trabajadores existentes</string>
+    <string name="txtTitleTrabajadores">Trabajadores</string>
 </resources>
