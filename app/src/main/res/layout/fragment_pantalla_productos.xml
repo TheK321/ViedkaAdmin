@@ -29,30 +29,17 @@
         android:layout_marginBottom="1dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintHorizontal_bias="0.633"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.85" />
-
-
-
-    <ImageButton
-        android:id="@+id/agregarP"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="352dp"
-        android:layout_marginTop="32dp"
-        android:contentDescription="@string/agregarProductos"
-        android:src="@drawable/ic_agregarproducto2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintVertical_bias="0.37" />
 
     <ImageButton
         android:id="@+id/editarBoton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="456dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginStart="356dp"
+        android:layout_marginTop="28dp"
         android:contentDescription="@string/editarProductos"
         android:src="@drawable/ic_editarproducto2"
         app:layout_constraintStart_toStartOf="parent"

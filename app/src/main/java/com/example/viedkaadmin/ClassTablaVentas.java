@@ -56,7 +56,7 @@ public class ClassTablaVentas {
             nuevoDato();
             textView.setText(encabezado[columna++]);
             textView.setBackgroundColor(Color.parseColor("#FBA823"));
-            textView.setTextColor(Color.parseColor("#FFFFFF"));
+            textView.setTextColor(Color.WHITE);
             tableRow.addView(textView, nuevoTableRowParams());
         }
         tableLayout.addView(tableRow);

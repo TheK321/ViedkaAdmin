@@ -219,6 +219,19 @@ public class MainActivity extends AppCompatActivity {
         return actualizado;
     }
 
+    public int Contar(String tabla){
+        int conteo = 0;
+        SQLiteDatabase BaseDeDatos = AdminSQLiteOpenHelper.DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase();
+        Cursor fila = BaseDeDatos.rawQuery("select count(*) from "+tabla,null);
+        if(fila.moveToFirst()){
+            for(int c=0 ; c < 1 ; c++){
+                conteo = Integer.parseInt(fila.getString(0));
+            }
+        }
+        return conteo;
+    }
+
+
     public void cambiarTituloBarra(String nuevoTitulo){
         getSupportActionBar().setTitle(nuevoTitulo);
     }
