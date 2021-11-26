@@ -31,7 +31,7 @@ public class AdminSQLiteOpenHelper extends SQLiteOpenHelper{
         @Override
         public void onCreate(SQLiteDatabase db) {
 
-            // create table stuff
+
 
 
         }
@@ -39,7 +39,7 @@ public class AdminSQLiteOpenHelper extends SQLiteOpenHelper{
         @Override
         public void onUpgrade(SQLiteDatabase db, int i, int i1) {
 
-            // drop table stuff
+
 
             onCreate(db);
         }

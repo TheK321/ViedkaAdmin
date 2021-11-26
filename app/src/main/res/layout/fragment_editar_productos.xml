@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FragmentEditarProductos">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/text_view_Productos_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="53dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="180dp"
+        android:fontFamily="@font/poppins_medium"
+        android:text="Descripción"
+        android:textColor="#EF6C00"
+        android:textSize="25sp"
+        app:fontFamily="@font/poppins_medium"
+        app:layout_constraintBottom_toTopOf="@+id/ScrollViewProductos"
+        app:layout_constraintEnd_toStartOf="@+id/textInputLayout_descripcion"
+        app:layout_constraintHorizontal_bias="0.04"
+        app:layout_constraintStart_toEndOf="@+id/textInputLayout_nombreProd"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        tools:text="Descripción" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout_nombreProd"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="45dp"
+        android:layout_marginBottom="172dp"
+        android:hint="Producto"
+        app:boxBackgroundColor="@color/white"
+        app:hintTextColor="#EF6C00"
+        app:layout_constraintBottom_toTopOf="@+id/ScrollViewProductos"
+        app:layout_constraintEnd_toStartOf="@+id/text_view_Productos_2"
+        app:layout_constraintStart_toEndOf="@+id/text_view_Productos_1"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextProductos"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            tools:ignore="SpeakableTextPresentCheck"
+            tools:layout_editor_absoluteX="413dp"
+            tools:layout_editor_absoluteY="96dp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout_descripcion"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="400dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="45dp"
+        android:layout_marginEnd="56dp"
+        android:layout_marginBottom="172dp"
+        android:hint="Descripción"
+        app:boxBackgroundColor="@color/white"
+        app:hintTextColor="#EF6C00"
+        app:layout_constraintBottom_toTopOf="@+id/ScrollViewProductos"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/text_view_Productos_2"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextDescripcion"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            tools:ignore="SpeakableTextPresentCheck"
+            tools:layout_editor_absoluteX="802dp"
+            tools:layout_editor_absoluteY="94dp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/text_view_Productos_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="57dp"
+        android:layout_marginTop="53dp"
+        android:layout_marginEnd="43dp"
+
+        android:layout_marginBottom="180dp"
+        android:fontFamily="@font/poppins_medium"
+        android:text="Nombre de Producto"
+        android:textColor="#EF6C00"
+        android:textSize="25sp"
+        app:fontFamily="@font/poppins_medium"
+        app:layout_constraintBottom_toTopOf="@+id/ScrollViewProductos"
+        app:layout_constraintEnd_toStartOf="@+id/textInputLayout_nombreProd"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        tools:text="Nombre de Producto" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/text_view_Productos_"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginStart="533dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="533dp"
+        android:layout_marginBottom="228dp"
+        android:fontFamily="@font/poppins_medium"
+        android:text="PRODUCTOS"
+        android:textColor="#EF6C00"
+        android:textSize="35dp"
+        app:fontFamily="@font/poppins_medium"
+        app:layout_constraintBottom_toTopOf="@+id/ScrollViewProductos"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="PRODUCTOS" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/text_view_Productos_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginStart="57dp"
+        android:layout_marginTop="124dp"
+        android:layout_marginBottom="50dp"
+        android:fontFamily="@font/poppins_medium"
+        android:text="Categoria"
+        android:textColor="#EF6C00"
+        android:textSize="25sp"
+        app:fontFamily="@font/poppins_medium"
+        app:layout_constraintBottom_toTopOf="@+id/ScrollViewProductos"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Categoria" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/text_view_Productos_4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginStart="31dp"
+        android:layout_marginTop="124dp"
+        android:layout_marginBottom="50dp"
+        android:fontFamily="@font/poppins_medium"
+        android:text="Cantidad"
+        android:textColor="#EF6C00"
+        android:textSize="25sp"
+        app:fontFamily="@font/poppins_medium"
+        app:layout_constraintBottom_toTopOf="@+id/ScrollViewProductos"
+        app:layout_constraintStart_toEndOf="@+id/textInputLayout_categoria"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Cantidad" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/text_view_Productos_5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="124dp"
+        android:layout_marginBottom="50dp"
+        android:fontFamily="@font/poppins_medium"
+        android:text="Precio"
+        android:textColor="#EF6C00"
+        android:textSize="25sp"
+        app:fontFamily="@font/poppins_medium"
+        app:layout_constraintBottom_toTopOf="@+id/ScrollViewProductos"
+        app:layout_constraintEnd_toStartOf="@+id/textInputLayout_precioP"
+        app:layout_constraintStart_toEndOf="@+id/textInputLayout_cantidad"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Precio" />
+
+    <Button
+        android:id="@+id/btn_ConfirmarP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="26dp"
+        android:layout_marginTop="119dp"
+        android:layout_marginEnd="200dp"
+        android:layout_marginBottom="49dp"
+        android:text="INSERTAR"
+        app:layout_constraintBottom_toTopOf="@+id/ScrollViewProductos"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textInputLayout_precioP"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.469" />
+
+    <Button
+        android:id="@+id/btn_ActualizarP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="119dp"
+        android:layout_marginEnd="60dp"
+        android:layout_marginBottom="49dp"
+        android:text="ACTUALIZAR"
+        app:layout_constraintBottom_toTopOf="@+id/ScrollViewProductos"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btn_ConfirmarP"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.469" />
+
+    <ScrollView
+        android:id="@+id/ScrollViewProductos"
+        android:layout_width="0dp"
+        android:layout_height="450dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="299dp"
+        android:layout_marginEnd="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="SpeakableTextPresentCheck">
+
+        <TableLayout
+            android:id="@+id/tableEditarP"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </ScrollView>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout_categoria"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="112dp"
+        android:layout_marginBottom="46dp"
+        android:hint="Categoria"
+        app:boxBackgroundColor="@color/white"
+        app:hintTextColor="#EF6C00"
+        app:layout_constraintBottom_toTopOf="@+id/ScrollViewProductos"
+        app:layout_constraintStart_toEndOf="@+id/text_view_Productos_3"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextCategoria"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            tools:ignore="SpeakableTextPresentCheck" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout_cantidad"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="112dp"
+        android:layout_marginBottom="46dp"
+        android:hint="Cantidad"
+        app:boxBackgroundColor="@color/white"
+        app:hintTextColor="#EF6C00"
+        app:layout_constraintBottom_toTopOf="@+id/ScrollViewProductos"
+        app:layout_constraintEnd_toStartOf="@+id/text_view_Productos_5"
+        app:layout_constraintStart_toEndOf="@+id/text_view_Productos_4"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextCantidad"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            tools:ignore="SpeakableTextPresentCheck" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout_precioP"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="112dp"
+        android:layout_marginEnd="300dp"
+        android:layout_marginBottom="46dp"
+        android:hint="Precio"
+        app:boxBackgroundColor="@color/white"
+        app:hintTextColor="#EF6C00"
+        app:layout_constraintBottom_toTopOf="@+id/ScrollViewProductos"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/text_view_Productos_5"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextPecio"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            tools:ignore="SpeakableTextPresentCheck" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/idText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="784dp"
+        tools:layout_editor_absoluteY="23dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         if(fragment==null){
             fragmentManager = getSupportFragmentManager();
             fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.frame_layout_container, new FragmentPantallaProductos());
+            fragmentTransaction.replace(R.id.frame_layout_container, new FragmentPantallaResumen());
             fragmentTransaction.commit();
         }
         AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(this, "ViedkaBD"/*Nombre final de la BD*/, null,4);
@@ -58,14 +58,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch(item.getItemId()){
-                    /*case R.id.menu_resumen:
-                        fragment = new fragmentPantallaResumen;
+                    case R.id.menu_resumen:
+                        fragment = new FragmentPantallaResumen();
                         cambiarTituloBarra("Resumen");
                         fragmentManager = getSupportFragmentManager();
                         fragmentTransaction = fragmentManager.beginTransaction();
                         fragmentTransaction.replace(R.id.frame_layout_container, fragment);
                         fragmentTransaction.commit();
-                        break;*/
+                        break;
                     case R.id.menu_ventas:
                         //Definicion de Tabla Ventas
                         //setContentView(R.layout.fragment_pantalla_ventas);
@@ -204,6 +204,33 @@ public class MainActivity extends AppCompatActivity {
         long delete = BaseDeDatos.delete(tabla, id+"="+valor, null);
         return  delete;
     }
+
+    public int Actualizar(String [] columnas, String[] valores, String tabla, String collave, String valorllave){
+        //Abrir la BD en modo lectura-escritura
+        SQLiteDatabase BaseDeDatos = AdminSQLiteOpenHelper.DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase();
+
+        ContentValues actualizacion = new ContentValues();
+        //Referenciar los valores locales de las columnas con los valores reales de la tabla de la BD
+        for(int i = 0; i<columnas.length;i++){
+            actualizacion.put(columnas[i], valores[i]);
+        }
+
+        int actualizado = BaseDeDatos.update(tabla, actualizacion, collave+"="+valorllave, null);
+        return actualizado;
+    }
+
+    public int Contar(String tabla){
+        int conteo = 0;
+        SQLiteDatabase BaseDeDatos = AdminSQLiteOpenHelper.DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase();
+        Cursor fila = BaseDeDatos.rawQuery("select count(*) from "+tabla,null);
+        if(fila.moveToFirst()){
+            for(int c=0 ; c < 1 ; c++){
+                conteo = Integer.parseInt(fila.getString(0));
+            }
+        }
+        return conteo;
+    }
+
 
     public void cambiarTituloBarra(String nuevoTitulo){
         getSupportActionBar().setTitle(nuevoTitulo);

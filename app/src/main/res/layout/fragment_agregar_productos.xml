@@ -23,7 +23,7 @@
         android:id="@+id/textViewProductosA"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Ingrese el tipo de articulo:"
+        android:text="Ingrese el nombre de articulo:"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -36,7 +36,7 @@
         android:id="@+id/textViewProductosB"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Ingrese la categoría de edad:"
+        android:text="Ingrese la categoría:"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -75,7 +75,6 @@
         android:id="@+id/editText_TipoArticulo"
         android:layout_width="400dp"
         android:layout_height="50dp"
-        android:inputType="text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.071"
@@ -88,10 +87,9 @@
         android:id="@+id/editText_EdadArticulo"
         android:layout_width="400dp"
         android:layout_height="50dp"
-        android:inputType="text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.847"
+        app:layout_constraintHorizontal_bias="0.828"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.314"
@@ -101,27 +99,23 @@
         android:id="@+id/editText_CantidadArticulo"
         android:layout_width="400dp"
         android:layout_height="50dp"
-        android:inputType="text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.07"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.586"
-        tools:ignore="SpeakableTextPresentCheck" />
+        app:layout_constraintVertical_bias="0.586" />
 
     <EditText
         android:id="@+id/editText_PrecioArticulo"
         android:layout_width="400dp"
         android:layout_height="50dp"
-        android:inputType="text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.779"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.586"
-        tools:ignore="SpeakableTextPresentCheck" />
+        app:layout_constraintVertical_bias="0.586" />
 
     <Button
         android:id="@+id/btn_agregarP"
@@ -129,14 +123,12 @@
         android:layout_height="wrap_content"
         android:text="Agregar"
         android:textSize="18sp"
-        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.06"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.73"
-        tools:ignore="SpeakableTextPresentCheck" />
+        app:layout_constraintVertical_bias="0.73" />
 
     <Button
         android:id="@+id/btn_cancelarP"
@@ -144,14 +136,12 @@
         android:layout_height="wrap_content"
         android:text="Cancelar"
         android:textSize="18sp"
-        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.215"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.73"
-        tools:ignore="SpeakableTextPresentCheck" />
+        app:layout_constraintVertical_bias="0.73" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
