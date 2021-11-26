@@ -205,6 +205,20 @@ public class MainActivity extends AppCompatActivity {
         return  delete;
     }
 
+    public int Actualizar(String [] columnas, String[] valores, String tabla, String collave, String valorllave){
+        //Abrir la BD en modo lectura-escritura
+        SQLiteDatabase BaseDeDatos = AdminSQLiteOpenHelper.DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase();
+
+        ContentValues actualizacion = new ContentValues();
+        //Referenciar los valores locales de las columnas con los valores reales de la tabla de la BD
+        for(int i = 0; i<columnas.length;i++){
+            actualizacion.put(columnas[i], valores[i]);
+        }
+
+        int actualizado = BaseDeDatos.update(tabla, actualizacion, collave+"="+valorllave, null);
+        return actualizado;
+    }
+
     public void cambiarTituloBarra(String nuevoTitulo){
         getSupportActionBar().setTitle(nuevoTitulo);
     }

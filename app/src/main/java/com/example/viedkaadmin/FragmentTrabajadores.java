@@ -43,7 +43,7 @@ public class FragmentTrabajadores extends Fragment {
     private TableLayout tl;
     private TableRow tr;
     private TextView tv1;
-    private Button btn;
+    private Button btn,btnactualizar;
     private TextInputEditText txtNombre,txteditNombre,txteditID;
     private ScrollView scrollView;
     private boolean color=false;
@@ -92,6 +92,7 @@ public class FragmentTrabajadores extends Fragment {
         scrollView = view.findViewById(R.id.scrollView2);
         txteditNombre = view.findViewById(R.id.textInputEditText_nombreTrabEdit);
         txteditID = view.findViewById(R.id.textInputEditText_idTrabEdit);
+        btnactualizar = view.findViewById(R.id.Button_guardarCambios);
         button.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -99,6 +100,25 @@ public class FragmentTrabajadores extends Fragment {
             {
                 if(!isEmpty(txtNombre)){
                     agregarTrabajador();
+                    scrollView.fullScroll(View.FOCUS_DOWN);
+                } else {
+                    Toast.makeText(getActivity(), "Algún campo está vacío", (short)1000).show();
+                }
+            }
+        });
+
+        btnactualizar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!isEmpty(txteditNombre)){
+                    String[] columnas = new String[]{"idTrab","NombreTrab"};
+                    String[] valores = new String[]{txteditID.getText().toString(),txteditNombre.getText().toString()};
+                    int actualizado=((MainActivity)getActivity()).Actualizar(columnas,valores,"Trabajadores","idTrab",txteditID.getText().toString());
+                    if(actualizado == 1){
+                        actualizarFrag();
+                    } else {
+                        Toast.makeText(getActivity(), "No se actualizó", (short)1000).show();
+                    }
                     scrollView.fullScroll(View.FOCUS_DOWN);
                 } else {
                     Toast.makeText(getActivity(), "Algún campo está vacío", (short)1000).show();
@@ -117,7 +137,7 @@ public class FragmentTrabajadores extends Fragment {
         try {
             rawConsulta = ((MainActivity) getActivity()).Consultar("Trabajadores",2,false,"");
             listaTrabajadores= new Trabajador[rawConsulta[1].length];
-            for (int i = 0; i <= rawConsulta[1].length; i++) {
+            for (int i = 0; i < rawConsulta[1].length; i++) {
                 System.out.println(rawConsulta[0][i]+rawConsulta[1][i]);
                 listaTrabajadores[i] = new Trabajador(Integer.parseInt(rawConsulta[0][i]), rawConsulta[1][i]);
                 agregarFila(listaTrabajadores[i].getId(), listaTrabajadores[i].getNombre());
@@ -139,7 +159,7 @@ public class FragmentTrabajadores extends Fragment {
         agregaCelda(getActivity(), params, String.valueOf(id), tr, getColorFondo(color));
         agregaCelda(getActivity(), params, nombre, tr, getColorFondo(color));
         agregarBotonEditar(getActivity(), params, "Editar", tr, id,nombre,getColorFondo(color));
-        agregarBotonEliminar(getActivity(), params, "Editar", tr, id,nombre,getColorFondo(color));
+        agregarBotonEliminar(getActivity(), params, "Eliminar", tr, id,nombre,getColorFondo(color));
         tl.addView(tr);
 
         color = !color;

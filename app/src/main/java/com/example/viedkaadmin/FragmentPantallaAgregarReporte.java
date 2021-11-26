@@ -41,8 +41,9 @@ public class FragmentPantallaAgregarReporte extends Fragment {
     private SwitchMaterial ingreso;
     private ScrollView scrollView;
     private AutoCompleteTextView nombre;
-    private String[] trabajadores = {"Wendo", "Axel", "Benja", "Brit", "Daniel", "Juan", "Miriam", "Mario"};
     private boolean color = false;
+    private String [] [] rawConsulta;
+    private String[] nombres;
 
 
     // TODO: Rename and change types of parameters
@@ -96,8 +97,19 @@ public class FragmentPantallaAgregarReporte extends Fragment {
         Button verTrabs = view.findViewById(R.id.Button_trabajadores);
         scrollView = view.findViewById(R.id.scrollView2);
         nombre = view.findViewById(R.id.autoCompleteTextView_nombre);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.select_dialog_item, trabajadores);
-        nombre.setAdapter(adapter);
+
+        try {
+            rawConsulta = ((MainActivity) getActivity()).Consultar("Trabajadores",2,false,"");
+            nombres = new String[rawConsulta[1].length];
+            for (int i = 0; i < rawConsulta[1].length; i++) {
+                System.out.println(rawConsulta[0][i]+rawConsulta[1][i]);
+                nombres[i] = rawConsulta[1][i];
+            }
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.select_dialog_item, nombres);
+            nombre.setAdapter(adapter);
+        } catch (Exception ex){
+            System.out.println(ex.toString());
+        }
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
