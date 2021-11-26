@@ -21,7 +21,7 @@ import java.util.ArrayList;
 public class FragmentPantallaLibroContable extends Fragment {
 
     private TableLayout tableLayout;
-    private String[] encabezado = {"Fecha","Concepto","Debe","Haber","Total"};
+    private String[] encabezado = {"Fecha","Concepto","Gastos","Ingresos","Total"};
     private ArrayList<String[]> filas = new ArrayList<>();
 
     // TODO: Rename parameter arguments, choose names that match
@@ -73,9 +73,9 @@ public class FragmentPantallaLibroContable extends Fragment {
     //Metodos de Integracion Tabla Ventas JUAN G.
     private ArrayList<String[]>obtenerDatos(){
 
-        for(int con=0;con<20;con++){
+        for(int con=0;con<10;con++){
             //String temp = (String) ""+(con+1);
-            filas.add(new String[]{"25-11-2021","Servicio de Agua","500","200","10000"});
+            filas.add(new String[]{"25-11-2021","Internet, basura","500","0","500"});
         }
         return filas;
     }

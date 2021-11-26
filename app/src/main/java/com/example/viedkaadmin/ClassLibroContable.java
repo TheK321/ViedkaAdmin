@@ -58,7 +58,7 @@ public class ClassLibroContable {
     }
     private void crearDatosTabla(){
         String info;
-        for (filaLibroC=1;filaLibroC<=/*Cantidad de Filas*/20;filaLibroC++){
+        for (filaLibroC=1;filaLibroC<=/*Cantidad de Filas*/10;filaLibroC++){
             nuevaFila();
             for (columna=0;columna<encabezado.length;columna++){
                 nuevoDato();
@@ -112,7 +112,7 @@ public class ClassLibroContable {
         }
     }
     public void fondoCeldasColor(int primerColor, int segundoColor){
-        for (filaLibroC=1;filaLibroC<=/*Cantidad de Filas*/20;filaLibroC++){
+        for (filaLibroC=1;filaLibroC<=/*Cantidad de Filas*/10;filaLibroC++){
             alter=!alter;
             for (columna=0;columna<encabezado.length;columna++){
                 textView=getDato(filaLibroC,columna);
