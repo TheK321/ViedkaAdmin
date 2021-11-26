@@ -79,7 +79,6 @@ public class FragmentPantallaProductos extends Fragment {
 
         imageButton = view.findViewById(R.id.agregarP);
         imagenButton2 = view.findViewById(R.id.editarP);
-        imageButton3 = view.findViewById(R.id.eliminarP);
 
         textView = view.findViewById(R.id.textView_Productos);
 
@@ -94,6 +93,14 @@ public class FragmentPantallaProductos extends Fragment {
                         new FragmentAgregarProductos()).commit();
 
 
+            }
+        });
+
+        imagenButton2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout_container,
+                        new FragmentEditarProductos()).commit();
             }
         });
 

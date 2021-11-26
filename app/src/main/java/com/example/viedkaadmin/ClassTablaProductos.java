@@ -124,7 +124,7 @@ public class ClassTablaProductos {
             for (columna=0;columna<encabezadoProductos.length;columna++){
                 textView=getDato(filaProductos,columna);
                 String[] filas = datos.get(filaProductos-1);
-                textView.setBackgroundResource((alter)?R.drawable.style_ventas_u:R.drawable.style_ventas_d);
+                //textView.setBackgroundResource((alter)?R.drawable.style_ventas_u:R.drawable.style_ventas_d);
             }
         }
         this.primerColor=primerColor;
