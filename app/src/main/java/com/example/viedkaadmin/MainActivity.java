@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         if(fragment==null){
             fragmentManager = getSupportFragmentManager();
             fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.frame_layout_container, new FragmentPantallaProductos());
+            fragmentTransaction.replace(R.id.frame_layout_container, new FragmentPantallaResumen());
             fragmentTransaction.commit();
         }
         AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(this, "ViedkaBD"/*Nombre final de la BD*/, null,4);
@@ -58,14 +58,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch(item.getItemId()){
-                    /*case R.id.menu_resumen:
-                        fragment = new fragmentPantallaResumen;
+                    case R.id.menu_resumen:
+                        fragment = new FragmentPantallaResumen();
                         cambiarTituloBarra("Resumen");
                         fragmentManager = getSupportFragmentManager();
                         fragmentTransaction = fragmentManager.beginTransaction();
                         fragmentTransaction.replace(R.id.frame_layout_container, fragment);
                         fragmentTransaction.commit();
-                        break;*/
+                        break;
                     case R.id.menu_ventas:
                         //Definicion de Tabla Ventas
                         //setContentView(R.layout.fragment_pantalla_ventas);
