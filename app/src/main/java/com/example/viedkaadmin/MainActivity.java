@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         if(fragment==null){
             fragmentManager = getSupportFragmentManager();
             fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.frame_layout_container, new FragmentPantallaProductos());
+            fragmentTransaction.replace(R.id.frame_layout_container, new FragmentPantallaResumen());
             fragmentTransaction.commit();
         }
         AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(this, "ViedkaBD"/*Nombre final de la BD*/, null,4);
