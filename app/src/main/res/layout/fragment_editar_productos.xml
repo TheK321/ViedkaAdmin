@@ -180,12 +180,29 @@
         android:id="@+id/btn_ConfirmarP"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="26dp"
         android:layout_marginTop="119dp"
-        android:layout_marginEnd="176dp"
+        android:layout_marginEnd="200dp"
         android:layout_marginBottom="49dp"
         android:text="INSERTAR"
         app:layout_constraintBottom_toTopOf="@+id/ScrollViewProductos"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textInputLayout_precioP"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.469" />
+
+    <Button
+        android:id="@+id/btn_ActualizarP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="119dp"
+        android:layout_marginEnd="60dp"
+        android:layout_marginBottom="49dp"
+        android:text="ACTUALIZAR"
+        app:layout_constraintBottom_toTopOf="@+id/ScrollViewProductos"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btn_ConfirmarP"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.469" />
 
@@ -195,7 +212,7 @@
         android:layout_height="450dp"
         android:layout_marginStart="100dp"
         android:layout_marginTop="299dp"
-        android:layout_marginEnd="100dp"
+        android:layout_marginEnd="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -277,5 +294,12 @@
             android:layout_height="50dp"
             tools:ignore="SpeakableTextPresentCheck" />
     </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/idText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="784dp"
+        tools:layout_editor_absoluteY="23dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

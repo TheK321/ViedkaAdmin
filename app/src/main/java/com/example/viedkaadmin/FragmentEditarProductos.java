@@ -27,7 +27,7 @@ import com.google.android.material.textfield.TextInputEditText;
 
 public class FragmentEditarProductos extends Fragment {
     private TextInputEditText nombre, descripcion, categoria, cantidad, precio;
-    private Button buscar, insertar, btn;
+    private Button actualizar, insertar, btn;
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -37,10 +37,10 @@ public class FragmentEditarProductos extends Fragment {
 
     private TableLayout tl;
     private TableRow tr;
-    private TextView tv1;
+    private TextView tv1,idtxt;
     private ScrollView scrollView;
     private boolean color = false;
-    private String [] [] rawConsulta;
+    private String [] [] rawConsulta, rawConsulta2;
     private String[] nombres;
     private Producto [] listaProductos;
 
@@ -83,7 +83,11 @@ public class FragmentEditarProductos extends Fragment {
         cantidad = view.findViewById(R.id.editTextCantidad);
         precio = view.findViewById(R.id.editTextPecio);
         insertar = view.findViewById(R.id.btn_ConfirmarP);
+        actualizar = view.findViewById(R.id.btn_ActualizarP);
         scrollView = view.findViewById(R.id.ScrollViewProductos);
+        idtxt = view.findViewById(R.id.idText);
+
+        idtxt.setVisibility(View.GONE);
 
         insertar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,6 +102,27 @@ public class FragmentEditarProductos extends Fragment {
             }
         });
 
+        actualizar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!isEmpty(nombre) & !isEmpty(descripcion) & !isEmpty(categoria)
+                        & !isEmpty(cantidad) & !isEmpty(precio)){
+                    rawConsulta2 = ((MainActivity) getActivity()).Consultar("Prendas", 6, false, "");
+                    String[] columnas = new String[]{"Nombre","Descripcion","Categoria","Cantidad","Precio"};
+                    String[] valores = new String[]{nombre.getText().toString(),descripcion.getText().toString()
+                    , categoria.getText().toString(),cantidad.getText().toString(),precio.getText().toString()};
+                    int actualizado=((MainActivity)getActivity()).Actualizar(columnas,valores,"Prendas","idPrenda",idtxt.getText().toString());
+                    if(actualizado == 1){
+                        refresh();
+                    } else {
+                        Toast.makeText(getActivity(), "No se actualizó", (short)1000).show();
+                    }
+                    scrollView.fullScroll(View.FOCUS_DOWN);
+                } else {
+                    Toast.makeText(getActivity(), "Algún campo está vacío", (short)1000).show();
+                }
+            }
+        });
 
         TableRow.LayoutParams params = new TableRow.LayoutParams(150, TableRow.LayoutParams.WRAP_CONTENT);
         tr = new TableRow(getActivity());
@@ -175,15 +200,16 @@ public class FragmentEditarProductos extends Fragment {
         agregaCelda(getActivity(), params, values[3], tr, getColorFondo(color));
         agregaCelda(getActivity(), params, values[4], tr, getColorFondo(color));
         agregaCelda(getActivity(), params, values[5], tr, getColorFondo(color));
+        agregarBotonEditar(getActivity(), params, "Editar", tr, id,values,getColorFondo(color));
         agregarBotonEliminar(getActivity(), params, "Eliminar", tr, id,values[1], getColorFondo(color));
-        agregarBotonEditar(getActivity(), params, "Editar", tr,values, getColorFondo(color));
+
         tl.addView(tr);
         color = !color;
 
     }
 
 
-    private void agregarBotonEditar(FragmentActivity fragmentActivity,TableRow.LayoutParams layoutParams, String string, TableRow tr,String[] data,String color){
+    private void agregarBotonEditar(FragmentActivity fragmentActivity,TableRow.LayoutParams layoutParams, String string, TableRow tr,int id,String[] data,String color){
         btn = new Button(fragmentActivity);
         btn.setText(string);
         btn.setBackgroundColor(Color.parseColor(color));
@@ -191,6 +217,7 @@ public class FragmentEditarProductos extends Fragment {
         btn.setPadding(5, 5, 5, 5);
         btn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                idtxt.setText(data[0].toString());
                 nombre.setText(data[1].toString());
                 descripcion.setText(data[2].toString());
                 categoria.setText(data[3].toString());
