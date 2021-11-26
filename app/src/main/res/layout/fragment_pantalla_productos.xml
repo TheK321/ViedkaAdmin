@@ -48,10 +48,10 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
-        android:id="@+id/editarP"
+        android:id="@+id/editarBoton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="432dp"
+        android:layout_marginStart="456dp"
         android:layout_marginTop="32dp"
         android:contentDescription="@string/editarProductos"
         android:src="@drawable/ic_editarproducto2"

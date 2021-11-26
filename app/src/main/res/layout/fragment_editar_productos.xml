@@ -11,86 +11,76 @@
 
     <TextView
         android:id="@+id/textViewBuscarNombreP"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="53dp"
-        android:layout_marginTop="147dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="46dp"
+        android:layout_width="605dp"
+        android:layout_height="32dp"
         android:text="Ingrese el nombre del producto que desea editar:"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toTopOf="@+id/EditarNombreP"
-        app:layout_constraintEnd_toStartOf="@+id/BuscarNombreP"
-        app:layout_constraintHorizontal_bias="0.0"
+        android:textSize="28sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.069"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.059" />
 
     <EditText
         android:id="@+id/BuscarNombreP"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="146dp"
-        android:layout_marginEnd="42dp"
-        android:layout_marginBottom="42dp"
-        app:layout_constraintBottom_toTopOf="@+id/EditarCategoriaP"
-        app:layout_constraintEnd_toStartOf="@+id/btn_BuscarP"
-        app:layout_constraintStart_toEndOf="@+id/textViewBuscarNombreP"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.688"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.042" />
 
     <Button
         android:id="@+id/btn_BuscarP"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="38dp"
-        android:layout_marginTop="146dp"
-        android:layout_marginEnd="68dp"
-        android:layout_marginBottom="40dp"
         android:text="Buscar producto"
-        app:layout_constraintBottom_toTopOf="@+id/EditarCategoriaP"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/BuscarNombreP"
+        app:layout_constraintHorizontal_bias="0.886"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.042" />
 
     <TextView
         android:id="@+id/textViewEditarPrecioP"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="704dp"
         android:text="Precio Unitario: "
-        android:textSize="30sp"
+        android:textSize="28sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.334"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.43" />
+        app:layout_constraintVertical_bias="0.245" />
 
     <EditText
         android:id="@+id/EditarNombreP"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginEnd="88dp"
-        android:layout_marginBottom="52dp"
-        app:layout_constraintBottom_toTopOf="@+id/textViewEditarPrecioP"
-        app:layout_constraintEnd_toStartOf="@+id/textViewEditarCategoriaP"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/textViewEditarNombrePP" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.342"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.144" />
 
     <TextView
         android:id="@+id/textViewEditarNombrePP"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="46dp"
-        android:layout_marginBottom="57dp"
         android:text="Nombre de producto: "
-        android:textSize="30sp"
-        app:layout_constraintBottom_toTopOf="@+id/editarCantidadP"
+        android:textSize="28sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.046"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewBuscarNombreP"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.154" />
 
     <EditText
         android:id="@+id/EditarCategoriaP"
@@ -98,72 +88,70 @@
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.85"
+        app:layout_constraintHorizontal_bias="0.867"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.31" />
+        app:layout_constraintVertical_bias="0.144" />
 
     <TextView
         android:id="@+id/textViewEditarCategoriaP"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="480dp"
         android:text="Categoria: "
-        android:textSize="30sp"
+        android:textSize="28sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:layout_editor_absoluteY="234dp" />
+        app:layout_constraintHorizontal_bias="0.589"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.143" />
 
     <EditText
         android:id="@+id/editarCantidadP"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="39dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/textViewEditarPrecioP"
-        app:layout_constraintHorizontal_bias="0.807"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.179"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.433" />
+        app:layout_constraintVertical_bias="0.24" />
 
     <TextView
         android:id="@+id/textViewEditarCantidadP"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="52dp"
-        android:layout_marginEnd="1016dp"
-        android:layout_marginBottom="432dp"
         android:text="Cantidad: "
-        android:textSize="30sp"
+        android:textSize="28sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/editarCantidadP"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.041"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewEditarNombrePP"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.245" />
 
     <EditText
         android:id="@+id/EditarPrecioP"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
+        android:layout_width="193dp"
+        android:layout_height="40dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.543"
+        app:layout_constraintHorizontal_bias="0.544"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.436" />
+        app:layout_constraintVertical_bias="0.246" />
 
     <Button
         android:id="@+id/btn_ConfirmarP"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Confirmar cambios"
+        android:text="INSERTAR"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.729"
+        app:layout_constraintHorizontal_bias="0.707"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.438" />
+        app:layout_constraintVertical_bias="0.238" />
 
     <Button
         android:id="@+id/btn_EliminarP"
@@ -172,22 +160,23 @@
         android:text="Eliminar producto"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.887"
+        app:layout_constraintHorizontal_bias="0.872"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.437" />
+        app:layout_constraintVertical_bias="0.238" />
 
     <ScrollView
         android:id="@+id/ScrollViewProductos"
-        android:layout_width="926dp"
-        android:layout_height="359dp"
+        android:layout_width="969dp"
+        android:layout_height="398dp"
         android:layout_marginStart="177dp"
-        android:layout_marginTop="71dp"
         android:layout_marginEnd="177dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_ConfirmarP">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.773">
 
         <TableLayout
             android:id="@+id/tableEditarP"
