@@ -12,14 +12,9 @@ import android.widget.TableLayout;
 
 import java.util.ArrayList;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link FragmentPantallaAlmacen#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class FragmentPantallaAlmacen extends Fragment {
 
-    private TableLayout tableLayout;
+    private TableLayout tableLayoutVentas;
     private String[] encabezado = {"ID","PRENDA","TIPO","DISPONIBLES","PRECIO X UNIDAD"};
     private ArrayList<String[]> filas = new ArrayList<>();
 
@@ -38,7 +33,6 @@ public class FragmentPantallaAlmacen extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-
         }
     }
 
@@ -46,13 +40,13 @@ public class FragmentPantallaAlmacen extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_pantalla_almacen, null, false);
-        tableLayout = view.findViewById(R.id.tableLayoutAlmacen);
-        ClassTablaAlmacen tablaAlmacen = new ClassTablaAlmacen(tableLayout, getContext());
+        tableLayoutVentas = view.findViewById(R.id.tableLayoutAlmacen);
+        ClassTablaAlmacen tablaAlmacen = new ClassTablaAlmacen(tableLayoutVentas, getContext());
         tablaAlmacen.agregarEncabezado(encabezado);
 
         tablaAlmacen.agregarDatos(obtenerDatos());
-        tablaAlmacen.fondoEncabezadoColor(Color.WHITE);
-        tablaAlmacen.fondoCeldasColor(Color.GREEN, Color.YELLOW);
+        //tablaAlmacen.fondoEncabezadoColor(Color.WHITE);
+        //tablaAlmacen.fondoCeldasColor(Color.GREEN, Color.YELLOW);
 
         return view;
     }
@@ -66,7 +60,7 @@ public class FragmentPantallaAlmacen extends Fragment {
         return filas;
     }
     public void insertarDatos(View view){
-        String[] nuevoitem = new String[]{/*VALORES NUEVOS*/"","","",""};
+        String[] nuevoitem = new String[]{/*VALORES NUEVOS*/"","","","",""};
     }
     //
 }

@@ -10,10 +10,16 @@
     <string name="txtFecha">Fecha</string>
     <string name="ej_marialopez">Ej. María López</string>
     <string name="seleccionar">Seleccionar...</string>
+    <string name="agregarProductos">Agregar Productos</string>
+    <string name="eliminarProductos">Eliminar Productos</string>
+    <string name="editarProductos">Editar Productos</string>
+    <string name="txtProductos">PRODUCTOS</string>
+
     <string name="txtLoginTitulo">Iniciar sesión</string>
     <string name="txtLoginUsuario">Mirna</string>
     <string name="txtLoginContra">Contraseña</string>
-    <string name="txtEditarTrabajadores">Editar trabajadores</string>
+    <string name="txtEditarTrabajadores">Editar trabajador</string>
     <string name="txtAgregarTrabajador">Agregar trabajador</string>
     <string name="txtTrabajadoresExistentes">Trabajadores existentes</string>
+    <string name="txtTitleTrabajadores">Trabajadores</string>
 </resources>

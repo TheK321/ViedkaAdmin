@@ -55,6 +55,8 @@ public class ClassTablaVentas {
         while(columna<encabezado.length){
             nuevoDato();
             textView.setText(encabezado[columna++]);
+            textView.setBackgroundColor(Color.parseColor("#FBA823"));
+            textView.setTextColor(Color.parseColor("#FFFFFF"));
             tableRow.addView(textView, nuevoTableRowParams());
         }
         tableLayout.addView(tableRow);
@@ -63,11 +65,15 @@ public class ClassTablaVentas {
         String info;
         for (fila=1;fila<=/*Cantidad de Filas*/100;fila++){
             nuevaFila();
+            alter=!alter;
             for (columna=0;columna<encabezado.length;columna++){
                 nuevoDato();
                 String[] filas = datos.get(fila-1);
                 info = (columna<filas.length)?filas[columna]:"";
+
                 textView.setText(info);
+                textView.setBackgroundResource(R.drawable.style_ventas_h);
+                textView.setBackgroundColor(Color.parseColor((alter) ?"#FCC873":"#FDD087"));
                 tableRow.addView(textView, nuevoTableRowParams());
             }
             tableLayout.addView(tableRow);
@@ -78,63 +84,6 @@ public class ClassTablaVentas {
         params.setMargins(1,1,1,1);
         params.weight=1;
         return params;
-    }
-
-    //ANEXO DE DATOS
-    public void agregarItem(String[]item){
-        String info;
-        datos.add(item);
-        columna = 0;
-        nuevaFila();
-        while (columna<encabezado.length){
-            nuevoDato();
-            info = (columna<item.length)?item[columna]:"";
-            textView.setText(info);
-            tableRow.addView(textView,nuevoTableRowParams());
-        }
-        tableLayout.addView(tableRow,datos.size()-1);
-
-    }
-
-    //DISEÑO DE TABLA
-    private TableRow getFila(int id){
-        return (TableRow) tableLayout.getChildAt(id);
-    }
-    private TextView getDato(int idFila, int idCol){
-        tableRow=getFila(idFila);
-        return (TextView) tableRow.getChildAt(idCol);
-    }
-    public void fondoEncabezadoColor(int color){
-        columna=0;
-        while(columna<encabezado.length){
-            nuevoDato();
-            textView=getDato(0,columna++);
-            textView.setBackgroundColor(color);
-            textView.setBackgroundResource(R.drawable.style_ventas_h);
-            textView.setTextColor(Color.WHITE);
-        }
-    }
-    public void fondoCeldasColor(int primerColor, int segundoColor){
-        for (fila=1;fila<=/*Cantidad de Filas*/100;fila++){
-            alter=!alter;
-            for (columna=0;columna<encabezado.length;columna++){
-                textView=getDato(fila,columna);
-                String[] filas = datos.get(fila-1);
-                textView.setBackgroundResource((alter)?R.drawable.style_ventas_u:R.drawable.style_ventas_d);
-            }
-        }
-        this.primerColor=primerColor;
-        this.segundoColor=segundoColor;
-    }
-    public void filasNuevasColor(){
-        columna=0;
-        alter=!alter;
-        while(columna<encabezado.length){
-            nuevoDato();
-            textView=getDato(datos.size()-1,columna++);
-            textView.setBackgroundColor((alter)?primerColor:segundoColor);
-        }
-        tableLayout.addView(tableRow);
     }
 
 }

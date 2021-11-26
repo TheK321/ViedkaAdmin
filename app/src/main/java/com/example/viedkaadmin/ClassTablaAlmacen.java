@@ -96,44 +96,6 @@ public class ClassTablaAlmacen {
     }
 
     //DISEÑO DE TABLA
-    private TableRow getFila(int id){
-        return (TableRow) tableLayout.getChildAt(id);
-    }
-    private TextView getDato(int idFila, int idCol){
-        tableRow=getFila(idFila);
-        return (TextView) tableRow.getChildAt(idCol);
-    }
-    public void fondoEncabezadoColor(int color){
-        columna=0;
-        while(columna<encabezado.length){
-            nuevoDato();
-            textView=getDato(0,columna++);
-            textView.setBackgroundColor(color);
-            textView.setBackgroundResource(R.drawable.style_ventas_h);
-            textView.setTextColor(Color.WHITE);
-        }
-    }
-    public void fondoCeldasColor(int primerColor, int segundoColor){
-        for (fila=1;fila<=/*Cantidad de Filas*/100;fila++){
-            alter=!alter;
-            for (columna=0;columna<encabezado.length;columna++){
-                textView=getDato(fila,columna);
-                String[] filas = datos.get(fila-1);
-                textView.setBackgroundResource((alter)?R.drawable.style_ventas_u:R.drawable.style_ventas_d);
-            }
-        }
-        this.primerColor=primerColor;
-        this.segundoColor=segundoColor;
-    }
-    public void filasNuevasColor(){
-        columna=0;
-        alter=!alter;
-        while(columna<encabezado.length){
-            nuevoDato();
-            textView=getDato(datos.size()-1,columna++);
-            textView.setBackgroundColor((alter)?primerColor:segundoColor);
-        }
-        tableLayout.addView(tableRow);
-    }
+
 
 }
