@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class FragmentPantallaVentas extends Fragment {
 
     private TableLayout tableLayout;
-    private String[] encabezado = {"ID","PRECIO","CANTIDAD","TOTAL"};
+    private String[] encabezado = {"ID","ARTICULO","CANTIDAD VENDIDA","PRECIO","TOTAL"};
     private ArrayList<String[]> filas = new ArrayList<>();
 
 
@@ -23,7 +23,6 @@ public class FragmentPantallaVentas extends Fragment {
 
     }
 
-    // TODO: Rename and change types and number of parameters
     public static FragmentPantallaVentas newInstance(String param1, String param2) {
         FragmentPantallaVentas fragment = new FragmentPantallaVentas();
 
@@ -41,15 +40,11 @@ public class FragmentPantallaVentas extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_pantalla_ventas, null, false);
-        tableLayout = view.findViewById(R.id.tl);
+        tableLayout = view.findViewById(R.id.tableLayoutVentas);
         ClassTablaVentas tablaVentas = new ClassTablaVentas(tableLayout, getContext());
         tablaVentas.agregarEncabezado(encabezado);
 
         tablaVentas.agregarDatos(obtenerDatos());
-        tablaVentas.fondoEncabezadoColor(Color.BLUE);
-        tablaVentas.fondoCeldasColor(Color.GREEN, Color.YELLOW);
-
-
         return view;
     }
 
@@ -57,8 +52,8 @@ public class FragmentPantallaVentas extends Fragment {
     private ArrayList<String[]>obtenerDatos(){
 
         for(int con=0;con<100;con++){
-            String temp = (String) ""+(con-1);
-            filas.add(new String[]{temp,"CAMISA","100","4","400"});
+            String temp = (String) ""+(con+1);
+            filas.add(new String[]{temp,"CAMISA","4","150","600"});
         }
         return filas;
     }
