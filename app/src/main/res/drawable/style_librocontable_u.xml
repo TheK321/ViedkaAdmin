@@ -11,7 +11,7 @@
     <!-- Color y ancho del borde del elemento -->
     <stroke
         android:width="1dp"
-        android:color="#FFF2D6" >
+        android:color="@color/tabla_fila1_claro" >
     </stroke>
 
     <!-- Si queremos añadir algún padding -->

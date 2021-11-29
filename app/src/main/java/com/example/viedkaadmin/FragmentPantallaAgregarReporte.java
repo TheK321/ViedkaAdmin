@@ -5,6 +5,7 @@ import static android.view.Gravity.CENTER_HORIZONTAL;
 import android.graphics.Color;
 import android.os.Bundle;
 
+import androidx.annotation.DrawableRes;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 
@@ -23,13 +24,17 @@ import android.widget.Toast;
 import com.google.android.material.switchmaterial.SwitchMaterial;
 import com.google.android.material.textfield.TextInputEditText;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class FragmentPantallaAgregarReporte extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     private TableLayout tl;
     private TableRow tr;
     private TextView tv1;
-    private TextInputEditText txtArticulo, txtprecio, txtcantidad;
+    private TextInputEditText txtArticulo, txtprecio, txtcantidad,txtfecha;
     private SwitchMaterial ingreso;
     private ScrollView scrollView;
     private AutoCompleteTextView nombre;
@@ -79,6 +84,16 @@ public class FragmentPantallaAgregarReporte extends Fragment {
         Button button = view.findViewById(R.id.imageButton_agregar);
         Button verTrabs = view.findViewById(R.id.Button_trabajadores);
         scrollView = view.findViewById(R.id.scrollView2);
+        txtfecha = view.findViewById(R.id.textInputEditText_fecha);
+        Date date = new java.util.Date();
+        long datetime = date.getTime();
+        
+        System.out.println(datetime);
+        DateFormat simple = new SimpleDateFormat("dd-MMM-yyyy");
+        Date result = new Date(datetime);
+        System.out.println(simple.format(result));
+        txtfecha.setText(simple.format(result));
+
         nombre = view.findViewById(R.id.autoCompleteTextView_nombre);
 
         try {
@@ -120,7 +135,8 @@ public class FragmentPantallaAgregarReporte extends Fragment {
         TableRow.LayoutParams params = new TableRow.LayoutParams(150, TableRow.LayoutParams.WRAP_CONTENT);
         tr = new TableRow(getActivity());
         //String colorHeader="#84477F";
-        String colorHeader = "#db9600";
+        //String colorHeader = "#db9600";
+        int colorHeader=R.drawable.style_librocontable_h;
         agregaEncabezado(getActivity(), params, "Articulo", tr, colorHeader);
         agregaEncabezado(getActivity(), params, "Precio", tr, colorHeader);
         agregaEncabezado(getActivity(), params, "Cantidad", tr, colorHeader);
@@ -147,16 +163,17 @@ public class FragmentPantallaAgregarReporte extends Fragment {
 
     }
 
-    private String getColorFondo(boolean color) {
-        String acolor = color ? "#ffe5ad" : "#fff2d6";
-        return acolor;
+    private int getColorFondo(boolean color) {
+        //String acolor = color ? "#ffe5ad" : "#fff2d6";
+        return color ? R.drawable.style_librocontable_u : R.drawable.style_librocontable_d;
     }
 
-    private void agregaCelda(FragmentActivity fragmentActivity, TableRow.LayoutParams layoutParams, String string, TableRow tr, String color) {
+    private void agregaCelda(FragmentActivity fragmentActivity, TableRow.LayoutParams layoutParams, String string, TableRow tr, int color) {
         tv1 = new TextView(fragmentActivity);
         tv1.setText(string);
         tv1.setTextColor(Color.BLACK);
-        tv1.setBackgroundColor(Color.parseColor(color));
+        //tv1.setBackgroundColor(Color.parseColor(color));
+        tv1.setBackgroundResource(color);
         tv1.setTextSize(20);
         tv1.setPadding(5, 5, 5, 5);
         tv1.setGravity(CENTER_HORIZONTAL);
@@ -164,11 +181,12 @@ public class FragmentPantallaAgregarReporte extends Fragment {
         tv1.setLayoutParams(layoutParams);
     }
 
-    private void agregaEncabezado(FragmentActivity fragmentActivity, TableRow.LayoutParams layoutParams, String string, TableRow tr, String color) {
+    private void agregaEncabezado(FragmentActivity fragmentActivity, TableRow.LayoutParams layoutParams, String string, TableRow tr, int color) {
         tv1 = new TextView(getActivity());
         tv1.setText(string);
         tv1.setTextColor(Color.WHITE);
-        tv1.setBackgroundColor(Color.parseColor(color));
+        //tv1.setBackgroundColor(Color.parseColor(color));
+        tv1.setBackgroundResource(color);
         tv1.setTextSize(20);
         tv1.setPadding(5, 5, 5, 5);
         tv1.setGravity(CENTER_HORIZONTAL);

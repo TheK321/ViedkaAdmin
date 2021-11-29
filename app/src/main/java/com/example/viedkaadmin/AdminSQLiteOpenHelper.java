@@ -12,7 +12,7 @@ public class AdminSQLiteOpenHelper extends SQLiteOpenHelper{
     public static class DatabaseHelper extends SQLiteOpenHelper {
 
         private static final String DATABASE_NAME = "ViedkaBD";
-        private static final int DATABASE_VERSION = 5;
+        private static final int DATABASE_VERSION = 6;
 
         private static DatabaseHelper mInstance;
 
@@ -51,24 +51,25 @@ public class AdminSQLiteOpenHelper extends SQLiteOpenHelper{
 
     @Override
     public void onCreate(SQLiteDatabase BaseDeDatos/*Nombre de la Base de Datos*/) {
-        //Creacion de la tabla prendas en la BaseDeDatos
-        BaseDeDatos.execSQL("create table Prendas"/*Nombre de la table*/ +
-                "(idPrenda integer primary key autoincrement not null unique, " +
-                "Nombre text not null,Descripcion text," +
-                "Categoria text, Cantidad int not null, " +
-                "Precio real not null)");/*Columnas de la tabla*/
 
-        BaseDeDatos.execSQL("create table Compra"/*Nombre de la table*/ +
-                "(idCompra integer primary key autoincrement not null unique, " +
-                "NombreProd text not null,Descripcion text," +
-                "Cantidad integer not null, " +
-                "PrecioUnitario real not null," +
-                "MontoTotal real not null)");/*Columnas de la tabla*/
+        BaseDeDatos.execSQL("CREATE TABLE Prenda (" +
+                "idPrenda INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE NOT NULL," +
+                "Nombre TEXT NOT NULL," +
+                "Categoria TEXT  NOT NULL," +
+                "Existencias INTEGER NOT NULL," +
+                "PrecioCompra INTEGER NOT NULL," +
+                "PrecioVenta NOT NULL);");
 
-        BaseDeDatos.execSQL("create table Compra_Prendas"/*Nombre de la table*/ +
-                "(Compra_idCompra integer references Compra (idCompra) ON DELETE RESTRICT ON UPDATE RESTRICT NOT NULL," +
-                "Prendas_idPrenda integer references Prendas (idPrenda) ON DELETE RESTRICT ON UPDATE RESTRICT NOT NULL," +
-                "PRIMARY KEY (Compra_idCompra, Prendas_idPrenda))"); /*Columnas de la tabla*/
+        BaseDeDatos.execSQL("CREATE TABLE Movimientos (" +
+                "idMovimiento INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL UNIQUE," +
+                "Concepto TEXT NOT NULL," +
+                "Cantidad INTEGER NOT NULL," +
+                "PrecioUni INTEGER NOT NULL," +
+                "Total INTEGER NOT NULL," +
+                "Tipo TEXT NOT NULL," +
+                "Fecha INTEGER NOT NULL," +
+                "idEmpleado INTEGER NOT NULL," +
+                "idPrenda INTEGER);");
 
         BaseDeDatos.execSQL("create table Trabajadores"/*Nombre de la table*/ +
                 "(idTrab integer primary key autoincrement not null unique," +

@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
             fragmentTransaction.replace(R.id.frame_layout_container, new FragmentPantallaResumen());
             fragmentTransaction.commit();
         }
-        AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(this, "ViedkaBD"/*Nombre final de la BD*/, null,4);
+        AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(this, "ViedkaBD"/*Nombre final de la BD*/, null,6);
         //Abrir la BD en modo lectura-escritura
         SQLiteDatabase BaseDeDatos = admin.getWritableDatabase();
         BaseDeDatos.close();
@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
                 switch(item.getItemId()){
                     case R.id.menu_resumen:
                         fragment = new FragmentPantallaResumen();
-                        cambiarTituloBarra("Resumen");
+                        //cambiarTituloBarra("Resumen");
                         fragmentManager = getSupportFragmentManager();
                         fragmentTransaction = fragmentManager.beginTransaction();
                         fragmentTransaction.replace(R.id.frame_layout_container, fragment);
@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
                         tablaVentas.agregarDatos(obtenerDatos());*/
 
                         fragment = new FragmentPantallaVentas();
-                        cambiarTituloBarra("Ventas");
+                        //cambiarTituloBarra("Ventas");
 
                        /* tablaVentas.fondoEncabezadoColor(Color.BLUE);
                         tablaVentas.fondoCeldasColor(Color.GREEN, Color.YELLOW);*/
@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case R.id.menu_agregarreporte:
                         fragment = new FragmentPantallaAgregarReporte();
-                        cambiarTituloBarra("Agregar Reporte");
+                        //cambiarTituloBarra("Agregar Reporte");
                         fragmentManager = getSupportFragmentManager();
                         fragmentTransaction = fragmentManager.beginTransaction();
                         fragmentTransaction.replace(R.id.frame_layout_container, fragment);
@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case R.id.menu_librocontable:
                         fragment = new FragmentPantallaLibroContable();
-                        cambiarTituloBarra("Libro Contable");
+                        //cambiarTituloBarra("Libro Contable");
                         fragmentManager = getSupportFragmentManager();
                         fragmentTransaction = fragmentManager.beginTransaction();
                         fragmentTransaction.replace(R.id.frame_layout_container, fragment);
@@ -131,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
                         fragmentTransaction.commit();*/
 
                         fragment = new FragmentPantallaProductos();
-                        cambiarTituloBarra("Productos");
+                        //cambiarTituloBarra("Productos");
 
                        /* tablaVentas.fondoEncabezadoColor(Color.BLUE);
                         tablaVentas.fondoCeldasColor(Color.GREEN, Color.YELLOW);*/
@@ -143,7 +143,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case R.id.menu_almacen:
                         fragment = new FragmentPantallaAlmacen();
-                        cambiarTituloBarra("Almacén");
+                        //cambiarTituloBarra("Almacén");
                         fragmentManager = getSupportFragmentManager();
                         fragmentTransaction = fragmentManager.beginTransaction();
                         fragmentTransaction.replace(R.id.frame_layout_container, fragment);
