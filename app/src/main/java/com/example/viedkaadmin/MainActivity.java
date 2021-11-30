@@ -10,6 +10,8 @@ import androidx.transition.Transition;
 
 import android.content.ContentValues;
 import android.database.Cursor;
+import android.database.SQLException;
+import android.database.sqlite.SQLiteConstraintException;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -49,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
             fragmentTransaction.replace(R.id.frame_layout_container, new FragmentPantallaResumen());
             fragmentTransaction.commit();
         }
-        AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(this, "ViedkaBD"/*Nombre final de la BD*/, null,6);
+        AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(this, "ViedkaBD"/*Nombre final de la BD*/, null,8);
         //Abrir la BD en modo lectura-escritura
         SQLiteDatabase BaseDeDatos = admin.getWritableDatabase();
         BaseDeDatos.close();
@@ -156,9 +158,11 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public long Insertar(String [] columnas, String[] valores, String tabla){
+    public long Insertar(String [] columnas, String[] valores, String tabla)  {
         //Abrir la BD en modo lectura-escritura
-        SQLiteDatabase BaseDeDatos = AdminSQLiteOpenHelper.DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase();
+
+            SQLiteDatabase BaseDeDatos = AdminSQLiteOpenHelper.DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase();
+
             //Agregar un registro a la Base de Datos
             ContentValues insercion = new ContentValues();
             //Referenciar los valores locales de las columnas con los valores reales de la tabla de la BD
@@ -166,7 +170,7 @@ public class MainActivity extends AppCompatActivity {
             insercion.put(columnas[i], valores[i]);
         }
             //Guardar valores dentro de la Base de Datos
-            long insert = BaseDeDatos.insert(tabla, null, insercion);
+            long insert = BaseDeDatos.insertOrThrow(tabla, null, insercion);
         //Cerrar base de datos despues de la transaccion
             BaseDeDatos.close();
 
@@ -194,6 +198,29 @@ public class MainActivity extends AppCompatActivity {
                 //Cerrar Base de Datos
                 BaseDeDatos.close();
             }
+        return datos;
+    }
+
+    public String [] ConsultarUltimo(String tabla, int numCampos,boolean tienewhere, String where, String llave){
+        SQLiteDatabase BaseDeDatos = AdminSQLiteOpenHelper.DatabaseHelper.getInstance(getApplicationContext()).getReadableDatabase();
+        String sql=tienewhere? "select * from "+tabla+" where "+where+" ORDER BY "+llave+" DESC LIMIT 1 ":"select * from "+tabla+" ORDER BY "+llave+" DESC LIMIT 1 ";
+        //Aplicar un select a la Base de Datos
+        Cursor fila = BaseDeDatos.rawQuery
+                (sql, null);
+        //Metodo para verificar si existe o no el elemento en la tabla
+        String[] datos = new String[numCampos];
+        if(fila.moveToFirst()){
+                for(int i = 0; i<numCampos;i++) {
+                    datos[i] = fila.getString(i);
+                }
+            fila.close();
+            //Cerrar Base de Datos
+            BaseDeDatos.close();
+        } else {
+            for(int i = 0; i<numCampos;i++) {
+                datos[i] = "0";
+            }
+        }
         return datos;
     }
 

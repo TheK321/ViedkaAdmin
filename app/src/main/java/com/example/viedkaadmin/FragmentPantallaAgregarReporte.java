@@ -3,7 +3,11 @@ package com.example.viedkaadmin;
 import static android.view.Gravity.CENTER;
 import static android.view.Gravity.CENTER_HORIZONTAL;
 
+import android.content.DialogInterface;
+import android.database.SQLException;
+import android.database.sqlite.SQLiteConstraintException;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.DrawableRes;
@@ -24,12 +28,14 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.switchmaterial.SwitchMaterial;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.TimeZone;
 
 public class FragmentPantallaAgregarReporte extends Fragment {
     private static final String ARG_PARAM1 = "param1";
@@ -76,10 +82,9 @@ public class FragmentPantallaAgregarReporte extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
+        //Esta es la view mera mera de donde salen todas las cosas
         View view = inflater.inflate(R.layout.fragment_pantalla_agregar_reporte, container, false);
-
-
+        //A partir de aquí se tienen que asignar las views a las variables, si no ya no
         tl = (TableLayout) view.findViewById(R.id.tablaOperacionesReporte);
         txtArticulo = view.findViewById(R.id.textInputEditText_articulo);
         txtcantidad = view.findViewById(R.id.textInputEditText_cantidad);
@@ -96,6 +101,7 @@ public class FragmentPantallaAgregarReporte extends Fragment {
         System.out.println(datetime);
         DateFormat simple = new SimpleDateFormat("dd-MMM-yyyy");
         Date result = new Date(datetime);
+        simple.setTimeZone(TimeZone.getTimeZone("America/Mexico_City"));
         System.out.println(simple.format(result));
         txtfecha.setText(simple.format(result));
 
@@ -130,7 +136,12 @@ public class FragmentPantallaAgregarReporte extends Fragment {
             @Override
             public void onClick(View v) {
                 if (!(txtArticulo.getText().toString().trim().length() == 0) && !isEmpty(txtcantidad) & !isEmpty(txtprecio)) {
-                    agregarFila();
+                    try {
+                        agregarReporte();
+                    }  catch (SQLiteConstraintException e){
+                    Toast.makeText(getActivity(), "No hay suficiente stock, revise los datos", (short) 1000);
+                }
+
                     scrollView.fullScroll(View.FOCUS_DOWN);
                 } else {
                     Toast.makeText(getActivity(), "Algún campo está vacío", (short) 1000).show();
@@ -155,7 +166,6 @@ public class FragmentPantallaAgregarReporte extends Fragment {
                 String articuloselect=txtArticulo.getText().toString();
                 try {
                     rawConsulta = ((MainActivity) getActivity()).Consultar("Prenda", 6, true, "Nombre=\""+articuloselect+"\"");
-
                     txtcategoria.setText(rawConsulta[2][0]);
                     txtprecio.setText(rawConsulta[5][0]);
                 }catch (Exception ex){
@@ -171,29 +181,74 @@ public class FragmentPantallaAgregarReporte extends Fragment {
         //String colorHeader = "#db9600";
         int colorHeader=R.drawable.style_librocontable_h;
 
-        agregaEncabezado(getActivity(), params, "Articulo", tr, colorHeader);
+        agregaEncabezado(getActivity(), params, "Concepto", tr, colorHeader);
         params = new TableRow.LayoutParams(100, TableRow.LayoutParams.WRAP_CONTENT);
+        agregaEncabezado(getActivity(), params, "Categoría", tr, colorHeader);
         agregaEncabezado(getActivity(), params, "Precio", tr, colorHeader);
         agregaEncabezado(getActivity(), params, "Cantidad", tr, colorHeader);
         agregaEncabezado(getActivity(), params, "Total", tr, colorHeader);
         params = new TableRow.LayoutParams(120, TableRow.LayoutParams.WRAP_CONTENT);
         agregaEncabezado(getActivity(), params, "Tipo", tr, colorHeader);
+        agregaEncabezado(getActivity(), params, "$Antes", tr, colorHeader);
+        agregaEncabezado(getActivity(), params, "$Actual", tr, colorHeader);
         tl.addView(tr);
+
+        try {
+            rawConsulta = ((MainActivity) getActivity()).Consultar("Movimientos",12,false,"");
+            Movimiento[] listaMovimientos = new Movimiento[rawConsulta[1].length];
+            for (int i = 0; i < rawConsulta[1].length; i++) {
+                System.out.println(rawConsulta[0][i]+rawConsulta[1][i]);
+                listaMovimientos[i] = new Movimiento(
+                        rawConsulta[0][i],
+                        rawConsulta[1][i],
+                        rawConsulta[2][i],
+                        rawConsulta[3][i],
+                        rawConsulta[4][i],
+                        rawConsulta[5][i],
+                        rawConsulta[6][i],
+                        rawConsulta[7][i],
+                        rawConsulta[8][i],
+                        rawConsulta[9][i],
+                        rawConsulta[10][i],
+                        rawConsulta[11][i]);
+                agregarFila(
+                        listaMovimientos[i].getConcepto(),
+                        listaMovimientos[i].getCategoria(),
+                        listaMovimientos[i].getPrecioUni(),
+                        listaMovimientos[i].getCantidad(),
+                        listaMovimientos[i].getTotal(),
+                        listaMovimientos[i].getTipo(),
+                        listaMovimientos[i].getSaldoAnterior(),
+                        listaMovimientos[i].getSaldoActual()
+                );
+            }
+        } catch (Exception ex){
+            System.out.println(ex.toString());
+        }
+
         return view;
     }
 
-    public void agregarFila() {
+    public void agregarFila(String conceptom, String categoriam, String preciom, String cantidadm, String totalm, String tipom, String anteriorm, String actualm) {
 
         TableRow.LayoutParams params = new TableRow.LayoutParams(250, TableRow.LayoutParams.MATCH_PARENT);
 
         tr = new TableRow(getActivity());
-        agregaCelda(getActivity(), params, txtArticulo.getText().toString(), tr, getColorFondo(color), CENTER_HORIZONTAL);
+        //agregaCelda(getActivity(), params, txtArticulo.getText().toString(), tr, getColorFondo(color), CENTER_HORIZONTAL);
+        agregaCelda(getActivity(), params, conceptom, tr, getColorFondo(color), CENTER_HORIZONTAL);
         params = new TableRow.LayoutParams(80, ViewGroup.LayoutParams.MATCH_PARENT);
+        agregaCelda(getActivity(), params, categoriam, tr, getColorFondo(color),CENTER);
+        agregaCelda(getActivity(), params, preciom, tr, getColorFondo(color),CENTER);
+        agregaCelda(getActivity(), params, cantidadm, tr, getColorFondo(color),CENTER);
+        agregaCelda(getActivity(), params, totalm, tr, getColorFondo(color),CENTER);
+        /*agregaCelda(getActivity(), params, txtcategoria.getText().toString(), tr, getColorFondo(color),CENTER);
         agregaCelda(getActivity(), params, txtprecio.getText().toString(), tr, getColorFondo(color),CENTER);
         agregaCelda(getActivity(), params, txtcantidad.getText().toString(), tr, getColorFondo(color), CENTER);
-        agregaCelda(getActivity(), params, String.valueOf((Integer.parseInt(txtcantidad.getText().toString()) * Integer.parseInt(txtprecio.getText().toString()))).toString(), tr, getColorFondo(color),CENTER);
+        agregaCelda(getActivity(), params, String.valueOf((Integer.parseInt(txtcantidad.getText().toString()) * Integer.parseInt(txtprecio.getText().toString()))).toString(), tr, getColorFondo(color),CENTER);*/
          params = new TableRow.LayoutParams(120, ViewGroup.LayoutParams.MATCH_PARENT);
-        agregaCelda(getActivity(), params, (ingreso.isChecked() ? "Ingreso" : "Egreso").toString(), tr, getColorFondo(color),CENTER);
+        agregaCelda(getActivity(), params, tipom, tr, getColorFondo(color),CENTER);
+        agregaCelda(getActivity(), params, anteriorm, tr, getColorFondo(color),CENTER);
+        agregaCelda(getActivity(), params, actualm, tr, getColorFondo(color),CENTER);
 
         tl.addView(tr);
 
@@ -235,6 +290,71 @@ public class FragmentPantallaAgregarReporte extends Fragment {
 
     private boolean isEmpty(TextInputEditText etText) {
         return etText.getText().toString().trim().length() == 0;
+    }
+
+    public void actualizarFrag(){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            getActivity().getSupportFragmentManager().beginTransaction().detach(this).commitNow();
+            getActivity().getSupportFragmentManager().beginTransaction().attach(this).commitNow();
+        } else {
+            getActivity().getSupportFragmentManager().beginTransaction().detach(this).attach(this).commit();
+        }
+    }
+    public void agregarReporte() {
+        String[] datos= new String[11];
+        String[] columnas = new String[11];
+
+        columnas[0]="Concepto";
+        columnas[1]="Categoria";
+        columnas[2]="PrecioUni";
+        columnas[3]="Cantidad";
+        columnas[4]="Total";
+        columnas[5]="Tipo";
+        columnas[6]="SaldoAnterior";
+        columnas[7]="SaldoActual";
+        columnas[8]="Fecha";
+        columnas[9]="idEmpleado";
+        columnas[10]="idPrenda";
+
+        int saldoactual =Integer.parseInt(((MainActivity) getActivity()).ConsultarUltimo("Movimientos", 12, false, "", "idMovimiento")[8]);
+        int total = Integer.parseInt(txtcantidad.getText().toString()) * Integer.parseInt(txtprecio.getText().toString());
+        String idempleadoactual = ((MainActivity) getActivity()).ConsultarUltimo("Trabajadores", 2, true, "NombreTrab=\""+nombre.getText().toString()+"\"", "idTrab")[0];
+        String idprendaactual = ((MainActivity) getActivity()).ConsultarUltimo("Prenda", 6, true, "Nombre=\""+txtArticulo.getText().toString()+"\"","idPrenda")[0];
+        String prendastockactual = ((MainActivity) getActivity()).ConsultarUltimo("Prenda", 6, true, "idPrenda=\""+idprendaactual+"\"","idPrenda")[3];
+        datos[0] = txtArticulo.getText().toString();
+        datos[1] = txtcategoria.getText().toString();
+        datos[2] = txtprecio.getText().toString();
+        datos[3] = txtcantidad.getText().toString();
+        datos[4] = String.valueOf(total);
+        datos[5] = ingreso.isChecked() ? "Ingreso" : "Egreso";
+        datos[6] = String.valueOf(saldoactual);
+        datos[7] = String.valueOf( ingreso.isChecked() ? saldoactual + total : saldoactual - total );
+        datos[8] = txtfecha.getText().toString();
+        datos[9] = idempleadoactual;
+        datos[10] = idprendaactual;
+
+
+
+            try {
+
+
+            long movimientoadded = ((MainActivity) getActivity()).Insertar(columnas, datos, "Movimientos");
+            System.out.println("movadded "+movimientoadded);
+            if (movimientoadded == -1) {
+                System.out.println("insercion vale menos uno");
+
+            } else {
+                Toast.makeText(this.getContext(), String.valueOf(movimientoadded), (short) 1000);
+                actualizarFrag();
+            }
+            }catch (Exception e){
+                new MaterialAlertDialogBuilder(getActivity())
+                        .setTitle("Falta de stock")
+                        .setMessage("No hay suficiente stock de "+txtArticulo.getText().toString()+"\nEl stock disponible es "+prendastockactual+" pero intentó realizar una operación con "+txtcantidad.getText().toString())
+                        .setNeutralButton("Aceptar", null)
+                        .show();
+            }
+
     }
 
 
