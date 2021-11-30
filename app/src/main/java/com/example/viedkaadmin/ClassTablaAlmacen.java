@@ -35,9 +35,9 @@ public class ClassTablaAlmacen {
         this.encabezado = encabezado;
         crearEncabezado();
     }
-    public void agregarDatos(ArrayList<String[]> d){
+    public void agregarDatos(ArrayList<String[]> d, int filasbase1){
         this.datos = d;
-        crearDatosTabla();
+        crearDatosTabla(filasbase1);
     }
     private void nuevaFila(){
         tableRow = new TableRow(context);
@@ -60,9 +60,9 @@ public class ClassTablaAlmacen {
         }
         tableLayout.addView(tableRow);
     }
-    private void crearDatosTabla(){
+    private void crearDatosTabla(int filasbase1){
         String info;
-        for (fila=1;fila<=/*Cantidad de Filas*/22;fila++){
+        for (fila=1;fila<=filasbase1;fila++){
             nuevaFila();
             alter = !alter;
             for (columna=0;columna<encabezado.length;columna++){

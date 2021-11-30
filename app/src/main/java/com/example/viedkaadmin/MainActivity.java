@@ -224,6 +224,26 @@ public class MainActivity extends AppCompatActivity {
         return datos;
     }
 
+    public String [] ConsultarSuma(String tabla, String campoasumar, boolean tienewhere, String where, String collave){
+        SQLiteDatabase BaseDeDatos = AdminSQLiteOpenHelper.DatabaseHelper.getInstance(getApplicationContext()).getReadableDatabase();
+        String sql=tienewhere? "select SUM(\""+campoasumar+"\") from "+tabla+" where "+where+" GROUP BY "+collave:"select SUM(\""+campoasumar+"\") from "+tabla+" GROUP BY "+collave ;
+        System.out.println("consulta a ejecutar es "+sql);
+        //Aplicar un select a la Base de Datos
+        Cursor fila = BaseDeDatos.rawQuery
+                (sql, null);
+        //Metodo para verificar si existe o no el elemento en la tabla
+        String[] datos = new String[1];
+        if(fila.moveToFirst()){
+            datos[0] = fila.getString(0);
+            fila.close();
+            //Cerrar Base de Datos
+            BaseDeDatos.close();
+        } else {
+        datos[0] = "0";
+        }
+        return datos;
+    }
+
     public long Eliminar(String tabla, String id ,String valor){
         //Abrir la BD en modo lectura-escritura
         SQLiteDatabase BaseDeDatos = AdminSQLiteOpenHelper.DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase();
