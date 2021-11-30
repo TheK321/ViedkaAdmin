@@ -21,9 +21,8 @@
 
     <com.google.android.material.navigationrail.NavigationRailView
         android:id="@+id/id_menuviedka"
-        android:layout_width="wrap_content"
+        android:layout_width="100dp"
         android:layout_height="match_parent"
-        app:labelVisibilityMode="unlabeled"
         app:menuGravity="bottom"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

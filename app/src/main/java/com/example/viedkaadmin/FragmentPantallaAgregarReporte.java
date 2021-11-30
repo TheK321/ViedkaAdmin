@@ -1,5 +1,6 @@
 package com.example.viedkaadmin;
 
+import static android.view.Gravity.CENTER;
 import static android.view.Gravity.CENTER_HORIZONTAL;
 
 import android.graphics.Color;
@@ -9,9 +10,11 @@ import androidx.annotation.DrawableRes;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -34,13 +37,14 @@ public class FragmentPantallaAgregarReporte extends Fragment {
     private TableLayout tl;
     private TableRow tr;
     private TextView tv1;
-    private TextInputEditText txtArticulo, txtprecio, txtcantidad,txtfecha;
+    private TextInputEditText  txtprecio, txtcantidad,txtfecha,txtcategoria;
     private SwitchMaterial ingreso;
     private ScrollView scrollView;
-    private AutoCompleteTextView nombre;
+    private AutoCompleteTextView nombre, txtArticulo;
     private boolean color = false;
     private String [] [] rawConsulta;
-    private String[] nombres;
+    private String[] nombres, productos;
+    private int altoFIla;
 
 
     // TODO: Rename and change types of parameters
@@ -85,9 +89,10 @@ public class FragmentPantallaAgregarReporte extends Fragment {
         Button verTrabs = view.findViewById(R.id.Button_trabajadores);
         scrollView = view.findViewById(R.id.scrollView2);
         txtfecha = view.findViewById(R.id.textInputEditText_fecha);
+        txtcategoria = view.findViewById(R.id.textInputEditText_categoria);
         Date date = new java.util.Date();
         long datetime = date.getTime();
-        
+
         System.out.println(datetime);
         DateFormat simple = new SimpleDateFormat("dd-MMM-yyyy");
         Date result = new Date(datetime);
@@ -95,6 +100,18 @@ public class FragmentPantallaAgregarReporte extends Fragment {
         txtfecha.setText(simple.format(result));
 
         nombre = view.findViewById(R.id.autoCompleteTextView_nombre);
+        try {
+            rawConsulta = ((MainActivity) getActivity()).Consultar("Prenda", 6, false, "");
+            productos = new String[rawConsulta[1].length];
+            for (int i = 0; i < rawConsulta[0].length; i++) {
+                System.out.println(rawConsulta[0][i]+rawConsulta[1][i]);
+                productos[i] = rawConsulta[1][i];
+            }
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.select_dialog_item, productos);
+            txtArticulo.setAdapter(adapter);
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
 
         try {
             rawConsulta = ((MainActivity) getActivity()).Consultar("Trabajadores",2,false,"");
@@ -112,7 +129,7 @@ public class FragmentPantallaAgregarReporte extends Fragment {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!isEmpty(txtArticulo) && !isEmpty(txtcantidad) & !isEmpty(txtprecio)) {
+                if (!(txtArticulo.getText().toString().trim().length() == 0) && !isEmpty(txtcantidad) & !isEmpty(txtprecio)) {
                     agregarFila();
                     scrollView.fullScroll(View.FOCUS_DOWN);
                 } else {
@@ -132,15 +149,34 @@ public class FragmentPantallaAgregarReporte extends Fragment {
             ingreso.setText(ingreso.isChecked() ? "Ingreso" : "Egreso");
         });
 
-        TableRow.LayoutParams params = new TableRow.LayoutParams(150, TableRow.LayoutParams.WRAP_CONTENT);
+        txtArticulo.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String articuloselect=txtArticulo.getText().toString();
+                try {
+                    rawConsulta = ((MainActivity) getActivity()).Consultar("Prenda", 6, true, "Nombre=\""+articuloselect+"\"");
+
+                    txtcategoria.setText(rawConsulta[2][0]);
+                    txtprecio.setText(rawConsulta[5][0]);
+                }catch (Exception ex){
+                    ex.printStackTrace();
+                }
+
+            }
+        });
+
+        TableRow.LayoutParams params = new TableRow.LayoutParams(250, TableRow.LayoutParams.WRAP_CONTENT);
         tr = new TableRow(getActivity());
         //String colorHeader="#84477F";
         //String colorHeader = "#db9600";
         int colorHeader=R.drawable.style_librocontable_h;
+
         agregaEncabezado(getActivity(), params, "Articulo", tr, colorHeader);
+        params = new TableRow.LayoutParams(100, TableRow.LayoutParams.WRAP_CONTENT);
         agregaEncabezado(getActivity(), params, "Precio", tr, colorHeader);
         agregaEncabezado(getActivity(), params, "Cantidad", tr, colorHeader);
         agregaEncabezado(getActivity(), params, "Total", tr, colorHeader);
+        params = new TableRow.LayoutParams(120, TableRow.LayoutParams.WRAP_CONTENT);
         agregaEncabezado(getActivity(), params, "Tipo", tr, colorHeader);
         tl.addView(tr);
         return view;
@@ -148,14 +184,16 @@ public class FragmentPantallaAgregarReporte extends Fragment {
 
     public void agregarFila() {
 
-        TableRow.LayoutParams params = new TableRow.LayoutParams(150, TableRow.LayoutParams.WRAP_CONTENT);
+        TableRow.LayoutParams params = new TableRow.LayoutParams(250, TableRow.LayoutParams.MATCH_PARENT);
 
         tr = new TableRow(getActivity());
-        agregaCelda(getActivity(), params, txtArticulo.getText().toString(), tr, getColorFondo(color));
-        agregaCelda(getActivity(), params, txtprecio.getText().toString(), tr, getColorFondo(color));
-        agregaCelda(getActivity(), params, txtcantidad.getText().toString(), tr, getColorFondo(color));
-        agregaCelda(getActivity(), params, String.valueOf((Integer.parseInt(txtcantidad.getText().toString()) * Integer.parseInt(txtprecio.getText().toString()))).toString(), tr, getColorFondo(color));
-        agregaCelda(getActivity(), params, (ingreso.isChecked() ? "Ingreso" : "Egreso").toString(), tr, getColorFondo(color));
+        agregaCelda(getActivity(), params, txtArticulo.getText().toString(), tr, getColorFondo(color), CENTER_HORIZONTAL);
+        params = new TableRow.LayoutParams(80, ViewGroup.LayoutParams.MATCH_PARENT);
+        agregaCelda(getActivity(), params, txtprecio.getText().toString(), tr, getColorFondo(color),CENTER);
+        agregaCelda(getActivity(), params, txtcantidad.getText().toString(), tr, getColorFondo(color), CENTER);
+        agregaCelda(getActivity(), params, String.valueOf((Integer.parseInt(txtcantidad.getText().toString()) * Integer.parseInt(txtprecio.getText().toString()))).toString(), tr, getColorFondo(color),CENTER);
+         params = new TableRow.LayoutParams(120, ViewGroup.LayoutParams.MATCH_PARENT);
+        agregaCelda(getActivity(), params, (ingreso.isChecked() ? "Ingreso" : "Egreso").toString(), tr, getColorFondo(color),CENTER);
 
         tl.addView(tr);
 
@@ -168,7 +206,7 @@ public class FragmentPantallaAgregarReporte extends Fragment {
         return color ? R.drawable.style_librocontable_u : R.drawable.style_librocontable_d;
     }
 
-    private void agregaCelda(FragmentActivity fragmentActivity, TableRow.LayoutParams layoutParams, String string, TableRow tr, int color) {
+    private int agregaCelda(FragmentActivity fragmentActivity, TableRow.LayoutParams layoutParams, String string, TableRow tr, int color, int gravedad) {
         tv1 = new TextView(fragmentActivity);
         tv1.setText(string);
         tv1.setTextColor(Color.BLACK);
@@ -176,9 +214,10 @@ public class FragmentPantallaAgregarReporte extends Fragment {
         tv1.setBackgroundResource(color);
         tv1.setTextSize(20);
         tv1.setPadding(5, 5, 5, 5);
-        tv1.setGravity(CENTER_HORIZONTAL);
+        tv1.setGravity(gravedad);
         tr.addView(tv1);
         tv1.setLayoutParams(layoutParams);
+        return tv1.getHeight();
     }
 
     private void agregaEncabezado(FragmentActivity fragmentActivity, TableRow.LayoutParams layoutParams, String string, TableRow tr, int color) {
@@ -189,7 +228,7 @@ public class FragmentPantallaAgregarReporte extends Fragment {
         tv1.setBackgroundResource(color);
         tv1.setTextSize(20);
         tv1.setPadding(5, 5, 5, 5);
-        tv1.setGravity(CENTER_HORIZONTAL);
+        tv1.setGravity(Gravity.CENTER);
         tr.addView(tv1);
         tv1.setLayoutParams(layoutParams);
     }
