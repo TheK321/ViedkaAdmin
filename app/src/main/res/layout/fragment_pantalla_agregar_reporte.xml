@@ -73,8 +73,8 @@
         app:fontFamily="@font/poppins_medium"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.09"
-        app:layout_constraintStart_toEndOf="@+id/Button_trabajadores"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/textInputLayout_fecha"
         app:layout_constraintTop_toTopOf="@+id/text_view_id"
         app:layout_constraintVertical_bias="0.0" />
 
@@ -83,11 +83,12 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
         android:hint="Hoy es"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/text_view_Fecha"
+        app:layout_constraintStart_toEndOf="@+id/textInputLayout_nombre"
         app:layout_constraintTop_toTopOf="@+id/textInputLayout_nombre"
         app:layout_constraintVertical_bias="0.0"
         app:startIconDrawable="@drawable/ic_calendario">
@@ -96,9 +97,9 @@
             android:id="@+id/textInputEditText_fecha"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="none"
             android:focusable="false"
-            android:focusableInTouchMode="false"/>
+            android:focusableInTouchMode="false"
+            android:inputType="none" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textview.MaterialTextView
@@ -344,20 +345,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout_actualizar"
         app:layout_constraintVertical_bias="0.0" />
 
-    <Button
-        android:id="@+id/Button_trabajadores"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:text="Ver trabajadores"
-        android:textSize="18sp"
-        app:fontFamily="@font/poppins_medium"
-        app:layout_constraintBottom_toBottomOf="@+id/textInputLayout_nombre"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/textInputLayout_nombre"
-        app:layout_constraintTop_toBottomOf="@+id/text_view_id"
-        app:layout_constraintVertical_bias="0.5" />
+
 
     <Button
         android:id="@+id/imageButton_actualizar"

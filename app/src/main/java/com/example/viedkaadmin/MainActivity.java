@@ -67,36 +67,29 @@ public class MainActivity extends AppCompatActivity {
                         //cambiarTituloBarra("Resumen");
                         fragmentManager = getSupportFragmentManager();
                         fragmentTransaction = fragmentManager.beginTransaction();
-                        fragmentTransaction.replace(R.id.frame_layout_container, fragment);
+                        fragmentTransaction.replace(R.id.frame_layout_container, fragment,"resumen").addToBackStack("resumen");
                         fragmentTransaction.commit();
                         break;
                     case R.id.menu_ventas:
-                        //Definicion de Tabla Ventas
-                        //setContentView(R.layout.fragment_pantalla_ventas);
-                        /*tableLayout = (TableLayout)findViewById(R.id.tl);
-                        ClassTablaVentas tablaVentas = new ClassTablaVentas(tableLayout, getApplicationContext());
-                        tablaVentas.agregarEncabezado(encabezado);
-
-                        tablaVentas.agregarDatos(obtenerDatos());*/
-
                         fragment = new FragmentPantallaVentas();
-                        //cambiarTituloBarra("Ventas");
-
-                       /* tablaVentas.fondoEncabezadoColor(Color.BLUE);
-                        tablaVentas.fondoCeldasColor(Color.GREEN, Color.YELLOW);*/
-
                         fragmentManager = getSupportFragmentManager();
                         fragmentTransaction = fragmentManager.beginTransaction();
-                        fragmentTransaction.replace(R.id.frame_layout_container, fragment);
+                        fragmentTransaction.replace(R.id.frame_layout_container, fragment,"ventas").addToBackStack("ventas");
                         fragmentTransaction.commit();
-
+                        break;
+                    case R.id.menu_trabajadores:
+                        fragment = new FragmentTrabajadores();
+                        fragmentManager = getSupportFragmentManager();
+                        fragmentTransaction = fragmentManager.beginTransaction();
+                        fragmentTransaction.replace(R.id.frame_layout_container, fragment,"trabajadores").addToBackStack("trabajadores");
+                        fragmentTransaction.commit();
                         break;
                     case R.id.menu_agregarreporte:
                         fragment = new FragmentPantallaAgregarReporte();
                         //cambiarTituloBarra("Agregar Reporte");
                         fragmentManager = getSupportFragmentManager();
                         fragmentTransaction = fragmentManager.beginTransaction();
-                        fragmentTransaction.replace(R.id.frame_layout_container, fragment);
+                        fragmentTransaction.replace(R.id.frame_layout_container, fragment,"agregarreporte").addToBackStack("agregarreporte");
                         fragmentTransaction.commit();
                         break;
                     case R.id.menu_librocontable:
@@ -104,45 +97,14 @@ public class MainActivity extends AppCompatActivity {
                         //cambiarTituloBarra("Libro Contable");
                         fragmentManager = getSupportFragmentManager();
                         fragmentTransaction = fragmentManager.beginTransaction();
-                        fragmentTransaction.replace(R.id.frame_layout_container, fragment);
+                        fragmentTransaction.replace(R.id.frame_layout_container, fragment,"librocontable").addToBackStack("librocontable");
                         fragmentTransaction.commit();
                         break;
                     case R.id.menu_productos:
-                        //Definicion de Tabla Ventas
-                        /*setContentView(R.layout.fragment_pantalla_productos);
-                        tableLayout = (TableLayout)findViewById(R.id.tProductos);
-                        ClassTablaProductos tablaProductos = new ClassTablaProductos(tableLayout, getApplicationContext());
-                        tablaProductos.agregarEncabezado(encabezadoProductos);
-
-                        tablaProductos.agregarDatos(obtenerDatos());
-
                         fragment = new FragmentPantallaProductos();
-                        cambiarTituloBarra("Productos");
-
-                        tablaProductos.fondoEncabezadoColor(Color.BLUE);
-                        tablaProductos.fondoCeldasColor(Color.GREEN, Color.YELLOW);
-
                         fragmentManager = getSupportFragmentManager();
                         fragmentTransaction = fragmentManager.beginTransaction();
-                        fragmentTransaction.replace(R.id.frame_layout_container, fragment);
-                        fragmentTransaction.commit();
-
-                        /*fragment = new FragmentPantallaProductos();
-                        cambiarTituloBarra("Productos");
-                        fragmentManager = getSupportFragmentManager();
-                        fragmentTransaction = fragmentManager.beginTransaction();
-                        fragmentTransaction.replace(R.id.frame_layout_container, fragment);
-                        fragmentTransaction.commit();*/
-
-                        fragment = new FragmentPantallaProductos();
-                        //cambiarTituloBarra("Productos");
-
-                       /* tablaVentas.fondoEncabezadoColor(Color.BLUE);
-                        tablaVentas.fondoCeldasColor(Color.GREEN, Color.YELLOW);*/
-
-                        fragmentManager = getSupportFragmentManager();
-                        fragmentTransaction = fragmentManager.beginTransaction();
-                        fragmentTransaction.replace(R.id.frame_layout_container, fragment);
+                        fragmentTransaction.replace(R.id.frame_layout_container, fragment,"productos").addToBackStack("productos");
                         fragmentTransaction.commit();
                         break;
                     case R.id.menu_almacen:
@@ -150,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
                         //cambiarTituloBarra("Almacén");
                         fragmentManager = getSupportFragmentManager();
                         fragmentTransaction = fragmentManager.beginTransaction();
-                        fragmentTransaction.replace(R.id.frame_layout_container, fragment);
+                        fragmentTransaction.replace(R.id.frame_layout_container, fragment,"almacen").addToBackStack("almacen");
                         fragmentTransaction.commit();
                         break;
                 }
@@ -287,17 +249,24 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        new MaterialAlertDialogBuilder(this)
-                .setTitle("Confirmar")
-                .setMessage("¿Está segura de querer salir de la aplicación??")
-                .setPositiveButton("Sí", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        finish();
-                    }
-                })
-                .setNegativeButton("No", null)
-                .show();
+        int count = getSupportFragmentManager().getBackStackEntryCount();
+
+        if (count == 0) {
+            new MaterialAlertDialogBuilder(this)
+                    .setTitle("Confirmar")
+                    .setMessage("¿Está segura de querer salir de la aplicación??")
+                    .setPositiveButton("Sí", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            finish();
+                        }
+                    })
+                    .setNegativeButton("No", null)
+                    .show();
+        } else {
+            getSupportFragmentManager().popBackStack();
+        }
+
     }
 
 

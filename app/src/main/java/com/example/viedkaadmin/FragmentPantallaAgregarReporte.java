@@ -88,7 +88,7 @@ public class FragmentPantallaAgregarReporte extends Fragment {
         txtprecio = view.findViewById(R.id.textInputEditText_precio);
         ingreso = view.findViewById(R.id.switchMaterial_ingreso);
         Button button = view.findViewById(R.id.imageButton_agregar);
-        Button verTrabs = view.findViewById(R.id.Button_trabajadores);
+        //Button verTrabs = view.findViewById(R.id.Button_trabajadores);
         scrollView = view.findViewById(R.id.scrollView2);
         txtfecha = view.findViewById(R.id.textInputEditText_fecha);
         txtcategoria = view.findViewById(R.id.textInputEditText_categoria);
@@ -146,13 +146,13 @@ public class FragmentPantallaAgregarReporte extends Fragment {
             }
         });
 
-        verTrabs.setOnClickListener(new View.OnClickListener() {
+        /*verTrabs.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout_container,
-                        new FragmentTrabajadores()).commit();
+                        new FragmentTrabajadores(),"trabajadores").addToBackStack("trabajadores").commit();
             }
-        });
+        });*/
         ingreso.setOnCheckedChangeListener((buttonView, isChecked) -> {
             ingreso.setText(ingreso.isChecked() ? "Ingreso" : "Egreso");
         });
@@ -222,6 +222,8 @@ public class FragmentPantallaAgregarReporte extends Fragment {
         } catch (Exception ex){
             System.out.println(ex.toString());
         }
+
+
 
         return view;
     }
@@ -316,7 +318,7 @@ public class FragmentPantallaAgregarReporte extends Fragment {
         int saldoactual =Integer.parseInt(((MainActivity) getActivity()).ConsultarUltimo("Movimientos", 12, false, "", "idMovimiento")[8]);
         int total = Integer.parseInt(txtcantidad.getText().toString()) * Integer.parseInt(txtprecio.getText().toString());
         String idempleadoactual = ((MainActivity) getActivity()).ConsultarUltimo("Trabajadores", 2, true, "NombreTrab=\""+nombre.getText().toString()+"\"", "idTrab")[0];
-        String idprendaactual = ((MainActivity) getActivity()).ConsultarUltimo("Prenda", 6, true, "Nombre=\""+txtArticulo.getText().toString()+"\"","idPrenda")[0];
+        String idprendaactual = ((MainActivity) getActivity()).ConsultarUltimo("Prenda", 6, true, "Nombre=\""+txtArticulo.getText().toString()+"\" and PrecioVenta="+txtprecio.getText().toString()+"\"","idPrenda")[0];
         String prendastockactual = ((MainActivity) getActivity()).ConsultarUltimo("Prenda", 6, true, "idPrenda=\""+idprendaactual+"\"","idPrenda")[3];
         datos[0] = txtArticulo.getText().toString();
         datos[1] = txtcategoria.getText().toString();

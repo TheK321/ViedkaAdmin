@@ -54,7 +54,7 @@ public class AdminSQLiteOpenHelper extends SQLiteOpenHelper{
 
         BaseDeDatos.execSQL("CREATE TABLE Prenda (" +
                 "idPrenda INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE NOT NULL," +
-                "Nombre TEXT NOT NULL," +
+                "Nombre TEXT NOT NULL UNIQUE," +
                 "Categoria TEXT  NOT NULL," +
                 "Existencias INTEGER NOT NULL CHECK (Existencias >= 0)," +
                 "PrecioCompra INTEGER NOT NULL," +
