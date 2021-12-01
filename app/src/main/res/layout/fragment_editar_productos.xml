@@ -7,6 +7,29 @@
     tools:context=".FragmentEditarProductos">
 
 
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout_nombre"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:layout_width="194dp"
+        android:layout_height="62dp"
+        android:layout_marginStart="995dp"
+        android:layout_marginTop="111dp"
+        android:layout_marginEnd="91dp"
+        android:hint="@string/seleccionar"
+        app:layout_constraintBottom_toBottomOf="@+id/text_view_Categoria"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <AutoCompleteTextView
+            android:id="@+id/autoCompleteTextView_nombre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="none"
+
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/text_view_Productos_"
         android:layout_width="wrap_content"
@@ -74,30 +97,6 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editTextProductos"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:ignore="SpeakableTextPresentCheck" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayout_categoria"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="8dp"
-        android:hint="Categoría"
-        app:boxBackgroundColor="@color/white"
-        app:hintTextColor="#EF6C00"
-        app:layout_constraintBottom_toBottomOf="@+id/textInputLayout_nombreProd"
-        app:layout_constraintEnd_toEndOf="@+id/ScrollViewProductos"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/text_view_Categoria"
-        app:layout_constraintTop_toTopOf="@+id/textInputLayout_nombreProd"
-        app:layout_constraintVertical_bias="0.5">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/editTextCategoria"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:ignore="SpeakableTextPresentCheck" />
@@ -184,14 +183,14 @@
         android:id="@+id/btn_ConfirmarP"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="83dp"
+        android:layout_marginBottom="80dp"
         android:text="Agregar"
         app:layout_constraintBottom_toTopOf="@+id/ScrollViewProductos"
         app:layout_constraintEnd_toEndOf="@+id/btn_ActualizarP"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/btn_ActualizarP"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout_categoria"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="@+id/textInputLayout_nombre" />
 
     <Button
         android:id="@+id/btn_ActualizarP"
@@ -250,7 +249,6 @@
             android:layout_height="wrap_content"
             tools:ignore="SpeakableTextPresentCheck" />
     </com.google.android.material.textfield.TextInputLayout>
-
 
 
     <com.google.android.material.textfield.TextInputLayout

@@ -3,18 +3,18 @@ package com.example.viedkaadmin;
 public class Producto {
     private int id;
     private String nombre;
-    private String descripcion;
     private String categoria;
-    private String cantidad;
-    private String precio;
+    private String existencias;
+    private String precioC;
+    private String precioV;
 
-    public Producto(int id, String nombre, String descripcion, String categoria, String cantidad, String precio) {
+    public Producto(int id, String nombre, String categoria, String existencias, String precioC, String precioV) {
         this.id = id;
         this.nombre = nombre;
-        this.descripcion = descripcion;
         this.categoria = categoria;
-        this.cantidad = cantidad;
-        this.precio = precio;
+        this.existencias = existencias;
+        this.precioC = precioC;
+        this.precioV = precioV;
     }
 
     public int getId() {
@@ -33,14 +33,6 @@ public class Producto {
         this.nombre = nombre;
     }
 
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
     public String getCategoria() {
         return categoria;
     }
@@ -49,19 +41,27 @@ public class Producto {
         this.categoria = categoria;
     }
 
-    public String getCantidad() {
-        return cantidad;
+    public String getExistencias() {
+        return existencias;
     }
 
-    public void setCantidad(String cantidad) {
-        this.cantidad = cantidad;
+    public void setExistencias(String existencias) {
+        this.existencias = existencias;
     }
 
-    public String getPrecio() {
-        return precio;
+    public String getPrecioC() {
+        return precioC;
     }
 
-    public void setPrecio(String precio) {
-        this.precio = precio;
+    public void setPrecioC(String precioC) {
+        this.precioC = precioC;
+    }
+
+    public String getPrecioV() {
+        return precioV;
+    }
+
+    public void setPrecioV(String precioV) {
+        this.precioV = precioV;
     }
 }

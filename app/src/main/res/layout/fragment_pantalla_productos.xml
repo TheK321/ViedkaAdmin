@@ -8,58 +8,66 @@
 
     <!-- TODO: Update blank fragment layout -->
 
+
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/imageView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:layout_marginEnd="108dp"
-        android:src="@drawable/ic_group_27"
+        android:layout_marginStart="802dp"
+        android:layout_marginTop="49dp"
+        android:layout_marginEnd="128dp"
+        android:layout_marginBottom="64dp"
+        android:src="@drawable/ic_cuadrobusqueda"
+        app:layout_constraintBottom_toTopOf="@+id/tProductos"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
-    <TableLayout
-        android:id="@+id/tProductos"
-        android:layout_width="1109dp"
-        android:layout_height="581dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="1dp"
-        android:layout_marginEnd="1dp"
-        android:layout_marginBottom="1dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.633"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.37" />
-
-    <ImageButton
-        android:id="@+id/editarBoton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="356dp"
-        android:layout_marginTop="28dp"
-        android:contentDescription="@string/editarProductos"
-        android:src="@drawable/ic_editarproducto2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/textView_Productos"
+        android:id="@+id/text_view_Productos_2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="127dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="908dp"
         android:fontFamily="@font/poppins_medium"
-        android:text="@string/txtProductos"
-        android:textColor="#84477F"
-        android:textSize="36sp"
+        android:text="PRODUCTOS"
+        android:textColor="#EF6C00"
+        android:textSize="40dp"
         app:fontFamily="@font/poppins_medium"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.095"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.047" />
+        app:layout_constraintVertical_bias="0.022" />
+
+    <Button
+        android:id="@+id/editarProductosBoton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="408dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="732dp"
+        android:layout_marginBottom="60dp"
+        android:text="Editar Productos"
+        app:layout_constraintBottom_toTopOf="@+id/tProductos"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TableLayout
+        android:id="@+id/tProductos"
+        android:layout_width="1107dp"
+        android:layout_height="594dp"
+        android:layout_marginStart="110dp"
+        android:layout_marginTop="158dp"
+        android:layout_marginEnd="63dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,5 +1,6 @@
 package com.example.viedkaadmin;
 
+import static android.view.Gravity.CENTER;
 import static android.view.Gravity.CENTER_HORIZONTAL;
 
 import android.content.DialogInterface;
@@ -18,6 +19,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -50,6 +52,7 @@ public class FragmentEditarProductos extends Fragment {
     private String[] nombres;
     private Producto [] listaProductos;
     private Drawable iconoeditar, iconoeliminar;
+    private AutoCompleteTextView categoriaS;
 
     public FragmentEditarProductos() {
 
@@ -85,7 +88,6 @@ public class FragmentEditarProductos extends Fragment {
 
         tl = (TableLayout) view.findViewById(R.id.tableEditarP);
         nombre = view.findViewById(R.id.editTextProductos);
-        categoria = view.findViewById(R.id.editTextCategoria);
         cantidad = view.findViewById(R.id.editTextCantidad);
         preciocompra = view.findViewById(R.id.editTextPrecioCompra);
         precioventa = view.findViewById(R.id.editTextPrecioVenta);
@@ -97,10 +99,20 @@ public class FragmentEditarProductos extends Fragment {
         iconoeliminar = ResourcesCompat.getDrawable(getResources(), R.drawable.ic_eliminar, null);
         idtxt.setVisibility(View.GONE);
 
+        categoriaS = view.findViewById(R.id.autoCompleteTextView_nombre);
+        String[] val = new String[]{"Adulto","Niño"};
+
+        try{
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.select_dialog_item,val );
+            categoriaS.setAdapter(adapter);
+        }catch(Exception exception){
+            System.out.println(exception);
+        }
+
         insertar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!isEmpty(nombre) & !isEmpty(preciocompra) & !isEmpty(categoria)
+                if(!isEmpty(nombre) & !isEmpty(preciocompra)
                         & !isEmpty(cantidad) & !isEmpty(precioventa)){
                     scrollView.fullScroll(View.FOCUS_DOWN);
                     agregarProducto();
@@ -113,11 +125,11 @@ public class FragmentEditarProductos extends Fragment {
         actualizar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!isEmpty(nombre) & !isEmpty(precioventa) & !isEmpty(categoria)
+                if(!isEmpty(nombre) & !isEmpty(precioventa)
                         & !isEmpty(cantidad) & !isEmpty(preciocompra)){
                     rawConsulta2 = ((MainActivity) getActivity()).Consultar("Prenda", 6, false, "");
                     String[] columnas = new String[]{"Nombre","Categoria","Existencias","PrecioCompra","PrecioVenta"};
-                    String[] valores = new String[]{nombre.getText().toString(), categoria.getText().toString(),cantidad.getText().toString(),
+                    String[] valores = new String[]{nombre.getText().toString(), categoriaS.getText().toString(),cantidad.getText().toString(),
                             preciocompra.getText().toString(), precioventa.getText().toString()};
                     int actualizado=((MainActivity)getActivity()).Actualizar(columnas,valores,"Prenda","idPrenda",idtxt.getText().toString());
                     if(actualizado == 1){
@@ -161,19 +173,20 @@ public class FragmentEditarProductos extends Fragment {
 
                     String[] arregloProductos = new String[6];
                     arregloProductos[0] = listaProductos[i].getId()+"";
-                    System.out.println("ID:     "+listaProductos[i].getId());
                     arregloProductos[1] = listaProductos[i].getNombre();
-                    System.out.println("Nombre:     "+listaProductos[i].getNombre());
-                    arregloProductos[2] = listaProductos[i].getDescripcion();
-                    System.out.println("Categoria:     "+listaProductos[i].getDescripcion());
-                    arregloProductos[3] = listaProductos[i].getCategoria();
-                    System.out.println("Cantidad:     "+listaProductos[i].getCategoria());
-                    arregloProductos[4] = listaProductos[i].getCantidad();
-                    System.out.println("PrecioCompra:     "+listaProductos[i].getCantidad());
-                    arregloProductos[5] = listaProductos[i].getPrecio();
-                    System.out.println("PrecioVenta:     "+listaProductos[i].getPrecio());
-                    System.out.println("CICLO"+i+":"+arregloProductos);
-                    agregarFila(arregloProductos, listaProductos[i].getId());
+                    arregloProductos[2] = listaProductos[i].getCategoria();
+                    arregloProductos[3] = listaProductos[i].getExistencias();
+                    arregloProductos[4] = listaProductos[i].getPrecioC();
+                    arregloProductos[5] = listaProductos[i].getPrecioV();
+                    agregarFila(
+                            listaProductos[i].getId(),
+                            listaProductos[i].getNombre(),
+                            listaProductos[i].getCategoria(),
+                            listaProductos[i].getExistencias(),
+                            listaProductos[i].getPrecioC(),
+                            listaProductos[i].getPrecioV(),
+                            arregloProductos
+                    );
 
                 }
 
@@ -197,18 +210,22 @@ public class FragmentEditarProductos extends Fragment {
     }
 
 
-    public void agregarFila(String [] values, int id) {
+    public void agregarFila(int id, String name, String category, String count, String buy, String sell,String[] values) {
 
-        TableRow.LayoutParams params = new TableRow.LayoutParams(150, 50);
         String idd = String.valueOf(id);
         tr = new TableRow(getActivity());
         tr.setTag(String.valueOf(id));
-        agregaCelda(getActivity(), params, idd, tr, getColorFondo(color));
-        agregaCelda(getActivity(), params, values[1], tr, getColorFondo(color));
-        agregaCelda(getActivity(), params, values[2], tr, getColorFondo(color));
-        agregaCelda(getActivity(), params, values[3], tr, getColorFondo(color));
-        agregaCelda(getActivity(), params, values[4], tr, getColorFondo(color));
-        agregaCelda(getActivity(), params, values[5], tr, getColorFondo(color));
+
+
+        TableRow.LayoutParams params = new TableRow.LayoutParams(80, ViewGroup.LayoutParams.MATCH_PARENT);
+        agregaCelda(getActivity(), params, idd, tr, getColorFondo(color), CENTER_HORIZONTAL);
+        params = new TableRow.LayoutParams(250, TableRow.LayoutParams.MATCH_PARENT);
+        agregaCelda(getActivity(), params, name, tr, getColorFondo(color),CENTER);
+        params = new TableRow.LayoutParams(80, ViewGroup.LayoutParams.MATCH_PARENT);
+        agregaCelda(getActivity(), params, category, tr, getColorFondo(color),CENTER);
+        agregaCelda(getActivity(), params, count, tr, getColorFondo(color),CENTER);
+        agregaCelda(getActivity(), params, buy, tr, getColorFondo(color),CENTER);
+        agregaCelda(getActivity(), params, sell, tr, getColorFondo(color),CENTER);
         agregarBotonEditar(getActivity(), params, "Editar", tr, id,values);
         agregarBotonEliminar(getActivity(), params, "Eliminar", tr, id,values[1]);
 
@@ -279,7 +296,7 @@ public class FragmentEditarProductos extends Fragment {
         tv1.setLayoutParams(layoutParams);
     }
 
-    private void agregaCelda(FragmentActivity fragmentActivity, TableRow.LayoutParams layoutParams, String string, TableRow tr, int color) {
+    private void agregaCelda(FragmentActivity fragmentActivity, TableRow.LayoutParams layoutParams, String string, TableRow tr, int color, int gravedad) {
         tv1 = new TextView(fragmentActivity);
         tv1.setText(string);
         tv1.setTextColor(Color.BLACK);
@@ -307,7 +324,7 @@ public class FragmentEditarProductos extends Fragment {
 
     public void agregarProducto() {
         String nom = nombre.getText().toString();
-        String cat = categoria.getText().toString();
+        String cat = categoriaS.getText().toString();
         String can = cantidad.getText().toString();
         String prec = preciocompra.getText().toString();
         String prev = precioventa.getText().toString();
