@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 
@@ -43,12 +44,12 @@ public class FragmentTrabajadores extends Fragment {
     private TableLayout tl;
     private TableRow tr;
     private TextView tv1;
-    private Button btn,btnactualizar;
-    private TextInputEditText txtNombre,txteditNombre,txteditID;
+    private Button btn, btnactualizar;
+    private TextInputEditText txtNombre, txteditNombre, txteditID;
     private ScrollView scrollView;
-    private boolean color=false;
+    private boolean color = false;
     private Trabajador[] listaTrabajadores;
-    private String [] [] rawConsulta;
+    private String[][] rawConsulta;
 
     public FragmentTrabajadores() {
         // Required empty public constructor
@@ -87,22 +88,20 @@ public class FragmentTrabajadores extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_trabajadores, container, false);
         tl = (TableLayout) view.findViewById(R.id.tablaMostrarTrabajadores);
-        Button button =  view.findViewById(R.id.Button_agregar);
-        txtNombre=view.findViewById(R.id.textInputEditText_nombreTrab);
+        Button button = view.findViewById(R.id.Button_agregar);
+        txtNombre = view.findViewById(R.id.textInputEditText_nombreTrab);
         scrollView = view.findViewById(R.id.scrollView2);
         txteditNombre = view.findViewById(R.id.textInputEditText_nombreTrabEdit);
         txteditID = view.findViewById(R.id.textInputEditText_idTrabEdit);
         btnactualizar = view.findViewById(R.id.Button_guardarCambios);
-        button.setOnClickListener(new View.OnClickListener()
-        {
+        button.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
-                if(!isEmpty(txtNombre)){
+            public void onClick(View v) {
+                if (!isEmpty(txtNombre)) {
                     agregarTrabajador();
                     scrollView.fullScroll(View.FOCUS_DOWN);
                 } else {
-                    Toast.makeText(getActivity(), "Algún campo está vacío", (short)1000).show();
+                    Toast.makeText(getActivity(), "Algún campo está vacío", (short) 1000).show();
                 }
             }
         });
@@ -110,24 +109,24 @@ public class FragmentTrabajadores extends Fragment {
         btnactualizar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!isEmpty(txteditNombre)){
-                    String[] columnas = new String[]{"idTrab","NombreTrab"};
-                    String[] valores = new String[]{txteditID.getText().toString(),txteditNombre.getText().toString()};
-                    int actualizado=((MainActivity)getActivity()).Actualizar(columnas,valores,"Trabajadores","idTrab",txteditID.getText().toString());
-                    if(actualizado == 1){
+                if (!isEmpty(txteditNombre)) {
+                    String[] columnas = new String[]{"idTrab", "NombreTrab"};
+                    String[] valores = new String[]{txteditID.getText().toString(), txteditNombre.getText().toString()};
+                    int actualizado = ((MainActivity) getActivity()).Actualizar(columnas, valores, "Trabajadores", "idTrab", txteditID.getText().toString());
+                    if (actualizado == 1) {
                         actualizarFrag();
                     } else {
-                        Toast.makeText(getActivity(), "No se actualizó", (short)1000).show();
+                        Toast.makeText(getActivity(), "No se actualizó", (short) 1000).show();
                     }
                     scrollView.fullScroll(View.FOCUS_DOWN);
                 } else {
-                    Toast.makeText(getActivity(), "Algún campo está vacío", (short)1000).show();
+                    Toast.makeText(getActivity(), "Algún campo está vacío", (short) 1000).show();
                 }
             }
         });
 
         TableRow.LayoutParams params = new TableRow.LayoutParams(150, TableRow.LayoutParams.WRAP_CONTENT);
-        tr= new TableRow(getActivity());
+        tr = new TableRow(getActivity());
         String colorHeader = "#db9600";
         agregaEncabezado(getActivity(), params, "ID", tr, colorHeader);
         agregaEncabezado(getActivity(), params, "Nombre", tr, colorHeader);
@@ -135,16 +134,25 @@ public class FragmentTrabajadores extends Fragment {
         agregaEncabezado(getActivity(), params, "Eliminar", tr, colorHeader);
         tl.addView(tr);
         try {
-            rawConsulta = ((MainActivity) getActivity()).Consultar("Trabajadores",2,false,"");
-            listaTrabajadores= new Trabajador[rawConsulta[1].length];
+            rawConsulta = ((MainActivity) getActivity()).Consultar("Trabajadores", 2, false, "");
+            listaTrabajadores = new Trabajador[rawConsulta[1].length];
             for (int i = 0; i < rawConsulta[1].length; i++) {
-                System.out.println(rawConsulta[0][i]+rawConsulta[1][i]);
+                System.out.println(rawConsulta[0][i] + rawConsulta[1][i]);
                 listaTrabajadores[i] = new Trabajador(Integer.parseInt(rawConsulta[0][i]), rawConsulta[1][i]);
                 agregarFila(listaTrabajadores[i].getId(), listaTrabajadores[i].getNombre());
             }
-        } catch (Exception ex){
+        } catch (Exception ex) {
             System.out.println(ex.toString());
         }
+
+        OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
+            @Override
+            public void handleOnBackPressed() {
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout_container,
+                        new FragmentPantallaAgregarReporte()).commit();
+            }
+        };
+        requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(), callback);
 
 
         return view;
@@ -158,15 +166,15 @@ public class FragmentTrabajadores extends Fragment {
         tr.setTag(String.valueOf(id));
         agregaCelda(getActivity(), params, String.valueOf(id), tr, getColorFondo(color));
         agregaCelda(getActivity(), params, nombre, tr, getColorFondo(color));
-        agregarBotonEditar(getActivity(), params, "Editar", tr, id,nombre,getColorFondo(color));
-        agregarBotonEliminar(getActivity(), params, "Eliminar", tr, id,nombre,getColorFondo(color));
+        agregarBotonEditar(getActivity(), params, "Editar", tr, id, nombre, getColorFondo(color));
+        agregarBotonEliminar(getActivity(), params, "Eliminar", tr, id, nombre, getColorFondo(color));
         tl.addView(tr);
 
         color = !color;
 
     }
 
-    public void actualizarFrag(){
+    public void actualizarFrag() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             getActivity().getSupportFragmentManager().beginTransaction().detach(this).commitNow();
             getActivity().getSupportFragmentManager().beginTransaction().attach(this).commitNow();
@@ -174,18 +182,19 @@ public class FragmentTrabajadores extends Fragment {
             getActivity().getSupportFragmentManager().beginTransaction().detach(this).attach(this).commit();
         }
     }
+
     public void agregarTrabajador() {
-        String[] datos= new String[1];
+        String[] datos = new String[1];
         String[] columnas = new String[1];
-        columnas[0]="NombreTrab";
+        columnas[0] = "NombreTrab";
         datos[0] = txtNombre.getText().toString();
-        System.out.println(datos[0]+" "+columnas[0]);
+        System.out.println(datos[0] + " " + columnas[0]);
         long trabajadores = ((MainActivity) getActivity()).Insertar(columnas, datos, "Trabajadores");
         System.out.println(trabajadores);
-        if(trabajadores == -1){
-            Toast.makeText(this.getContext(),"Error al insertar",(short)1000);
+        if (trabajadores == -1) {
+            Toast.makeText(this.getContext(), "Error al insertar", (short) 1000);
         } else {
-            Toast.makeText(this.getContext(),String.valueOf(trabajadores),(short)1000);
+            Toast.makeText(this.getContext(), String.valueOf(trabajadores), (short) 1000);
             actualizarFrag();
         }
     }
@@ -195,7 +204,7 @@ public class FragmentTrabajadores extends Fragment {
         return acolor;
     }
 
-    private void agregarBotonEditar(FragmentActivity fragmentActivity,TableRow.LayoutParams layoutParams, String string, TableRow tr, int id,String nombre,String color){
+    private void agregarBotonEditar(FragmentActivity fragmentActivity, TableRow.LayoutParams layoutParams, String string, TableRow tr, int id, String nombre, String color) {
         btn = new Button(fragmentActivity);
         btn.setText(string);
         btn.setBackgroundColor(Color.parseColor(color));
@@ -211,7 +220,7 @@ public class FragmentTrabajadores extends Fragment {
         tv1.setLayoutParams(layoutParams);
     }
 
-    private void agregarBotonEliminar(FragmentActivity fragmentActivity,TableRow.LayoutParams layoutParams, String string, TableRow tr, int id,String nombre,String color){
+    private void agregarBotonEliminar(FragmentActivity fragmentActivity, TableRow.LayoutParams layoutParams, String string, TableRow tr, int id, String nombre, String color) {
         btn = new Button(fragmentActivity);
         btn.setText(string);
         btn.setBackgroundColor(Color.parseColor(color));
@@ -221,13 +230,13 @@ public class FragmentTrabajadores extends Fragment {
             public void onClick(View v) {
                 new MaterialAlertDialogBuilder(fragmentActivity)
                         .setTitle("Confirmar")
-                        .setMessage("¿Está segura de eliminar a "+nombre+"?")
+                        .setMessage("¿Está segura de eliminar a " + nombre + "?")
                         .setPositiveButton("Sí", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-                                long eliminado=((MainActivity)getActivity()).Eliminar("Trabajadores","idTrab",String.valueOf(id));
-                                if(eliminado == -1){
-                                    Toast.makeText(fragmentActivity,"Error al insertar",(short)1000);
+                                long eliminado = ((MainActivity) getActivity()).Eliminar("Trabajadores", "idTrab", String.valueOf(id));
+                                if (eliminado == -1) {
+                                    Toast.makeText(fragmentActivity, "Error al insertar", (short) 1000);
                                 } else {
                                     actualizarFrag();
                                 }
@@ -236,7 +245,7 @@ public class FragmentTrabajadores extends Fragment {
                         .setNegativeButton("No", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-                                Toast.makeText(fragmentActivity,"No eliminado "+nombre, (short)1000);
+                                Toast.makeText(fragmentActivity, "No eliminado " + nombre, (short) 1000);
                             }
                         })
                         .show();
@@ -273,4 +282,6 @@ public class FragmentTrabajadores extends Fragment {
     private boolean isEmpty(TextInputEditText etText) {
         return etText.getText().toString().trim().length() == 0;
     }
+
+
 }

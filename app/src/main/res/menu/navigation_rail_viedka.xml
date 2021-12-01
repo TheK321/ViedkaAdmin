@@ -11,6 +11,11 @@
         android:icon="@drawable/ic_baseline_attach_money_24"
         android:title="@string/txtVentas" />
     <item
+        android:id="@+id/menu_trabajadores"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_attach_money_24"
+        android:title="Trabajadores" />
+    <item
         android:id="@+id/menu_agregarreporte"
         android:enabled="true"
         android:icon="@drawable/menu_ic_agregarreporte"
