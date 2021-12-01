@@ -9,6 +9,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.transition.Transition;
 
 import android.content.ContentValues;
+import android.content.DialogInterface;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteConstraintException;
@@ -21,6 +22,7 @@ import android.widget.TableLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.navigationrail.NavigationRailView;
 
@@ -224,6 +226,26 @@ public class MainActivity extends AppCompatActivity {
         return datos;
     }
 
+    public String [] ConsultarSuma(String tabla, String campoasumar, boolean tienewhere, String where, String collave){
+        SQLiteDatabase BaseDeDatos = AdminSQLiteOpenHelper.DatabaseHelper.getInstance(getApplicationContext()).getReadableDatabase();
+        String sql=tienewhere? "select SUM(\""+campoasumar+"\") from "+tabla+" where "+where+" GROUP BY "+collave:"select SUM(\""+campoasumar+"\") from "+tabla+" GROUP BY "+collave ;
+        System.out.println("consulta a ejecutar es "+sql);
+        //Aplicar un select a la Base de Datos
+        Cursor fila = BaseDeDatos.rawQuery
+                (sql, null);
+        //Metodo para verificar si existe o no el elemento en la tabla
+        String[] datos = new String[1];
+        if(fila.moveToFirst()){
+            datos[0] = fila.getString(0);
+            fila.close();
+            //Cerrar Base de Datos
+            BaseDeDatos.close();
+        } else {
+        datos[0] = "0";
+        }
+        return datos;
+    }
+
     public long Eliminar(String tabla, String id ,String valor){
         //Abrir la BD en modo lectura-escritura
         SQLiteDatabase BaseDeDatos = AdminSQLiteOpenHelper.DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase();
@@ -261,6 +283,21 @@ public class MainActivity extends AppCompatActivity {
 
     public void cambiarTituloBarra(String nuevoTitulo){
         getSupportActionBar().setTitle(nuevoTitulo);
+    }
+
+    @Override
+    public void onBackPressed() {
+        new MaterialAlertDialogBuilder(this)
+                .setTitle("Confirmar")
+                .setMessage("¿Está segura de querer salir de la aplicación??")
+                .setPositiveButton("Sí", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        finish();
+                    }
+                })
+                .setNegativeButton("No", null)
+                .show();
     }
 
 
