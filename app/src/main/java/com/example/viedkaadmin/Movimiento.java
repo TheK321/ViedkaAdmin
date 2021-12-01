@@ -2,7 +2,8 @@ package com.example.viedkaadmin;
 
 public class Movimiento {
 
-    private String idMovimiento,
+    private int idMovimiento;
+    private String
             Concepto,
             Categoria,
             PrecioUni,
@@ -15,7 +16,7 @@ public class Movimiento {
             idEmpleado,
             idPrenda;
 
-    public Movimiento(String idMovimiento, String concepto, String categoria, String precioUni, String cantidad, String total, String tipo, String saldoAnterior, String saldoActual, String fecha, String idEmpleado, String idPrenda) {
+    public Movimiento(int idMovimiento, String concepto, String categoria, String precioUni, String cantidad, String total, String tipo, String saldoAnterior, String saldoActual, String fecha, String idEmpleado, String idPrenda) {
         this.idMovimiento = idMovimiento;
         Concepto = concepto;
         Categoria = categoria;
@@ -30,11 +31,11 @@ public class Movimiento {
         this.idPrenda = idPrenda;
     }
 
-    public String getIdMovimiento() {
+    public int getIdMovimiento() {
         return idMovimiento;
     }
 
-    public void setIdMovimiento(String idMovimiento) {
+    public void setIdMovimiento(int idMovimiento) {
         this.idMovimiento = idMovimiento;
     }
 

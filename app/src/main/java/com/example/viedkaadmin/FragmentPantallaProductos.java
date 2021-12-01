@@ -106,8 +106,7 @@ public class FragmentPantallaProductos extends Fragment {
                             listaProductos[i].getCategoria(),
                             listaProductos[i].getExistencias(),
                             listaProductos[i].getPrecioC(),
-                            listaProductos[i].getPrecioV(),
-                            arregloProductos
+                            listaProductos[i].getPrecioV()
                     );
 
                 }
@@ -137,7 +136,7 @@ public class FragmentPantallaProductos extends Fragment {
         tv1.setLayoutParams(layoutParams);
     }
 
-    public void agregarFila(int id, String name, String category, String count, String buy, String sell,String[] values) {
+    public void agregarFila(int id, String name, String category, String count, String buy, String sell) {
 
         String idd = String.valueOf(id);
         tr = new TableRow(getActivity());

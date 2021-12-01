@@ -248,7 +248,6 @@ public class FragmentEditarProductos extends Fragment {
             public void onClick(View v) {
                 idtxt.setText(data[0].toString());
                 nombre.setText(data[1].toString());
-                categoria.setText(data[2].toString());
                 cantidad.setText(data[3].toString());
                 preciocompra.setText(data[4].toString());
                 precioventa.setText(data[5].toString());

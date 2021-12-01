@@ -3,14 +3,11 @@ package com.example.viedkaadmin;
 import static android.view.Gravity.CENTER;
 import static android.view.Gravity.CENTER_HORIZONTAL;
 
-import android.content.DialogInterface;
-import android.database.SQLException;
 import android.database.sqlite.SQLiteConstraintException;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 
-import androidx.annotation.DrawableRes;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 
@@ -86,7 +83,7 @@ public class FragmentPantallaAgregarReporte extends Fragment {
         View view = inflater.inflate(R.layout.fragment_pantalla_agregar_reporte, container, false);
         //A partir de aquí se tienen que asignar las views a las variables, si no ya no
         tl = (TableLayout) view.findViewById(R.id.tablaOperacionesReporte);
-        txtArticulo = view.findViewById(R.id.textInputEditText_articulo);
+        txtArticulo = view.findViewById(R.id.seleccionCategoria);
         txtcantidad = view.findViewById(R.id.textInputEditText_cantidad);
         txtprecio = view.findViewById(R.id.textInputEditText_precio);
         ingreso = view.findViewById(R.id.switchMaterial_ingreso);
@@ -199,7 +196,7 @@ public class FragmentPantallaAgregarReporte extends Fragment {
             for (int i = 0; i < rawConsulta[1].length; i++) {
                 System.out.println(rawConsulta[0][i]+rawConsulta[1][i]);
                 listaMovimientos[i] = new Movimiento(
-                        rawConsulta[0][i],
+                        Integer.parseInt(rawConsulta[0][i]),
                         rawConsulta[1][i],
                         rawConsulta[2][i],
                         rawConsulta[3][i],
