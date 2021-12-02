@@ -83,7 +83,7 @@ public class FragmentPantallaAgregarReporte extends Fragment {
         View view = inflater.inflate(R.layout.fragment_pantalla_agregar_reporte, container, false);
         //A partir de aquí se tienen que asignar las views a las variables, si no ya no
         tl = (TableLayout) view.findViewById(R.id.tablaOperacionesReporte);
-        txtArticulo = view.findViewById(R.id.seleccionCategoria);
+        txtArticulo = view.findViewById(R.id.textInputEditText_articulo);
         txtcantidad = view.findViewById(R.id.textInputEditText_cantidad);
         txtprecio = view.findViewById(R.id.textInputEditText_precio);
         ingreso = view.findViewById(R.id.switchMaterial_ingreso);
@@ -318,7 +318,7 @@ public class FragmentPantallaAgregarReporte extends Fragment {
         int saldoactual =Integer.parseInt(((MainActivity) getActivity()).ConsultarUltimo("Movimientos", 12, false, "", "idMovimiento")[8]);
         int total = Integer.parseInt(txtcantidad.getText().toString()) * Integer.parseInt(txtprecio.getText().toString());
         String idempleadoactual = ((MainActivity) getActivity()).ConsultarUltimo("Trabajadores", 2, true, "NombreTrab=\""+nombre.getText().toString()+"\"", "idTrab")[0];
-        String idprendaactual = ((MainActivity) getActivity()).ConsultarUltimo("Prenda", 6, true, "Nombre=\""+txtArticulo.getText().toString()+"\" and PrecioVenta="+txtprecio.getText().toString()+"\"","idPrenda")[0];
+        String idprendaactual = ((MainActivity) getActivity()).ConsultarUltimo("Prenda", 6, true, "Nombre=\""+txtArticulo.getText().toString()+"\" and PrecioVenta="+txtprecio.getText().toString(),"idPrenda")[0];
         String prendastockactual = ((MainActivity) getActivity()).ConsultarUltimo("Prenda", 6, true, "idPrenda=\""+idprendaactual+"\"","idPrenda")[3];
         datos[0] = txtArticulo.getText().toString();
         datos[1] = txtcategoria.getText().toString();
