@@ -165,6 +165,7 @@ public class FragmentTrabajadores extends Fragment {
         tr = new TableRow(getActivity());
         tr.setTag(String.valueOf(id));
         agregaCelda(getActivity(), params, String.valueOf(id), tr, getColorFondo(color));
+        params = new TableRow.LayoutParams(350, 50);
         agregaCelda(getActivity(), params, nombre, tr, getColorFondo(color));
         agregarBotonEditar(getActivity(), params, "Editar", tr, id, nombre, getColorFondo(color));
         agregarBotonEliminar(getActivity(), params, "Eliminar", tr, id, nombre, getColorFondo(color));

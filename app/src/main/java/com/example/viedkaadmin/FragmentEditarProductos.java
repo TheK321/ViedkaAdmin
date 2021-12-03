@@ -339,15 +339,26 @@ public class FragmentEditarProductos extends Fragment {
         for (int c=0; c<encabezado.length;c++){
             System.out.println(encabezado[c]+" VALORES "+valores[c]);
         }
-        long productos = ((MainActivity) getActivity()).Insertar(encabezado, valores, "Prenda");
-        System.out.println("LONG:"+productos);
-        if(productos == -1){
-            Toast.makeText(this.getContext(),"Error al insertar",(short)1000);
-        } else {
-            Toast.makeText(getActivity(), "Producto Ingresado", (short) 1000).show();
-            System.out.println("Producto Ingresado");
-            refresh();
+        try {
+            long productos = ((MainActivity) getActivity()).Insertar(encabezado, valores, "Prenda");
+            System.out.println("LONG:"+productos);
+            if(productos == -1){
+                Toast.makeText(this.getContext(),"Error al insertar",(short)1000);
+            } else {
+                Toast.makeText(getActivity(), "Producto Ingresado", (short) 1000).show();
+                System.out.println("Producto Ingresado");
+                refresh();
+            }
+        }catch (android.database.sqlite.SQLiteConstraintException e){
+            new MaterialAlertDialogBuilder(getActivity())
+                    .setTitle("Error al insertar")
+                    .setMessage("No se puede insertar este producto porque ya existe uno con el mismo nombre")
+                    .setNeutralButton("Aceptar", null)
+                    .show();
+        }catch (Exception e){
+            System.out.println("Excepción en editar productos agregar producto "+e);
         }
+
     }
 
 

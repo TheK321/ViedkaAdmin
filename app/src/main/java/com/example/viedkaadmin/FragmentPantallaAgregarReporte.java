@@ -318,7 +318,7 @@ public class FragmentPantallaAgregarReporte extends Fragment {
         int saldoactual =Integer.parseInt(((MainActivity) getActivity()).ConsultarUltimo("Movimientos", 12, false, "", "idMovimiento")[8]);
         int total = Integer.parseInt(txtcantidad.getText().toString()) * Integer.parseInt(txtprecio.getText().toString());
         String idempleadoactual = ((MainActivity) getActivity()).ConsultarUltimo("Trabajadores", 2, true, "NombreTrab=\""+nombre.getText().toString()+"\"", "idTrab")[0];
-        String idprendaactual = ((MainActivity) getActivity()).ConsultarUltimo("Prenda", 6, true, "Nombre=\""+txtArticulo.getText().toString()+"\" and PrecioVenta="+txtprecio.getText().toString()+"\"","idPrenda")[0];
+        String idprendaactual = ((MainActivity) getActivity()).ConsultarUltimo("Prenda", 6, true, "Nombre=\""+txtArticulo.getText().toString()+"\" and PrecioVenta="+txtprecio.getText().toString(),"idPrenda")[0];
         String prendastockactual = ((MainActivity) getActivity()).ConsultarUltimo("Prenda", 6, true, "idPrenda=\""+idprendaactual+"\"","idPrenda")[3];
         datos[0] = txtArticulo.getText().toString();
         datos[1] = txtcategoria.getText().toString();

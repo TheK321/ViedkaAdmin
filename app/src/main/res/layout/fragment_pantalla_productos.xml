@@ -18,7 +18,7 @@
         android:layout_marginEnd="128dp"
         android:layout_marginBottom="64dp"
         android:src="@drawable/ic_cuadrobusqueda"
-        app:layout_constraintBottom_toTopOf="@+id/tProductos"
+        app:layout_constraintBottom_toTopOf="@+id/productos_scrollview"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -50,24 +50,31 @@
         android:layout_marginEnd="732dp"
         android:layout_marginBottom="60dp"
         android:text="Editar Productos"
-        app:layout_constraintBottom_toTopOf="@+id/tProductos"
+        app:layout_constraintBottom_toTopOf="@+id/productos_scrollview"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
 
-    <TableLayout
-        android:id="@+id/tProductos"
-        android:layout_width="1107dp"
-        android:layout_height="594dp"
-        android:layout_marginStart="110dp"
-        android:layout_marginTop="158dp"
-        android:layout_marginEnd="63dp"
+    <ScrollView
+        android:id="@+id/productos_scrollview"
+        android:layout_width="1050dp"
+        android:layout_height="600dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="32dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/text_view_Productos_2"
+        app:layout_constraintTop_toBottomOf="@+id/text_view_Productos_2"
+        app:layout_constraintVertical_bias="0.0">
+
+        <TableLayout
+            android:id="@+id/tProductos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"/>
+    </ScrollView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

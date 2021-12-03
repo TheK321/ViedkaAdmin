@@ -18,6 +18,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TableLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -38,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
     //
 
     NavigationRailView menuViedka;
+    Button btnsql;
     FragmentManager fragmentManager;
     FragmentTransaction fragmentTransaction;
     Fragment fragment=null;
@@ -47,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         menuViedka=findViewById(R.id.id_menuviedka);
+        btnsql=findViewById(R.id.Button_ejecutar);
         if(fragment==null){
             fragmentManager = getSupportFragmentManager();
             fragmentTransaction = fragmentManager.beginTransaction();
@@ -57,6 +60,18 @@ public class MainActivity extends AppCompatActivity {
         //Abrir la BD en modo lectura-escritura
         SQLiteDatabase BaseDeDatos = admin.getWritableDatabase();
         BaseDeDatos.close();
+
+        btnsql.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                fragment = new VariasQueries();
+                //cambiarTituloBarra("Agregar Reporte");
+                fragmentManager = getSupportFragmentManager();
+                fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.frame_layout_container, fragment,"variasqueries").addToBackStack("variasqueries");
+                fragmentTransaction.commit();
+            }
+        });
 
         menuViedka.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
