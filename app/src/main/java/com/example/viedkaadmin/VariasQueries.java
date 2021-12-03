@@ -9,11 +9,16 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 
 import com.google.android.material.textfield.TextInputEditText;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Random;
+import java.util.TimeZone;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -70,11 +75,21 @@ public class VariasQueries extends Fragment {
                 SQLiteDatabase BaseDeDatos = AdminSQLiteOpenHelper.DatabaseHelper.getInstance(getActivity().getApplicationContext()).getWritableDatabase();
 
                 for(int i=0;i<cadenascomandos.length;i++){
-                    System.out.println(cadenascomandos[i]);
                     try {
                         BaseDeDatos.execSQL(cadenascomandos[i]);
                     } catch (Exception e){
                         System.out.println("Excepción en "+i);
+                    }
+                }
+
+                datos.setText(reportesrandoms());
+                SQLiteDatabase BaseDeDatos2 = AdminSQLiteOpenHelper.DatabaseHelper.getInstance(getActivity().getApplicationContext()).getWritableDatabase();
+                cadenascomandos = datos.getText().toString().split(";");
+                for(int i=0;i<cadenascomandos.length;i++){
+                    try {
+                        BaseDeDatos2.execSQL(cadenascomandos[i]);
+                    } catch (Exception e){
+                        System.out.println("Excepción en "+i+"\n"+e.toString());
                     }
                 }
             }
@@ -98,10 +113,28 @@ public class VariasQueries extends Fragment {
         for(int i=0;i<nombresapellidos.length;i++){
             datosrandoms+="insert into Trabajadores(NombreTrab) values('"+nombresapellidos[i]+"');";
         }
-        for(int i=0;i<new Random().nextInt(10000) + 1;i++){
-            datosrandoms+="insert into Prenda(Nombre,Categoria,Existencias,PrecioCompra,PrecioVenta) values('"+prendas[new Random().nextInt(prendas.length)]+new Random().nextInt(84048)+"','"+tipo[new Random().nextInt(tipo.length)]+"',999999999,"+(new Random().nextInt(50)+25)+","+(new Random().nextInt(40)+15)+");";
-        }
+        return datosrandoms;
+    }
 
+    private String reportesrandoms(){
+        String datosrandoms = new String();
+
+        try {
+            String [][] rawConsulta = ((MainActivity) getActivity()).Consultar("Prenda", 6, false, "");
+            for(int i=0;i<new Random().nextInt(10000) + 1;i++){
+                int indicerandom = new Random().nextInt(rawConsulta.length) ;
+                int cantidadrandom = new Random().nextInt(5)+1;
+                datosrandoms+="insert into Movimientos (Concepto,Categoria,PrecioUni,Cantidad,Total,Tipo,SaldoAnterior,SaldoActual,Fecha,idEmpleado,idPrenda) values" +
+                        "('"+rawConsulta[1][indicerandom]
+                        +"','"+rawConsulta[2][indicerandom]
+                        +"',"+rawConsulta[5][indicerandom]
+                        +","+cantidadrandom
+                        +","+(cantidadrandom*Integer.parseInt(rawConsulta[5][indicerandom]))
+                        +",'Ingreso',0,"+(cantidadrandom*Integer.parseInt(rawConsulta[5][indicerandom])+",'"+(new Random().nextInt(11)+10)+"-Nov-2021',"+new Random().nextInt(15)+1+","+(rawConsulta[0][indicerandom])+");");
+            }
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
         return datosrandoms;
     }
 }
