@@ -20,11 +20,6 @@ import java.util.ArrayList;
 
 public class FragmentPantallaVentas extends Fragment {
 
-    private TableLayout tableLayout;
-    private String[] encabezado = {"ID","ARTICULO","CANTIDAD VENDIDA","PRECIO","TOTAL"};
-    private ArrayList<String[]> filas = new ArrayList<>();
-    private Movimiento [] listaVentas;
-
     TableLayout tl;
     TableRow tr;
     TextView tv1;
@@ -55,8 +50,6 @@ public class FragmentPantallaVentas extends Fragment {
         View view = inflater.inflate(R.layout.fragment_pantalla_ventas, null, false);
         tl = (TableLayout) view.findViewById(R.id.tableLayoutVentas);
 
-        //tablaVentas.agregarEncabezado(encabezado);
-        //tablaVentas.agregarDatos(obtenerDatos(),rawConsulta[1].length);
 
         TableRow.LayoutParams params = new TableRow.LayoutParams(170, TableRow.LayoutParams.WRAP_CONTENT);
         tr = new TableRow(getActivity());
@@ -72,7 +65,7 @@ public class FragmentPantallaVentas extends Fragment {
         tl.addView(tr);
 
         try {
-            rawConsulta = ((MainActivity) getActivity()).Consultar("Movimientos", 12, false, "");
+            rawConsulta = ((MainActivity) getActivity()).Consultar("Movimientos", 12, true, "Tipo='Ingreso'");
             Movimiento[] listaMovimientos = new Movimiento[rawConsulta[1].length];
             for (int i = 0; i < rawConsulta[1].length; i++) {
                 System.out.println(rawConsulta[0][i]+rawConsulta[1][i]);
@@ -127,6 +120,8 @@ public class FragmentPantallaVentas extends Fragment {
         color = !color;
 
     }
+
+
 
     private void agregaEncabezado(FragmentActivity fragmentActivity, TableRow.LayoutParams layoutParams, String string, TableRow tr, int color) {
         tv1 = new TextView(getActivity());

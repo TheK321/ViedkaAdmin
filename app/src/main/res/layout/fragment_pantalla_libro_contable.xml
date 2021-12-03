@@ -6,6 +6,24 @@
     android:layout_height="match_parent"
     tools:context=".FragmentPantallaLibroContable">
 
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/text_view_Productos_6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="172dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="780dp"
+        android:layout_marginBottom="122dp"
+        android:fontFamily="@font/poppins_medium"
+        android:text="LIBRO CONTABLE"
+        android:textColor="#EF6C00"
+        android:textSize="40dp"
+        app:fontFamily="@font/poppins_medium"
+        app:layout_constraintBottom_toTopOf="@+id/scrollView4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <ImageView
         android:id="@+id/imageView4"
         android:layout_width="wrap_content"
@@ -19,13 +37,18 @@
         app:layout_constraintVertical_bias="0.045" />
 
     <ScrollView
-        android:layout_width="900dp"
-        android:layout_height="500dp"
+        android:id="@+id/scrollView4"
+        android:layout_width="743dp"
+        android:layout_height="542dp"
+        android:layout_marginStart="267dp"
+        android:layout_marginTop="184dp"
+        android:layout_marginEnd="267dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.812">
+        app:layout_constraintVertical_bias="0.0">
 
         <TableLayout
             android:id="@+id/tb_librocontable"
@@ -34,15 +57,4 @@
             android:layout_marginTop="0dp" />
     </ScrollView>
 
-    <ImageView
-        android:id="@+id/imageView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_titulo_librocontable"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/imageView4"
-        app:layout_constraintHorizontal_bias="0.78"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.08" />
 </androidx.constraintlayout.widget.ConstraintLayout>
