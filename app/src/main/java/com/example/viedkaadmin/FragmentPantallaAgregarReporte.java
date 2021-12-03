@@ -83,7 +83,7 @@ public class FragmentPantallaAgregarReporte extends Fragment {
         View view = inflater.inflate(R.layout.fragment_pantalla_agregar_reporte, container, false);
         //A partir de aquí se tienen que asignar las views a las variables, si no ya no
         tl = (TableLayout) view.findViewById(R.id.tablaOperacionesReporte);
-        txtArticulo = view.findViewById(R.id.seleccionCategoria);
+        txtArticulo = view.findViewById(R.id.textInputEditText_articulo);
         txtcantidad = view.findViewById(R.id.textInputEditText_cantidad);
         txtprecio = view.findViewById(R.id.textInputEditText_precio);
         ingreso = view.findViewById(R.id.switchMaterial_ingreso);
