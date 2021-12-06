@@ -12,6 +12,21 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <ListView
+            android:id="@+id/listviewgraficas"
+            android:layout_width="500dp"
+            android:layout_height="500dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="24dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/scrollView5"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/scrollView4"
+            app:layout_constraintTop_toTopOf="@+id/scrollView4" />
+
         <ImageView
             android:id="@+id/imageView6"
             android:layout_width="312dp"
@@ -20,11 +35,12 @@
             android:layout_marginTop="24dp"
             android:src="@drawable/ic_bg1"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/textInputLayout_articulo"
+            app:layout_constraintEnd_toStartOf="@+id/textViewTitulo"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="0.0"
+            tools:ignore="ContentDescription" />
 
         <ImageView
             android:id="@+id/imageView9"
@@ -36,9 +52,10 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toEndOf="@+id/textInputLayout_articulo"
+            app:layout_constraintStart_toEndOf="@+id/textViewTitulo"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="0.0"
+            tools:ignore="ContentDescription" />
 
         <ImageView
             android:id="@+id/imageView14"
@@ -50,7 +67,8 @@
             app:layout_constraintHorizontal_bias="0.138"
             app:layout_constraintStart_toStartOf="@+id/imageView9"
             app:layout_constraintTop_toTopOf="@+id/imageView9"
-            app:layout_constraintVertical_bias="0.811" />
+            app:layout_constraintVertical_bias="0.811"
+            tools:ignore="ContentDescription" />
 
         <ImageView
             android:id="@+id/imageView11"
@@ -71,7 +89,7 @@
             android:layout_marginBottom="1dp"
             android:fontFamily="@font/poppins_medium"
             android:text="Ventas Totales"
-            android:textColor="#DFAF00"
+            android:textColor="@color/amarilloBotones"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="@+id/imageView6"
             app:layout_constraintEnd_toEndOf="@+id/imageView6"
@@ -81,13 +99,29 @@
             app:layout_constraintVertical_bias="0.176" />
 
         <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/textViewventastotales"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="1dp"
+            android:fontFamily="@font/poppins_medium"
+            android:textColor="@color/amarillo_900"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView6"
+            app:layout_constraintEnd_toEndOf="@+id/imageView6"
+            app:layout_constraintHorizontal_bias="0.519"
+            app:layout_constraintStart_toStartOf="@+id/imageView6"
+            app:layout_constraintTop_toBottomOf="@+id/textViewVentasT"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/textViewIngresosT"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="1dp"
             android:fontFamily="@font/poppins_medium"
             android:text="Ingresos Totales"
-            android:textColor="#DFAF00"
+            android:textColor="@color/amarilloBotones"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="@+id/imageView9"
             app:layout_constraintEnd_toEndOf="@+id/imageView9"
@@ -95,6 +129,22 @@
             app:layout_constraintStart_toStartOf="@+id/imageView9"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.357" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/textViewIngresostotales"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="1dp"
+            android:fontFamily="@font/poppins_medium"
+            android:textColor="@color/amarillo_900"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView9"
+            app:layout_constraintEnd_toEndOf="@+id/imageView9"
+            app:layout_constraintHorizontal_bias="0.503"
+            app:layout_constraintStart_toStartOf="@+id/imageView9"
+            app:layout_constraintTop_toBottomOf="@+id/textViewIngresosT"
+            app:layout_constraintVertical_bias="0.0" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/textViewTitulo"
@@ -113,11 +163,14 @@
 
         <ScrollView
             android:id="@+id/scrollView4"
-            android:layout_width="wrap_content"
+            android:layout_width="200dp"
+            android:minWidth="150dp"
             android:layout_height="450dp"
+            android:layout_marginStart="8dp"
             android:layout_marginBottom="96dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/imageView6"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/imageView6"
             app:layout_constraintTop_toBottomOf="@+id/imageView6"
             app:layout_constraintVertical_bias="1.0">
@@ -128,7 +181,7 @@
                 android:orientation="vertical">
 
                 <com.google.android.material.card.MaterialCardView
-                    android:layout_width="380dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
 
@@ -139,24 +192,28 @@
                         android:padding="16dp">
 
                         <TextView
+                            android:id="@+id/titulomasvendido1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Titulo"
-                            android:textAppearance="?attr/textAppearanceTitleMedium" />
+                            android:text="Sin datos"
+                            android:textAppearance="?attr/textAppearanceTitleMedium"
+                            android:textColor="@color/amarilloBotones" />
 
                         <TextView
+                            android:id="@+id/subtitulomasvendido1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
-                            android:text="Subtitulo"
+                            android:text="Sin datos"
                             android:textAppearance="?attr/textAppearanceBodyMedium"
                             android:textColor="?android:attr/textColorSecondary" />
 
                         <TextView
+                            android:id="@+id/textomasvendido1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="16dp"
-                            android:text="Texto"
+                            android:text="Sin datos"
                             android:textAppearance="?attr/textAppearanceBodyMedium"
                             android:textColor="?android:attr/textColorSecondary" />
 
@@ -164,9 +221,9 @@
                 </com.google.android.material.card.MaterialCardView>
 
                 <com.google.android.material.card.MaterialCardView
-                    android:layout_width="380dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp">
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -175,35 +232,38 @@
                         android:padding="16dp">
 
                         <TextView
+                            android:id="@+id/titulomasvendido2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Titulo"
-                            android:textAppearance="?attr/textAppearanceTitleMedium" />
+                            android:text="Sin datos"
+                            android:textAppearance="?attr/textAppearanceTitleMedium"
+                            android:textColor="@color/amarilloBotones" />
 
                         <TextView
+                            android:id="@+id/subtitulomasvendido2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
-                            android:text="Subtitulo"
+                            android:text="Sin datos"
                             android:textAppearance="?attr/textAppearanceBodyMedium"
                             android:textColor="?android:attr/textColorSecondary" />
 
                         <TextView
+                            android:id="@+id/textomasvendido2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="16dp"
-                            android:text="Texto"
+                            android:text="Sin datos"
                             android:textAppearance="?attr/textAppearanceBodyMedium"
                             android:textColor="?android:attr/textColorSecondary" />
 
                     </LinearLayout>
-
                 </com.google.android.material.card.MaterialCardView>
 
                 <com.google.android.material.card.MaterialCardView
-                    android:layout_width="380dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp">
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -212,35 +272,39 @@
                         android:padding="16dp">
 
                         <TextView
+                            android:id="@+id/titulomasvendido3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Titulo"
-                            android:textAppearance="?attr/textAppearanceTitleMedium" />
+                            android:text="Sin datos"
+                            android:textAppearance="?attr/textAppearanceTitleMedium"
+                            android:textColor="@color/amarilloBotones" />
 
                         <TextView
+                            android:id="@+id/subtitulomasvendido3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
-                            android:text="Subtitulo"
+                            android:text="Sin datos"
                             android:textAppearance="?attr/textAppearanceBodyMedium"
                             android:textColor="?android:attr/textColorSecondary" />
 
                         <TextView
+                            android:id="@+id/textomasvendido3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="16dp"
-                            android:text="Texto"
+                            android:text="Sin datos"
                             android:textAppearance="?attr/textAppearanceBodyMedium"
                             android:textColor="?android:attr/textColorSecondary" />
 
                     </LinearLayout>
-
                 </com.google.android.material.card.MaterialCardView>
 
+
                 <com.google.android.material.card.MaterialCardView
-                    android:layout_width="380dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp">
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -249,35 +313,39 @@
                         android:padding="16dp">
 
                         <TextView
+                            android:id="@+id/titulomasvendido4"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Titulo"
-                            android:textAppearance="?attr/textAppearanceTitleMedium" />
+                            android:text="Sin datos"
+                            android:textAppearance="?attr/textAppearanceTitleMedium"
+                            android:textColor="@color/amarilloBotones" />
 
                         <TextView
+                            android:id="@+id/subtitulomasvendido4"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
-                            android:text="Subtitulo"
+                            android:text="Sin datos"
                             android:textAppearance="?attr/textAppearanceBodyMedium"
                             android:textColor="?android:attr/textColorSecondary" />
 
                         <TextView
+                            android:id="@+id/textomasvendido4"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="16dp"
-                            android:text="Texto"
+                            android:text="Sin datos"
                             android:textAppearance="?attr/textAppearanceBodyMedium"
                             android:textColor="?android:attr/textColorSecondary" />
 
                     </LinearLayout>
-
                 </com.google.android.material.card.MaterialCardView>
 
+
                 <com.google.android.material.card.MaterialCardView
-                    android:layout_width="380dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp">
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -286,30 +354,34 @@
                         android:padding="16dp">
 
                         <TextView
+                            android:id="@+id/titulomasvendido5"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Titulo"
-                            android:textAppearance="?attr/textAppearanceTitleMedium" />
+                            android:text="Sin datos"
+                            android:textAppearance="?attr/textAppearanceTitleMedium"
+                            android:textColor="@color/amarilloBotones" />
 
                         <TextView
+                            android:id="@+id/subtitulomasvendido5"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
-                            android:text="Subtitulo"
+                            android:text="Sin datos"
                             android:textAppearance="?attr/textAppearanceBodyMedium"
                             android:textColor="?android:attr/textColorSecondary" />
 
                         <TextView
+                            android:id="@+id/textomasvendido5"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="16dp"
-                            android:text="Texto"
+                            android:text="Sin datos"
                             android:textAppearance="?attr/textAppearanceBodyMedium"
                             android:textColor="?android:attr/textColorSecondary" />
 
                     </LinearLayout>
-
                 </com.google.android.material.card.MaterialCardView>
+
             </LinearLayout>
         </ScrollView>
 
@@ -389,7 +461,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="vertical">
 
                 <com.google.android.material.card.MaterialCardView
@@ -403,12 +475,14 @@
                         android:padding="16dp">
 
                         <TextView
+                            android:id="@+id/textviewtituloingresadas1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Titulo"
                             android:textAppearance="?attr/textAppearanceTitleMedium" />
 
                         <TextView
+                            android:id="@+id/textviewsubtituloingresadas1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
@@ -417,6 +491,7 @@
                             android:textColor="?android:attr/textColorSecondary" />
 
                         <TextView
+                            android:id="@+id/textviewtextoingresadas1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="16dp"
@@ -439,12 +514,14 @@
                         android:padding="16dp">
 
                         <TextView
+                            android:id="@+id/textviewtituloingresadas2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Titulo"
                             android:textAppearance="?attr/textAppearanceTitleMedium" />
 
                         <TextView
+                            android:id="@+id/textviewsubtituloingresadas2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
@@ -453,6 +530,7 @@
                             android:textColor="?android:attr/textColorSecondary" />
 
                         <TextView
+                            android:id="@+id/textviewtextoingresadas2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="16dp"
@@ -463,7 +541,6 @@
                     </LinearLayout>
 
                 </com.google.android.material.card.MaterialCardView>
-
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
@@ -475,12 +552,14 @@
                         android:padding="16dp">
 
                         <TextView
+                            android:id="@+id/textviewtituloingresadas3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Titulo"
                             android:textAppearance="?attr/textAppearanceTitleMedium" />
 
                         <TextView
+                            android:id="@+id/textviewsubtituloingresadas3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
@@ -489,6 +568,7 @@
                             android:textColor="?android:attr/textColorSecondary" />
 
                         <TextView
+                            android:id="@+id/textviewtextoingresadas3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="16dp"
@@ -499,7 +579,6 @@
                     </LinearLayout>
 
                 </com.google.android.material.card.MaterialCardView>
-
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
@@ -511,12 +590,14 @@
                         android:padding="16dp">
 
                         <TextView
+                            android:id="@+id/textviewtituloingresadas4"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Titulo"
                             android:textAppearance="?attr/textAppearanceTitleMedium" />
 
                         <TextView
+                            android:id="@+id/textviewsubtituloingresadas4"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
@@ -525,6 +606,7 @@
                             android:textColor="?android:attr/textColorSecondary" />
 
                         <TextView
+                            android:id="@+id/textviewtextoingresadas4"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="16dp"
@@ -535,7 +617,6 @@
                     </LinearLayout>
 
                 </com.google.android.material.card.MaterialCardView>
-
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
@@ -547,12 +628,14 @@
                         android:padding="16dp">
 
                         <TextView
+                            android:id="@+id/textviewtituloingresadas5"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Titulo"
                             android:textAppearance="?attr/textAppearanceTitleMedium" />
 
                         <TextView
+                            android:id="@+id/textviewsubtituloingresadas5"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
@@ -561,6 +644,7 @@
                             android:textColor="?android:attr/textColorSecondary" />
 
                         <TextView
+                            android:id="@+id/textviewtextoingresadas5"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="16dp"

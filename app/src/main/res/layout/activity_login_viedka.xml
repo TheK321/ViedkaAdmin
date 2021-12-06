@@ -44,22 +44,17 @@
     <com.google.android.material.textfield.TextInputLayout
 
         android:id="@+id/textInputLayout_contra"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="200dp"
         android:layout_height="80dp"
-        android:textColorHint="#FF9100"
         app:boxStrokeColor="@color/amarillo_700"
         app:endIconMode="password_toggle"
-        app:helperTextTextColor="#FF9100"
         app:errorEnabled="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.08"
         app:layout_constraintStart_toStartOf="@+id/lottieAnimationView3"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.82"
-        app:placeholderTextColor="#000000"
-        app:prefixTextColor="#000000">
+        app:layout_constraintVertical_bias="0.82">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/textInputEditText_contra"
@@ -67,8 +62,6 @@
             android:layout_height="match_parent"
             android:hint="@string/txtLoginContra"
             android:inputType="textPassword"
-            android:textColorHighlight="@color/amarillo_200"
-            android:textColorHint="#FF9100"
             android:textSize="24sp"
             tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
 

@@ -180,6 +180,28 @@ public class MainActivity extends AppCompatActivity {
         return datos;
     }
 
+    public String [][] Consultarcustom(String query, int numCampos){
+        SQLiteDatabase BaseDeDatos = AdminSQLiteOpenHelper.DatabaseHelper.getInstance(getApplicationContext()).getReadableDatabase();
+        //Aplicar un select a la Base de Datos
+        Cursor fila = BaseDeDatos.rawQuery
+                (query, null);
+        //Metodo para verificar si existe o no el elemento en la tabla
+        String[][] datos = new String[numCampos][fila.getCount()];
+        if(fila.moveToFirst()){
+            int tamanio=0;
+            do{
+                for(int i = 0; i<numCampos;i++) {
+                    datos[i][tamanio] = fila.getString(i);
+                }
+                tamanio++;
+            } while (fila.moveToNext());
+            fila.close();
+            //Cerrar Base de Datos
+            BaseDeDatos.close();
+        }
+        return datos;
+    }
+
     public String [] ConsultarUltimo(String tabla, int numCampos,boolean tienewhere, String where, String llave){
         SQLiteDatabase BaseDeDatos = AdminSQLiteOpenHelper.DatabaseHelper.getInstance(getApplicationContext()).getReadableDatabase();
         String sql=tienewhere? "select * from "+tabla+" where "+where+" ORDER BY "+llave+" DESC LIMIT 1 ":"select * from "+tabla+" ORDER BY "+llave+" DESC LIMIT 1 ";
