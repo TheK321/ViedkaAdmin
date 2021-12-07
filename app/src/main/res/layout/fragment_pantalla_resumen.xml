@@ -12,20 +12,18 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ListView
-            android:id="@+id/listviewgraficas"
+
+        <com.github.mikephil.charting.charts.PieChart
+            android:id="@+id/activity_main_piechart"
             android:layout_width="500dp"
             android:layout_height="500dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="24dp"
-            android:layout_marginBottom="24dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/scrollView5"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintStart_toEndOf="@+id/scrollView4"
-            app:layout_constraintTop_toTopOf="@+id/scrollView4" />
+            app:layout_constraintTop_toTopOf="@+id/scrollView4"
+            app:layout_constraintVertical_bias="0.0" />
 
         <ImageView
             android:id="@+id/imageView6"
