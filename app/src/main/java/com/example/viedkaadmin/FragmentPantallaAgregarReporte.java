@@ -48,6 +48,7 @@ public class FragmentPantallaAgregarReporte extends Fragment {
     private String [] [] rawConsulta;
     private String[] nombres, productos;
     private int altoFIla;
+    private String fechadehoyinsert;
 
 
     // TODO: Rename and change types of parameters
@@ -101,6 +102,10 @@ public class FragmentPantallaAgregarReporte extends Fragment {
         simple.setTimeZone(TimeZone.getTimeZone("America/Mexico_City"));
         System.out.println(simple.format(result));
         txtfecha.setText(simple.format(result));
+        simple = new SimpleDateFormat("yyyyMMdd");
+        simple.setTimeZone(TimeZone.getTimeZone("America/Mexico_City"));
+        fechadehoyinsert = simple.format(result);
+
 
         nombre = view.findViewById(R.id.autoCompleteTextView_nombre);
         try {
@@ -328,7 +333,7 @@ public class FragmentPantallaAgregarReporte extends Fragment {
         datos[5] = ingreso.isChecked() ? "Ingreso" : "Egreso";
         datos[6] = String.valueOf(saldoactual);
         datos[7] = String.valueOf( ingreso.isChecked() ? saldoactual + total : saldoactual - total );
-        datos[8] = txtfecha.getText().toString();
+        datos[8] = fechadehoyinsert;
         datos[9] = idempleadoactual;
         datos[10] = idprendaactual;
 
