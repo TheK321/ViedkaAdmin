@@ -31,25 +31,28 @@
         <entry key="..\:/Users/ayelm/StudioProjects/ViedkaAdmin/app/src/main/res/menu/navigation_rail_viedka.xml" value="0.5" />
         <entry key="..\:/Users/hpnvme/StudioProjects/ViedkaAdmin/app/src/main/res/drawable/agregarreporte_encabezado.xml" value="0.3828125" />
         <entry key="..\:/Users/hpnvme/StudioProjects/ViedkaAdmin/app/src/main/res/drawable/celdaagregarreporte.xml" value="0.3828125" />
+        <entry key="..\:/Users/hpnvme/StudioProjects/ViedkaAdmin/app/src/main/res/drawable/ic_vestido.xml" value="0.3828125" />
         <entry key="..\:/Users/hpnvme/StudioProjects/ViedkaAdmin/app/src/main/res/drawable/style_librocontable_d.xml" value="0.3828125" />
         <entry key="..\:/Users/hpnvme/StudioProjects/ViedkaAdmin/app/src/main/res/drawable/style_librocontable_u.xml" value="0.3828125" />
         <entry key="..\:/Users/hpnvme/StudioProjects/ViedkaAdmin/app/src/main/res/drawable/style_ventas_h.xml" value="0.3828125" />
         <entry key="..\:/Users/hpnvme/StudioProjects/ViedkaAdmin/app/src/main/res/drawable/ventas_ic_titulo.xml" value="0.3828125" />
-        <entry key="..\:/Users/hpnvme/StudioProjects/ViedkaAdmin/app/src/main/res/layout/activity_main.xml" value="0.22" />
+        <entry key="..\:/Users/hpnvme/StudioProjects/ViedkaAdmin/app/src/main/res/layout/activity_login.xml" value="0.67" />
+        <entry key="..\:/Users/hpnvme/StudioProjects/ViedkaAdmin/app/src/main/res/layout/activity_login_viedka.xml" value="1.1" />
+        <entry key="..\:/Users/hpnvme/StudioProjects/ViedkaAdmin/app/src/main/res/layout/activity_main.xml" value="0.5" />
         <entry key="..\:/Users/hpnvme/StudioProjects/ViedkaAdmin/app/src/main/res/layout/fragment_agregar_productos.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/hpnvme/StudioProjects/ViedkaAdmin/app/src/main/res/layout/fragment_editar_productos.xml" value="0.67" />
         <entry key="..\:/Users/hpnvme/StudioProjects/ViedkaAdmin/app/src/main/res/layout/fragment_pantalla_agregar_reporte.xml" value="0.5" />
         <entry key="..\:/Users/hpnvme/StudioProjects/ViedkaAdmin/app/src/main/res/layout/fragment_pantalla_almacen.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/hpnvme/StudioProjects/ViedkaAdmin/app/src/main/res/layout/fragment_pantalla_libro_contable.xml" value="0.5" />
-        <entry key="..\:/Users/hpnvme/StudioProjects/ViedkaAdmin/app/src/main/res/layout/fragment_pantalla_productos.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/hpnvme/StudioProjects/ViedkaAdmin/app/src/main/res/layout/fragment_pantalla_resumen.xml" value="0.17831813576494426" />
+        <entry key="..\:/Users/hpnvme/StudioProjects/ViedkaAdmin/app/src/main/res/layout/fragment_pantalla_productos.xml" value="0.5" />
+        <entry key="..\:/Users/hpnvme/StudioProjects/ViedkaAdmin/app/src/main/res/layout/fragment_pantalla_resumen.xml" value="0.5" />
         <entry key="..\:/Users/hpnvme/StudioProjects/ViedkaAdmin/app/src/main/res/layout/fragment_pantalla_ventas.xml" value="0.2957427536231884" />
         <entry key="..\:/Users/hpnvme/StudioProjects/ViedkaAdmin/app/src/main/res/layout/fragment_trabajadores.xml" value="0.5" />
+        <entry key="..\:/Users/hpnvme/StudioProjects/ViedkaAdmin/app/src/main/res/layout/fragment_varias_queries.xml" value="0.5" />
         <entry key="..\:/Users/hpnvme/StudioProjects/ViedkaAdmin/app/src/main/res/layout/layout_top.xml" value="0.20520833333333333" />
+        <entry key="..\:/Users/hpnvme/StudioProjects/ViedkaAdmin/app/src/main/res/layout/list_item_barchart.xml" value="0.19791666666666666" />
         <entry key="..\:/Users/hpnvme/StudioProjects/ViedkaAdmin/app/src/main/res/menu/navigation_rail_viedka.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/juang/StudioProjects/ViedkaAdmin/app/src/main/res/layout/fragment_pantalla_libro_contable.xml" value="0.6" />
-        <entry key="..\:/Users/sule_/AndroidStudioProjects/ViedkaAdmin/app/src/main/res/layout/fragment_editar_productos.xml" value="0.1" />
-        <entry key="..\:/Users/sule_/AndroidStudioProjects/ViedkaAdmin/app/src/main/res/layout/fragment_pantalla_resumen.xml" value="0.21829710144927536" />
         <entry key="..\:/Users/user/StudioProjects/ViedkaAdmin/app/src/main/res/drawable/ic_bck.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/user/StudioProjects/ViedkaAdmin/app/src/main/res/drawable/style_green.xml" value="0.3536458333333333" />
         <entry key="..\:/Users/user/StudioProjects/ViedkaAdmin/app/src/main/res/drawable/style_librocontable_d.xml" value="0.25555555555555554" />

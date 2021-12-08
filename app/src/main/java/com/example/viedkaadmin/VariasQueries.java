@@ -130,7 +130,7 @@ public class VariasQueries extends Fragment {
                         +"',"+rawConsulta[5][indicerandom]
                         +","+cantidadrandom
                         +","+(cantidadrandom*Integer.parseInt(rawConsulta[5][indicerandom]))
-                        +",'Ingreso',0,"+(cantidadrandom*Integer.parseInt(rawConsulta[5][indicerandom])+",'"+(new Random().nextInt(11)+10)+"-Nov-2021',"+new Random().nextInt(15)+1+","+(rawConsulta[0][indicerandom])+");");
+                        +",'Ingreso',0,"+(cantidadrandom*Integer.parseInt(rawConsulta[5][indicerandom])+",202111"+(new Random().nextInt(11)+10)+","+new Random().nextInt(15)+1+","+(rawConsulta[0][indicerandom])+");");
             }
         }catch (Exception ex){
             ex.printStackTrace();
