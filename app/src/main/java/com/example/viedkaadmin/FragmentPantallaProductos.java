@@ -62,7 +62,7 @@ public class FragmentPantallaProductos extends Fragment {
             @Override
             public void onClick(View v) {
                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout_container,
-                        new FragmentEditarProductos()).commit();
+                        new FragmentEditarProductos()).addToBackStack("editarproductos").commit();
             }
         });
 
