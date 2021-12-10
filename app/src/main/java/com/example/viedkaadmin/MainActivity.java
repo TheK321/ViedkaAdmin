@@ -206,6 +206,7 @@ public class MainActivity extends AppCompatActivity {
         SQLiteDatabase BaseDeDatos = AdminSQLiteOpenHelper.DatabaseHelper.getInstance(getApplicationContext()).getReadableDatabase();
         String sql=tienewhere? "select * from "+tabla+" where "+where+" ORDER BY "+llave+" DESC LIMIT 1 ":"select * from "+tabla+" ORDER BY "+llave+" DESC LIMIT 1 ";
         //Aplicar un select a la Base de Datos
+        System.out.println("sql de consultarultimo es "+sql);
         Cursor fila = BaseDeDatos.rawQuery
                 (sql, null);
         //Metodo para verificar si existe o no el elemento en la tabla
