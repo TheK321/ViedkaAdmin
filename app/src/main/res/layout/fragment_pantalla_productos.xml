@@ -9,52 +9,36 @@
     <!-- TODO: Update blank fragment layout -->
 
 
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="802dp"
-        android:layout_marginTop="49dp"
-        android:layout_marginEnd="128dp"
-        android:layout_marginBottom="64dp"
-        android:src="@drawable/ic_cuadrobusqueda"
-        app:layout_constraintBottom_toTopOf="@+id/productos_scrollview"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/text_view_Productos_2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="127dp"
+        android:layout_marginStart="62dp"
         android:layout_marginTop="32dp"
-        android:layout_marginEnd="908dp"
         android:fontFamily="@font/poppins_medium"
-        android:text="PRODUCTOS"
-        android:textColor="#EF6C00"
+        android:text="Productos"
+        android:textColor="@color/amarilloBotones"
         android:textSize="40dp"
         app:fontFamily="@font/poppins_medium"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.022" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/editarProductosBoton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="408dp"
-        android:layout_marginTop="48dp"
-        android:layout_marginEnd="732dp"
-        android:layout_marginBottom="60dp"
+        android:layout_marginStart="32dp"
         android:text="Editar Productos"
-        app:layout_constraintBottom_toTopOf="@+id/productos_scrollview"
+        app:layout_constraintBottom_toBottomOf="@+id/text_view_Productos_2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/text_view_Productos_2"
+        app:layout_constraintTop_toTopOf="@+id/text_view_Productos_2"
+        app:layout_constraintVertical_bias="0.5" />
 
     <ScrollView
         android:id="@+id/productos_scrollview"

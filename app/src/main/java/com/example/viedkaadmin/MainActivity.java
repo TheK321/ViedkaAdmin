@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
         SQLiteDatabase BaseDeDatos = admin.getWritableDatabase();
         BaseDeDatos.close();
 
-        btnsql.setOnClickListener(new View.OnClickListener() {
+        /*btnsql.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 fragment = new VariasQueries();
@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
                 fragmentTransaction.replace(R.id.frame_layout_container, fragment,"variasqueries").addToBackStack("variasqueries");
                 fragmentTransaction.commit();
             }
-        });
+        });*/
 
         menuViedka.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
