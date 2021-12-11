@@ -40,6 +40,7 @@
         android:layout_marginEnd="24dp"
         android:text="Ejecutar"
         android:textSize="18sp"
+        android:visibility="gone"
         app:fontFamily="@font/poppins_medium"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
