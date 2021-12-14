@@ -96,11 +96,11 @@ public class FragmentPantallaAgregarReporte extends Fragment {
         Date date = new java.util.Date();
         long datetime = date.getTime();
 
-        System.out.println(datetime);
+
         DateFormat simple = new SimpleDateFormat("dd-MMM-yyyy");
         Date result = new Date(datetime);
         simple.setTimeZone(TimeZone.getTimeZone("America/Mexico_City"));
-        System.out.println(simple.format(result));
+
         txtfecha.setText(simple.format(result));
         simple = new SimpleDateFormat("yyyyMMdd");
         simple.setTimeZone(TimeZone.getTimeZone("America/Mexico_City"));
@@ -112,7 +112,7 @@ public class FragmentPantallaAgregarReporte extends Fragment {
             rawConsulta = ((MainActivity) getActivity()).Consultar("Prenda", 6, false, "");
             productos = new String[rawConsulta[1].length];
             for (int i = 0; i < rawConsulta[0].length; i++) {
-                System.out.println(rawConsulta[0][i]+rawConsulta[1][i]);
+
                 productos[i] = rawConsulta[1][i];
             }
             ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.select_dialog_item, productos);
@@ -125,13 +125,13 @@ public class FragmentPantallaAgregarReporte extends Fragment {
             rawConsulta = ((MainActivity) getActivity()).Consultar("Trabajadores",2,false,"");
             nombres = new String[rawConsulta[1].length];
             for (int i = 0; i < rawConsulta[1].length; i++) {
-                System.out.println(rawConsulta[0][i]+rawConsulta[1][i]);
+
                 nombres[i] = rawConsulta[1][i];
             }
             ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.select_dialog_item, nombres);
             nombre.setAdapter(adapter);
         } catch (Exception ex){
-            System.out.println(ex.toString());
+
         }
 
         button.setOnClickListener(new View.OnClickListener() {
@@ -199,7 +199,6 @@ public class FragmentPantallaAgregarReporte extends Fragment {
             rawConsulta = ((MainActivity) getActivity()).Consultar("Movimientos",12,false,"");
             Movimiento[] listaMovimientos = new Movimiento[rawConsulta[1].length];
             for (int i = 0; i < rawConsulta[1].length; i++) {
-                System.out.println(rawConsulta[0][i]+rawConsulta[1][i]);
                 listaMovimientos[i] = new Movimiento(
                         Integer.parseInt(rawConsulta[0][i]),
                         rawConsulta[1][i],
@@ -225,7 +224,7 @@ public class FragmentPantallaAgregarReporte extends Fragment {
                 );
             }
         } catch (Exception ex){
-            System.out.println(ex.toString());
+
         }
 
 
@@ -343,9 +342,7 @@ public class FragmentPantallaAgregarReporte extends Fragment {
 
 
             long movimientoadded = ((MainActivity) getActivity()).Insertar(columnas, datos, "Movimientos");
-            System.out.println("movadded "+movimientoadded);
             if (movimientoadded == -1) {
-                System.out.println("insercion vale menos uno");
 
             } else {
                 Toast.makeText(this.getContext(), String.valueOf(movimientoadded), (short) 1000);

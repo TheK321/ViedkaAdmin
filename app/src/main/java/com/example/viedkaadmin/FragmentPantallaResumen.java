@@ -97,11 +97,11 @@ public class FragmentPantallaResumen extends Fragment {
 
         Date date = new java.util.Date();
         long datetime = date.getTime();
-        System.out.println(datetime);
+
         DateFormat simple = new SimpleDateFormat("yyyyMMdd");
         Date result = new Date(datetime);
         simple.setTimeZone(TimeZone.getTimeZone("America/Mexico_City"));
-        System.out.println(simple.format(result));
+
         fecha1 = fecha2 = simple.format(result);
         llenarmasvendidos(view);
 
@@ -117,16 +117,16 @@ public class FragmentPantallaResumen extends Fragment {
                     public void onPositiveButtonClick(Object selection) {
                         String cadenaS = materialDatePicker.getSelection().toString();
                         cadenaS = cadenaS.replaceAll("\\D+", "");
-                        System.out.println(cadenaS);
-                        System.out.println(cadenaS.length());
+
+
                         String primerafecha = cadenaS.substring(0, 10);
-                        System.out.println("prim " + primerafecha);
+
                         String segundafecha = cadenaS.substring(13, 23);
-                        System.out.println("segn " + primerafecha);
+
                         String textofecha = "";
                         DateFormat simple = new SimpleDateFormat("dd-MMM-yyyy");
                         Date result = new Date(Long.parseLong(primerafecha) * 1000 + (1000 * 60 * 60 * 24));
-                        System.out.println("fecha1 " + result.toString());
+
                         simple.setTimeZone(TimeZone.getTimeZone("America/Mexico_City"));
                         textofecha += simple.format(result) + " al ";
                         simple = new SimpleDateFormat("yyyyMMdd");
@@ -135,7 +135,7 @@ public class FragmentPantallaResumen extends Fragment {
                         simple = new SimpleDateFormat("dd-MMM-yyyy");
                         simple.setTimeZone(TimeZone.getTimeZone("America/Mexico_City"));
                         result = new Date(Long.parseLong(segundafecha) * 1000 + (1000 * 60 * 60 * 24));
-                        System.out.println("fecha2 " + result.toString());
+
                         textofecha += simple.format(result);
                         simple = new SimpleDateFormat("yyyyMMdd");
                         simple.setTimeZone(TimeZone.getTimeZone("America/Mexico_City"));
@@ -174,12 +174,10 @@ public class FragmentPantallaResumen extends Fragment {
                     " group by idPrenda" +
                     " order by totcant desc" +
                     " limit 5 ;";
-            System.out.println(queryrawconsulta);
+
             rawConsulta = ((MainActivity) getActivity()).Consultarcustom(queryrawconsulta, 6);
             for (int i = 0; i < 5; i++) {
-                System.out.println("lenght de rawconsulta es " + rawConsulta[0].length);
                 if (i < rawConsulta[0].length & rawConsulta[0].length != 0) {
-                    System.out.println("raw " + rawConsulta[0][i] + rawConsulta[1][i]);
                     String titulo = rawConsulta[0][i] + "/" + rawConsulta[1][i];
                     String subtitulo = rawConsulta[3][i] + " unidades vendidas";
                     String texto = "Ingresos totales obtenidos por esta prenda $" + rawConsulta[4][i];
@@ -208,12 +206,12 @@ public class FragmentPantallaResumen extends Fragment {
                     " group by idPrenda" +
                     " order by idPrenda desc" +
                     " limit 5 ;";
-            System.out.println(queryrawconsulta);
+
             rawConsulta = ((MainActivity) getActivity()).Consultarcustom(queryrawconsulta, 6);
             for (int i = 0; i < 5; i++) {
-                System.out.println("lenght de rawconsulta es " + rawConsulta[0].length);
+
                 if (i < rawConsulta[0].length & rawConsulta[0].length != 0) {
-                    System.out.println("raw " + rawConsulta[0][i] + rawConsulta[1][i]);
+
                     String titulo = rawConsulta[0][i] + "/" + rawConsulta[1][i];
                     String subtitulo = rawConsulta[3][i] + " unidades vendidas";
                     String texto = "Ingresos totales obtenidos por esta prenda $" + rawConsulta[4][i];
@@ -245,7 +243,7 @@ public class FragmentPantallaResumen extends Fragment {
             String querysel = "select SUM(cantidad) as totcant, SUM(total) as totot from Movimientos where fecha between " + fecha1 + " and " + fecha2;
             rawConsulta = ((MainActivity) getActivity()).Consultarcustom(querysel, 2);
             for (int i = 0; i < rawConsulta[1].length; i++) {
-                System.out.println("raw " + rawConsulta[0][i] + rawConsulta[1][i]);
+
                 String titulo = rawConsulta[0][i] + "/" + rawConsulta[1][i];
                 txtventastotales.setText(rawConsulta[0][i]+" prendas");
                 ventastot=Integer.parseInt(rawConsulta[0][i]);
@@ -278,13 +276,11 @@ public class FragmentPantallaResumen extends Fragment {
         try{
             int restantes =0;
         for (int i = 0; i < rawConsulta.length; i++) {
-            System.out.println("length de rawconsulta es " + rawConsulta[0].length);
+
             if (i < rawConsulta[0].length & rawConsulta[0].length != 0) {
                 entries.add(new PieEntry(Integer.parseInt(rawConsulta[3][i]), (rawConsulta[0][i] + "/" + rawConsulta[1][i])));
-                System.out.println(Integer.parseInt(rawConsulta[3][i])+ " entre "+ventastot);
-                System.out.println("value de "+i+" es "+ (float)100*Integer.parseInt(rawConsulta[3][i])/ventastot);
-                System.out.println("label de "+i+" es "+ (rawConsulta[0][i] + "/" + rawConsulta[1][i]));
-                System.out.println(entries.get(i).toString());
+
+
                 restantes+=Integer.parseInt(rawConsulta[3][i]);
         }
         }

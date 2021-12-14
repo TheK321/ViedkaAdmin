@@ -68,11 +68,10 @@ public class FragmentPantallaAlmacen extends Fragment {
 
         try {
             rawConsulta = ((MainActivity) getActivity()).Consultar("Prenda", 6, false, "");
-            System.out.println("Tamaño de rawconsulta es "+rawConsulta[0].length);
             for (int i = 0; i < rawConsulta[1].length; i++) {
-                System.out.println(rawConsulta[0][i]+rawConsulta[1][i]);
+
                 String totalvendidos = ((MainActivity) getActivity()).ConsultarSuma("Movimientos", "Cantidad", true, ("idPrenda=\""+rawConsulta[0][i]+"\""),"idPrenda")[0];
-                System.out.println(totalvendidos);
+
                 int totvendidos = Integer.parseInt(totalvendidos) * Integer.parseInt(rawConsulta[5][i]);
                 filas.add(new String[]{rawConsulta[0][i],
                         rawConsulta[1][i],
@@ -82,7 +81,7 @@ public class FragmentPantallaAlmacen extends Fragment {
 
             }
         } catch (Exception ex){
-            System.out.println(ex.toString());
+
         }
         return filas;
     }

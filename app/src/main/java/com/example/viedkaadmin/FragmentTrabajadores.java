@@ -137,7 +137,7 @@ public class FragmentTrabajadores extends Fragment {
             rawConsulta = ((MainActivity) getActivity()).Consultar("Trabajadores", 2, false, "");
             listaTrabajadores = new Trabajador[rawConsulta[1].length];
             for (int i = 0; i < rawConsulta[1].length; i++) {
-                System.out.println(rawConsulta[0][i] + rawConsulta[1][i]);
+
                 listaTrabajadores[i] = new Trabajador(Integer.parseInt(rawConsulta[0][i]), rawConsulta[1][i]);
                 agregarFila(listaTrabajadores[i].getId(), listaTrabajadores[i].getNombre());
             }
@@ -189,9 +189,9 @@ public class FragmentTrabajadores extends Fragment {
         String[] columnas = new String[1];
         columnas[0] = "NombreTrab";
         datos[0] = txtNombre.getText().toString();
-        System.out.println(datos[0] + " " + columnas[0]);
+
         long trabajadores = ((MainActivity) getActivity()).Insertar(columnas, datos, "Trabajadores");
-        System.out.println(trabajadores);
+
         if (trabajadores == -1) {
             Toast.makeText(this.getContext(), "Error al insertar", (short) 1000);
         } else {

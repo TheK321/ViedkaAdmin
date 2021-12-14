@@ -64,7 +64,6 @@ public class FragmentPantallaLibroContable extends Fragment {
             rawConsulta = ((MainActivity) getActivity()).Consultar("Movimientos", 12, true, "Tipo='Ingreso'");
             Contable[] listaContable = new Contable[rawConsulta[1].length];
             for (int i = 0; i < rawConsulta[1].length; i++) {
-                System.out.println(rawConsulta[0][i]+rawConsulta[1][i]);
                 listaContable[i] = new Contable(
                         rawConsulta[9][i], //FECHA
                         rawConsulta[1][i], //CONCEPTO
@@ -89,7 +88,6 @@ public class FragmentPantallaLibroContable extends Fragment {
             rawConsulta = ((MainActivity) getActivity()).Consultar("Movimientos", 12, true, "Tipo='Egreso'");
             Contable[] listaContable = new Contable[rawConsulta[1].length];
             for (int i = 0; i < rawConsulta[1].length; i++) {
-                System.out.println(rawConsulta[0][i]+rawConsulta[1][i]);
                 listaContable[i] = new Contable(
                         rawConsulta[9][i], //FECHA
                         rawConsulta[1][i], //CONCEPTO

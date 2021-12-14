@@ -84,7 +84,6 @@ public class FragmentEditarProductos extends Fragment {
 
         int conteo = ((MainActivity) getActivity()).Contar("Prenda");
 
-        System.out.println("CONTEO =" +conteo);
 
         tl = (TableLayout) view.findViewById(R.id.tableEditarP);
         nombre = view.findViewById(R.id.editTextProductos);
@@ -106,7 +105,7 @@ public class FragmentEditarProductos extends Fragment {
             ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.select_dialog_item,val );
             categoriaS.setAdapter(adapter);
         }catch(Exception exception){
-            System.out.println(exception);
+
         }
 
         insertar.setOnClickListener(new View.OnClickListener() {
@@ -162,11 +161,9 @@ public class FragmentEditarProductos extends Fragment {
             listaProductos = new Producto[rawConsulta[0].length];
             for (int i = 0; i < rawConsulta[0].length; i++) {
                 for (int t = 0; t < conteo; t++) {
-                    System.out.println("Coordenada "+t+","+i+":"+rawConsulta[i][t]+",");
 
                     int num = Integer.parseInt(rawConsulta[i][t]);
 
-                    System.out.println("RESULTADO DE PARSEO:"+rawConsulta[i][t]+", "+num);
                     listaProductos[i] = new Producto
                             (num, rawConsulta[1][t], rawConsulta[2][t],
                                     rawConsulta[3][t], rawConsulta[4][t], rawConsulta[5][t]);
@@ -196,7 +193,7 @@ public class FragmentEditarProductos extends Fragment {
 
             }
         }catch (Exception ex){
-            System.out.println("ERROR AL CONSULTAR \n"+ex.toString());
+
         }
 
         return view;
@@ -336,17 +333,14 @@ public class FragmentEditarProductos extends Fragment {
         encabezado[4] ="PrecioVenta";
 
         String [] valores = {nom,cat,can,prec,prev};
-        for (int c=0; c<encabezado.length;c++){
-            System.out.println(encabezado[c]+" VALORES "+valores[c]);
-        }
         try {
             long productos = ((MainActivity) getActivity()).Insertar(encabezado, valores, "Prenda");
-            System.out.println("LONG:"+productos);
+
             if(productos == -1){
                 Toast.makeText(this.getContext(),"Error al insertar",(short)1000);
             } else {
                 Toast.makeText(getActivity(), "Producto Ingresado", (short) 1000).show();
-                System.out.println("Producto Ingresado");
+
                 refresh();
             }
         }catch (android.database.sqlite.SQLiteConstraintException e){
@@ -356,7 +350,7 @@ public class FragmentEditarProductos extends Fragment {
                     .setNeutralButton("Aceptar", null)
                     .show();
         }catch (Exception e){
-            System.out.println("Excepción en editar productos agregar producto "+e);
+
         }
 
     }

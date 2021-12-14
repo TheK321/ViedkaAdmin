@@ -84,11 +84,9 @@ public class FragmentPantallaProductos extends Fragment {
             listaProductos = new Producto[rawConsulta[0].length];
             for (int i = 0; i < rawConsulta[0].length; i++) {
                 for (int t = 0; t < conteo; t++) {
-                    System.out.println("Coordenada "+t+","+i+":"+rawConsulta[i][t]+",");
 
                     int num = Integer.parseInt(rawConsulta[i][t]);
 
-                    System.out.println("RESULTADO DE PARSEO:"+rawConsulta[i][t]+", "+num);
                     listaProductos[i] = new Producto
                             (num, rawConsulta[1][t], rawConsulta[2][t],
                                     rawConsulta[3][t], rawConsulta[4][t], rawConsulta[5][t]);

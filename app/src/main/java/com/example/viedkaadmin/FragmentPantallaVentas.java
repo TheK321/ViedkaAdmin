@@ -68,7 +68,6 @@ public class FragmentPantallaVentas extends Fragment {
             rawConsulta = ((MainActivity) getActivity()).Consultar("Movimientos", 12, true, "Tipo='Ingreso'");
             Movimiento[] listaMovimientos = new Movimiento[rawConsulta[1].length];
             for (int i = 0; i < rawConsulta[1].length; i++) {
-                System.out.println(rawConsulta[0][i]+rawConsulta[1][i]);
                 listaMovimientos[i] = new Movimiento(
                         Integer.parseInt(rawConsulta[0][i]), //ID
                         rawConsulta[1][i], //CONCEPTO
@@ -91,7 +90,7 @@ public class FragmentPantallaVentas extends Fragment {
                     );
             }
         }catch (Exception ex){
-            System.out.println("ERROR AL CONSULTAR \n"+ex.toString());
+
         }
         return view;
     }
